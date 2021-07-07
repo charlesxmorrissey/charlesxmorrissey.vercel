@@ -1,0 +1,89 @@
+/* stylelint-disable color-no-hex */
+
+@import-normalize;
+
+/*
+ * Base Styles
+ * ======================================================================== */
+
+*,
+:root {
+  --animation-speed: 15s;
+  --color-black: #111;
+  --color-white: #fff;
+  --header-max-width: 27.5rem;
+  --padding-large: 2.25rem;
+  --padding-small: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+body > div {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  animation: fade-in 1s ease 1 forwards;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-feature-settings: 'kern';
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0;
+  transition: background 3s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 18px;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}

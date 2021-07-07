@@ -1,0 +1,25 @@
+/*
+ * Page Header Styles
+ * ======================================================================== */
+
+.header {
+  max-width: var(--header-max-width);
+}
+
+.headerTitle {
+  margin-bottom: 16px;
+
+  @media (min-width: 50em) {
+    font-size: 42px;
+    margin-bottom: 20px;
+  }
+}
+
+.headerBody {
+  margin-bottom: 8px;
+
+  @media (min-width: 50em) {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+}

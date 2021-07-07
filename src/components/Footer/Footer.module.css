@@ -1,0 +1,28 @@
+/*
+ * Page Footer Styles
+ * ======================================================================== */
+
+.footer {
+  align-items: center;
+  display: flex;
+  margin-left: -8px;
+}
+
+.footerIcon {
+  height: 20px;
+  width: 20px;
+}
+
+.footerLink {
+  margin-right: 4px;
+  padding: 8px;
+
+  &:first-child .footerIcon {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.footerLabel {
+  composes: visuallyHidden from global;
+}

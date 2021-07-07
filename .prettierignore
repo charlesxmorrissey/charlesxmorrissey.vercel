@@ -1,0 +1,6 @@
+.env
+.next
+.vscode
+coverage
+out
+package.json
