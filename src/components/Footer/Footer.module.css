@@ -1,0 +1,28 @@
+/*
+ * Page Footer Styles
+ * ======================================================================== */
+
+.pageFooter {
+  align-items: center;
+  display: flex;
+  margin-left: -8px;
+}
+
+.pageFooterIcon {
+  height: 20px;
+  width: 20px;
+}
+
+.pageFooterLink {
+  margin-right: 4px;
+  padding: 8px;
+
+  &:first-child .pageFooterIcon {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.pageFooterLabel {
+  composes: visuallyHidden from global;
+}

@@ -1,0 +1,23 @@
+/*
+ * Page Header Styles
+ * ======================================================================== */
+
+.pageHeader {
+  max-width: var(--header-max-width);
+}
+
+.pageHeaderTitle {
+  margin: 0 0 0.5em;
+
+  @media (min-width: 50em) {
+    font-size: 42px;
+  }
+}
+
+.pageHeaderBody {
+  margin: 0 0 1em;
+
+  @media (min-width: 50em) {
+    font-size: 24px;
+  }
+}

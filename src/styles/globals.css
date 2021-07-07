@@ -1,0 +1,72 @@
+/* stylelint-disable color-no-hex */
+
+@import-normalize;
+
+/*
+ * Base Styles
+ * ======================================================================== */
+
+*,
+:root {
+  --color-grey-0: #fff;
+  --header-max-width: 440px;
+  --padding-large: 36px;
+  --padding-small: 24px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+body > div {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-grey-0);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-feature-settings: 'kern';
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.3;
+  margin: 0;
+  transition: background ease 3s;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+p {
+  font-size: 18px;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
