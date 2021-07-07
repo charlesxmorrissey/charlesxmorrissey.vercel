@@ -5,6 +5,11 @@ export const siteData = {
     'I build accessible web applications using technologies like Vue, React, Node, ES6, Webpack, and more.',
 }
 
+/**
+ * Sets a style tag containing random color variables.
+ *
+ * @param {HTMLElement} element The element to set inline styles on.
+ */
 export const setBackground = (element: HTMLElement) => {
   const random = (min: number, max: number) => Math.random() * (max - min) + min
   const randomColor = () => {

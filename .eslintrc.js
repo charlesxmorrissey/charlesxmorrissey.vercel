@@ -1,8 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    node: true,
     es2020: true,
+    node: true,
   },
 
   parser: '@typescript-eslint/parser',
@@ -29,6 +29,7 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:jsdoc/recommended',
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
