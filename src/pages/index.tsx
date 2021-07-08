@@ -27,6 +27,7 @@ const Home = () => {
 
       <main className={styles.pageContainer} ref={bgEl}>
         <Header name={name} description={description} />
+
         <Footer />
       </main>
     </>
