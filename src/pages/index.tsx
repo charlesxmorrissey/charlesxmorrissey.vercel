@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import { useEffect, useRef } from 'react'
 
+import { setBackground, siteData } from 'utils'
+
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 
 import styles from 'styles/Home.module.css'
-
-import { setBackground, siteData } from 'utils/index'
 
 const Home = () => {
   const { description, name, title } = siteData

@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2020: true,
+    jest: true,
     node: true,
   },
 
@@ -72,12 +73,12 @@ module.exports = {
         alphabetize: { order: 'asc', ignoreCase: false },
         groups: [
           'module',
-          '/^components/',
+          '/^(constants|helpers|hooks|utils)/',
           '/^pages/',
+          '/^components/',
           '/^images/',
-          '/^public/',
           '/^styles/',
-          '/^utils/',
+          '/^public/',
           ['parent', 'sibling', 'index'],
         ],
         newlinesBetween: 'always',

@@ -1,6 +1,6 @@
 node_modules
 .next
 next.config.js
-out
+coverage
 !.eslintrc.js
 !.babelrc.js
