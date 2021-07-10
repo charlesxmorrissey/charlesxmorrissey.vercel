@@ -2,9 +2,11 @@ import EmailIcon from 'images/email.svg'
 import GithubIcon from 'images/github.svg'
 import LinkedInIcon from 'images/linkedin.svg'
 
+type SVGIcon = keyof JSX.IntrinsicElements
+
 export const footerData = [
   {
-    icon: EmailIcon as keyof JSX.IntrinsicElements,
+    icon: EmailIcon as SVGIcon,
     link: 'mailto:hi@charles-x.com?subject=hello%20from%20website',
     options: {
       rel: 'noreferrer',
@@ -13,12 +15,12 @@ export const footerData = [
     name: 'Email',
   },
   {
-    icon: GithubIcon as keyof JSX.IntrinsicElements,
+    icon: GithubIcon as SVGIcon,
     link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
     name: 'LinkedIn',
   },
   {
-    icon: LinkedInIcon as keyof JSX.IntrinsicElements,
+    icon: LinkedInIcon as SVGIcon,
     link: 'https://github.com/charlesxmorrissey',
     name: 'Github',
   },
