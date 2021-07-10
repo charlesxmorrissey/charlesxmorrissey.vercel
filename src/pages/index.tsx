@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import { useEffect, useRef } from 'react'
 
-import { setBackground, siteData } from 'utils'
+import { siteData } from 'constants/index'
+import { setBackground } from 'utils'
 
 import Footer from 'components/Footer'
 import Header from 'components/Header'
@@ -10,10 +11,10 @@ import styles from 'styles/Home.module.css'
 
 const Home = () => {
   const { description, name, title } = siteData
-  const bgEl = useRef(null)
+  const bgRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    setBackground(bgEl.current)
+    setBackground(bgRef.current)
   }, [])
 
   return (
@@ -25,7 +26,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.pageContainer} ref={bgEl}>
+      <main className={styles.pageContainer} ref={bgRef}>
         <Header name={name} description={description} />
 
         <Footer />
