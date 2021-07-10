@@ -1,4 +1,4 @@
-import { render } from 'utils/test-utils'
+import { render } from 'test/test-utils'
 
 import IndexPage from 'pages/index'
 

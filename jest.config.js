@@ -3,7 +3,7 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src', 'test'],
   moduleNameMapper: {
     '\\.(css)$': 'identity-obj-proxy',
-    '\\.svg': '<rootDir>/test/__mocks__/svgrMock.ts',
+    '\\.svg': '<rootDir>/src/test/__mocks__/svgrMock.ts',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
