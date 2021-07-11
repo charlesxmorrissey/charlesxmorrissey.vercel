@@ -4,15 +4,25 @@ import LinkedInIcon from 'images/linkedin.svg'
 
 type SVGIcon = keyof JSX.IntrinsicElements
 
-export const footerData = [
+interface LinkData {
+  icon: SVGIcon
+  link: string
+  name: string
+  options?: {
+    rel: string
+    target: string
+  }
+}
+
+export const footerData: LinkData[] = [
   {
     icon: EmailIcon as SVGIcon,
     link: 'mailto:hi@charles-x.com?subject=hello%20from%20website',
+    name: 'Email',
     options: {
       rel: 'noreferrer',
       target: '_blank',
     },
-    name: 'Email',
   },
   {
     icon: GithubIcon as SVGIcon,
