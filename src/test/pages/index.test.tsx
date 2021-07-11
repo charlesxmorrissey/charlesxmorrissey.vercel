@@ -3,7 +3,7 @@ import { render } from 'test/test-utils'
 import IndexPage from 'pages/index'
 
 describe('IndexPage', () => {
-  it('should the index page', () => {
+  test('should render the index page', () => {
     render(<IndexPage />)
   })
 })
