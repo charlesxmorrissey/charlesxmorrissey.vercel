@@ -8,9 +8,9 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.tsx',
-    '<rootDir>/src/**/*.test.tsx',
-    '<rootDir>/test/**/*.test.tsx',
+    '<rootDir>/src/**/__tests__/**/.[jt]s?(x)',
+    '<rootDir>/src/**/*.test.[jt]s?(x)',
+    '<rootDir>/test/**/*.test.[jt]s?(x)',
   ],
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
 }

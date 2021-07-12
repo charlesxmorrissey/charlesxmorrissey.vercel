@@ -1,0 +1,19 @@
+import { render, screen } from 'test/test-utils'
+
+import { setBackground } from './'
+
+global.Math.random = () => 1
+
+describe('setBackground', () => {
+  test('should set custom propertieson the specified element', () => {
+    render(<main className="foo"></main>)
+
+    const main = screen.getByRole('main')
+
+    setBackground(main)
+
+    expect(main).toHaveStyle(
+      `--color-1: hsl(360, 100%, 100%); --color-2: hsl(360, 100%, 100%); --color-3: hsl(360, 100%, 100%); --color-4: hsl(360, 100%, 100%);`
+    )
+  })
+})
