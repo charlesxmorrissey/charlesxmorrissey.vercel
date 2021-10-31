@@ -2,5 +2,4 @@ node_modules
 .next
 next.config.js
 coverage
-!.eslintrc.js
-!.babelrc.js
+*.js

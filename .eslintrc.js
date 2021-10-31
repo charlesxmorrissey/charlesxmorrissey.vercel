@@ -37,12 +37,28 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
     'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
     'plugin:@next/next/recommended',
   ],
 
   rules: {
+    'import/no-unresolved': 'off',
+    'import-helpers/order-imports': [
+      'warn',
+      {
+        alphabetize: { order: 'asc', ignoreCase: false },
+        groups: [
+          'module',
+          '/^(constant|helpers|hooks|test|utils)/',
+          '/^pages/',
+          '/^components/',
+          '/^images/',
+          '/^styles/',
+          '/^public/',
+          ['parent', 'sibling', 'index'],
+        ],
+        newlinesBetween: 'always',
+      },
+    ],
     'no-console': 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-unused-vars': 2,
@@ -67,23 +83,6 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton'],
       },
     ],
-    'import-helpers/order-imports': [
-      'warn',
-      {
-        alphabetize: { order: 'asc', ignoreCase: false },
-        groups: [
-          'module',
-          '/^(constants|helpers|hooks|test|utils)/',
-          '/^pages/',
-          '/^components/',
-          '/^images/',
-          '/^styles/',
-          '/^public/',
-          ['parent', 'sibling', 'index'],
-        ],
-        newlinesBetween: 'always',
-      },
-    ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
@@ -92,11 +91,6 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
-    },
-    'import/resolver': {
-      'babel-module': {
-        extensions: ['.ts', '.tsx', '.js', '.jsx'],
-      },
     },
   },
 }

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useRef } from 'react'
 
-import { siteData } from 'constants/index'
+import { siteData } from 'constant'
 import { setBackground } from 'utils'
 
 import Footer from 'components/Footer'

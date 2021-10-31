@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { render } from '@testing-library/react'
 
 interface ProviderProps {
@@ -17,4 +18,4 @@ const customRender = (ui, options = {}) =>
 export * from '@testing-library/react'
 
 // Override render method
-export { customRender as render }
+export { customRender }
