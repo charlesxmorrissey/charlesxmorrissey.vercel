@@ -8,7 +8,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "prettier --write '**/*.{css,js,ts,tsx}' --loglevel error",
+    "format": "prettier --write '**/*.{css,html,js,md,ts,tsx}' --loglevel error",
     "lint:fix": "eslint --ext .js,.ts,.tsx . --fix --max-warnings 0 .",
     "lint:js": "eslint --ext .js,.ts,.tsx .",
     "lint:styles": "stylelint --config stylelint.config.js 'src/**/*.css'",
@@ -61,7 +61,7 @@
     "postcss-nesting": "^7.0.1",
     "postcss-normalize": "^9.0.0",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "prettier-plugin-jsdoc": "^0.3.23",
     "stylelint": "^14.0.1",
     "stylelint-config-css-modules": "^2.3.0",

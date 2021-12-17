@@ -23,6 +23,6 @@ used by this project. This value is saved in the `.nvmrc` file.
 - `yarn lint:styles`: runs stylelint
 - `yarn build`: creates an optimized production build.
 - `yarn build && yarn start`: starts the application in production mode.
-- `yarn build:prod`: creates an optimized production build, compiles
-  storybook for production & starts the application in production mode.
+- `yarn build:prod`: creates an optimized production build, compiles storybook
+  for production & starts the application in production mode.
 - `yarn type-check`: check types.
