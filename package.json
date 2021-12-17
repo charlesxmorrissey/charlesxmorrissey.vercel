@@ -6,19 +6,20 @@
     "defaults"
   ],
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
     "format": "prettier --write '**/*.{css,js,ts,tsx}' --loglevel error",
-    "lint": "yarn lint:styles && yarn lint:js",
     "lint:fix": "eslint --ext .js,.ts,.tsx . --fix --max-warnings 0 .",
     "lint:js": "eslint --ext .js,.ts,.tsx .",
     "lint:styles": "stylelint --config stylelint.config.js 'src/**/*.css'",
-    "type-check": "tsc -p .",
+    "lint:ts:watch": "yarn lint:ts --watch",
+    "lint:ts": "tsc --project . --incremental --noEmit",
+    "lint": "yarn lint:styles && yarn lint:js && yarn lint:ts",
     "prepare": "husky install",
-    "test": "jest",
+    "start": "next start",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "dependencies": {
     "next": "^12.0.2",

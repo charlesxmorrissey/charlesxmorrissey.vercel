@@ -2,7 +2,7 @@ import { footerData } from 'constant'
 
 import styles from './Footer.module.css'
 
-const Footer = () => (
+const Footer: React.FC = () => (
   <footer className={styles.pageFooter}>
     {footerData.map((data, i) => {
       const { icon: Icon, link, name, options } = data

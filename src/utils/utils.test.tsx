@@ -5,7 +5,7 @@ import { setBackground } from './'
 global.Math.random = () => 1
 
 describe('setBackground', () => {
-  test('should set custom propertieson the specified element', () => {
+  it('should set custom propertieson the specified element', () => {
     render(<main className="foo"></main>)
 
     const main = screen.getByRole('main')

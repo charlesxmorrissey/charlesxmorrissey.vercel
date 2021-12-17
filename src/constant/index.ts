@@ -1,2 +1,4 @@
-export * from './footer'
-export * from './site'
+import { footerData } from './footer'
+import { siteData } from './site'
+
+export { footerData, siteData }

@@ -9,7 +9,7 @@ import Header from 'components/Header'
 
 import styles from 'styles/Home.module.css'
 
-const Home = () => {
+const Home: React.FC = () => {
   const { description, name, title } = siteData
   const bgRef = useRef<HTMLElement>(null)
 
@@ -28,7 +28,6 @@ const Home = () => {
 
       <main className={styles.pageContainer} ref={bgRef}>
         <Header name={name} description={description} />
-
         <Footer />
       </main>
     </>

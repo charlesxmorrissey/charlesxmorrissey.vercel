@@ -1,19 +1,15 @@
-import PropTypes, { InferProps } from 'prop-types'
-
 import styles from './Header.module.css'
 
-const propTypes = {
-  description: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+interface Props {
+  description: string
+  name: string
 }
 
-const Header = ({ description, name }: InferProps<typeof propTypes>) => (
+const Header: React.FC<Props> = ({ description, name }) => (
   <header className={styles.pageHeader}>
     <h1 className={styles.pageHeaderTitle}>{name}</h1>
     <p className={styles.pageHeaderBody}>{description}</p>
   </header>
 )
-
-Header.propTypes = propTypes
 
 export default Header
