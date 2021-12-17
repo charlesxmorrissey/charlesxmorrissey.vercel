@@ -1,1 +1,1 @@
-module.exports = 'test-file-stub'
+module.exports = { src: 'test-file-stub' }

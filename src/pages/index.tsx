@@ -21,13 +21,13 @@ const Home: React.FC = () => {
     <>
       <Head>
         <title>{`${name} | ${title}`}</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <meta name="description" content={description} />
-        <link rel="icon" href="/favicon.ico" />
+        <meta content="width=device-width,initial-scale=1.0" name="viewport" />
+        <meta content={description} name="description" />
+        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <main className={styles.pageContainer} ref={bgRef}>
-        <Header name={name} description={description} />
+        <Header description={description} name={name} />
         <Footer />
       </main>
     </>

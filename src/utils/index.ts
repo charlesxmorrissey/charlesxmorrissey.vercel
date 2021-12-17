@@ -3,7 +3,7 @@
  *
  * @param {HTMLElement} element The element to set inline styles on.
  */
-export const setBackground = (element: HTMLElement) => {
+export const setBackground = (element: HTMLElement | null) => {
   const random = (min: number, max: number) =>
     Math.floor(Math.random() * (max - min) + min)
   const randomColor = () => {
@@ -14,8 +14,8 @@ export const setBackground = (element: HTMLElement) => {
     return `hsl(${h}, ${s}%, ${l}%)`
   }
 
-  element.style.setProperty('--color-1', randomColor())
-  element.style.setProperty('--color-2', randomColor())
-  element.style.setProperty('--color-3', randomColor())
-  element.style.setProperty('--color-4', randomColor())
+  element?.style.setProperty('--color-1', randomColor())
+  element?.style.setProperty('--color-2', randomColor())
+  element?.style.setProperty('--color-3', randomColor())
+  element?.style.setProperty('--color-4', randomColor())
 }

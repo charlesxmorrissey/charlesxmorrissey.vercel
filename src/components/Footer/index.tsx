@@ -1,24 +1,20 @@
-import { footerData } from 'constant'
+import { LinkData, footerData } from 'constant'
 
 import styles from './Footer.module.css'
 
 const Footer: React.FC = () => (
   <footer className={styles.pageFooter}>
-    {footerData.map((data, i) => {
-      const { icon: Icon, link, name, options } = data
+    {footerData.map(({ Icon, link, name, options }: LinkData, index) => (
+      <a
+        className={styles.pageFooterLink}
+        href={link}
+        key={`footer-item-${index}`}
+        {...options}>
+        <span className={styles.pageFooterLabel}>{name}</span>
 
-      return (
-        <a
-          className={styles.pageFooterLink}
-          href={link}
-          key={`footer-item-${i}`}
-          {...options}>
-          <span className={styles.pageFooterLabel}>{name}</span>
-
-          <Icon aria-hidden className={styles.pageFooterIcon} />
-        </a>
-      )
-    })}
+        <Icon aria-hidden className={styles.pageFooterIcon} />
+      </a>
+    ))}
   </footer>
 )
 
