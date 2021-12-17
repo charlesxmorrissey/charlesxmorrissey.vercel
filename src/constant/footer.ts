@@ -26,12 +26,12 @@ export const footerData: LinkData[] = [
   },
   {
     icon: GithubIcon as SVGIcon,
-    link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
+    link: 'https://github.com/charlesxmorrissey',
     name: 'LinkedIn',
   },
   {
     icon: LinkedInIcon as SVGIcon,
-    link: 'https://github.com/charlesxmorrissey',
+    link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
     name: 'Github',
   },
 ]

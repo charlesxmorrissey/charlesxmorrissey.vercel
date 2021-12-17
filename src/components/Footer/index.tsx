@@ -12,8 +12,7 @@ const Footer: React.FC = () => (
           className={styles.pageFooterLink}
           href={link}
           key={`footer-item-${i}`}
-          {...options}
-        >
+          {...options}>
           <span className={styles.pageFooterLabel}>{name}</span>
 
           <Icon aria-hidden className={styles.pageFooterIcon} />
