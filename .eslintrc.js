@@ -47,7 +47,7 @@ module.exports = {
         alphabetize: { order: 'asc', ignoreCase: false },
         groups: [
           'module',
-          '/^(constant|helpers|hooks|test|utils)/',
+          '/^(constant|helpers|hooks|utils)/',
           '/^pages/',
           '/^components/',
           '/^images/',
