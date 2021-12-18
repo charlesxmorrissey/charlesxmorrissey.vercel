@@ -9,8 +9,8 @@ export interface LinkData {
   link: string
   name: string
   options?: {
-    rel: string
-    target: string
+    rel?: string
+    target?: string
   }
 }
 
@@ -27,11 +27,11 @@ export const footerData: LinkData[] = [
   {
     Icon: GithubIcon,
     link: 'https://github.com/charlesxmorrissey',
-    name: 'LinkedIn',
+    name: 'Github',
   },
   {
     Icon: LinkedInIcon,
     link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
-    name: 'Github',
+    name: 'LinkedIn',
   },
 ]

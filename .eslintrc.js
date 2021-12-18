@@ -79,6 +79,7 @@ module.exports = {
     ],
     'react-hooks/exhaustive-deps': 'error',
     'react-hooks/rules-of-hooks': 'error',
+    'react/display-name': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', 'jsx'] }],
     'react/jsx-sort-props': 'error',
     'react/no-children-prop': 'error',
@@ -86,8 +87,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/self-closing-comp': 'error',
     'sort-destructure-keys/sort-destructure-keys': 2,
-    'sort-keys': ['error'],
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
+    'sort-keys': ['error'],
   },
 
   settings: {
