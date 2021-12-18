@@ -1,5 +1,6 @@
+import { render, screen } from '@testing-library/react'
+
 import { setBackground } from './'
-import { render, screen } from './test-utils'
 
 global.Math.random = () => 1
 
