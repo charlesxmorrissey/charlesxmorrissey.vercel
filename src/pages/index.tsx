@@ -9,8 +9,9 @@ import Header from 'components/Header'
 
 import styles from 'styles/Home.module.css'
 
+const { description, name, title } = siteData
+
 const Home: React.FC = () => {
-  const { description, name, title } = siteData
   const bgRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
