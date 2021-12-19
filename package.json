@@ -13,7 +13,7 @@
     "lint:js": "eslint --ext .js,.ts,.tsx .",
     "lint:styles": "stylelint --config stylelint.config.js 'src/**/*.css'",
     "lint:ts:watch": "yarn lint:ts --watch",
-    "lint:ts": "tsc --project tsconfig.json --incremental --noEmit",
+    "lint:ts": "tsc --project tsconfig.json",
     "lint": "yarn lint:styles && yarn lint:js && yarn lint:ts",
     "prepare": "husky install",
     "start": "next start",
