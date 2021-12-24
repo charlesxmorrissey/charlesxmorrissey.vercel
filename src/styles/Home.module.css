@@ -3,7 +3,7 @@
  * ======================================================================== */
 
 .pageContainer {
-  animation: gradient 15s ease infinite;
+  animation: gradient var(--animation-speed) ease infinite;
   background: linear-gradient(
     -45deg,
     var(--color-1),

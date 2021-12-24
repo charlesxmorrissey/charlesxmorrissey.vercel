@@ -8,10 +8,12 @@
 
 *,
 :root {
-  --color-grey-0: #fff;
-  --header-max-width: 440px;
-  --padding-large: 36px;
-  --padding-small: 24px;
+  --animation-speed: 15s;
+  --color-black: #111;
+  --color-white: #fff;
+  --header-max-width: 27.5rem;
+  --padding-large: 2.25rem;
+  --padding-small: 1.5rem;
 }
 
 *,
@@ -28,15 +30,15 @@ body > div {
 
 html {
   box-sizing: border-box;
-  font-size: 16px;
 }
 
 body {
-  background-color: var(--color-grey-0);
+  background-color: var(--color-white);
+  color: var(--color-black);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   font-feature-settings: 'kern';
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: normal;
   line-height: 1.3;
   margin: 0;
@@ -49,13 +51,13 @@ a {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: 600;
   line-height: 1.1;
 }
 
 p {
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .visuallyHidden {
