@@ -1,4 +1,8 @@
-module.exports = {
+// @ts-check
+
+/** @type {import('next').NextConfig} */
+
+const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
@@ -12,3 +16,5 @@ module.exports = {
     return config
   },
 }
+
+module.exports = nextConfig
