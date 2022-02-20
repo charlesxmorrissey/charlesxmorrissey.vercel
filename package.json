@@ -58,7 +58,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-nesting": "^7.0.1",
     "postcss-normalize": "^9.0.0",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^7.4.1",
     "prettier": "2.5.1",
     "prettier-plugin-jsdoc": "^0.3.23",
     "stylelint": "^14.0.1",
