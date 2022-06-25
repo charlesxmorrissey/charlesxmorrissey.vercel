@@ -1,6 +1,6 @@
 export const siteData = {
   description:
-    'I build accessible web applications using technologies like Vue, React, Node, ES6, Webpack, and more.',
+    'I build accessible web applications using technologies like React, Vue, Node, ES6, Webpack, and more.',
   name: 'Charles X. Morrissey',
-  title: 'Senior Front End Engineer',
+  title: 'Senior Frontend Engineer',
 }

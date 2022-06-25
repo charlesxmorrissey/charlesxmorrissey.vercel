@@ -1,3 +1,4 @@
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useRef } from 'react'
 
@@ -11,7 +12,7 @@ import styles from 'styles/Home.module.css'
 
 const { description, name, title } = siteData
 
-const Home: React.FC = () => {
+const Home: NextPage = () => {
   const bgRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
