@@ -1,5 +1,9 @@
 module.exports = {
   plugins: {
+    'postcss-pxtorem': {
+      minPixelValue: 2,
+      propList: ['*'],
+    },
     'postcss-custom-properties': {
       importFrom: './src/styles/globals.css',
       preserve: false,

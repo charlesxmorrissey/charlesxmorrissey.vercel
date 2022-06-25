@@ -25,7 +25,7 @@ const Home: NextPage = () => {
         <title>{`${name} | ${title}`}</title>
         <meta content='width=device-width,initial-scale=1.0' name='viewport' />
         <meta content={description} name='description' />
-        <link href='/favicon.ico' rel='icon' />
+        <link href='/images/favicon.ico' rel='icon' />
       </Head>
 
       <main className={styles.pageContainer} ref={bgRef}>
