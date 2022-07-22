@@ -9,8 +9,18 @@ const nextConfig = {
 
   webpack(config) {
     config.module.rules.push({
-      test: /\.svg$/,
-      loader: '@svgr/webpack',
+      test: /\.svg$/i,
+      issuer: { and: [/\.(js|ts)x?$/] },
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            prettier: false,
+            svgo: true,
+            titleProp: true,
+          },
+        },
+      ],
     })
 
     return config
