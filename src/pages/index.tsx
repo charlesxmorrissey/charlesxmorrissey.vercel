@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useEffect, useRef } from 'react'
 
 import { siteData } from 'constant'
-import { setBackground } from 'utils'
+import { setBackgroundStyles } from 'utils'
 
 import Footer from 'components/Footer'
 import Header from 'components/Header'
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   const bgRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    setBackground(bgRef.current)
+    setBackgroundStyles(bgRef.current)
   }, [])
 
   return (

@@ -1,19 +1,23 @@
 import { render, screen } from '@testing-library/react'
 
-import { setBackground } from './'
+import { setBackgroundStyles } from './'
 
 global.Math.random = () => 1
 
-describe('setBackground', () => {
+const { getByRole } = screen
+
+describe('setBackgroundStyles', () => {
+  const hslStr = 'hsl(360, 100%, 100%);'
+
   it('should set custom properties on the specified element', () => {
     render(<main className='foo' />)
 
-    const main = screen.getByRole('main')
+    const main = getByRole('main')
 
-    setBackground(main)
+    setBackgroundStyles(main)
 
     expect(main).toHaveStyle(
-      `--color-1: hsl(360, 100%, 100%); --color-2: hsl(360, 100%, 100%); --color-3: hsl(360, 100%, 100%); --color-4: hsl(360, 100%, 100%);`
+      `--color-1: ${hslStr} --color-2: ${hslStr} --color-3: ${hslStr} --color-4: ${hslStr}`
     )
   })
 })

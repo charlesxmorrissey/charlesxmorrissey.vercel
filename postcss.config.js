@@ -5,7 +5,6 @@ module.exports = {
       propList: ['*'],
     },
     'postcss-custom-properties': {
-      importFrom: './src/styles/globals.css',
       preserve: false,
     },
     'postcss-normalize': {
