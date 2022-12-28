@@ -4,6 +4,12 @@ import EmailIcon from 'images/email.svg'
 import GithubIcon from 'images/github.svg'
 import LinkedInIcon from 'images/linkedin.svg'
 
+interface AppData {
+  description: string
+  name: string
+  title: string
+}
+
 interface LinkDataAttributes {
   rel?: string
   target?: string
@@ -16,7 +22,7 @@ export interface LinkData {
   options?: LinkDataAttributes
 }
 
-export const appData = {
+export const appData: AppData = {
   description:
     'I build apps for the web using React, Vue, Node, ES6, Webpack, and more.',
   name: 'Charles X. Morrissey',
