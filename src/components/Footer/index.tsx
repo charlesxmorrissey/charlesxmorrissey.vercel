@@ -1,10 +1,10 @@
-import { LinkData, footerData } from 'constant'
+import { LinkData, socialData } from 'constant'
 
 import styles from './Footer.module.css'
 
 const Footer: React.FC = () => (
   <footer className={styles.footer}>
-    {footerData.map(({ Icon, link, name, options }: LinkData, index) => (
+    {socialData.map(({ Icon, link, name, options }: LinkData, index) => (
       <a
         className={styles.footerLink}
         href={link}

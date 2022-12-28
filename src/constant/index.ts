@@ -16,7 +16,14 @@ export interface LinkData {
   options?: LinkDataAttributes
 }
 
-export const footerData: LinkData[] = [
+export const appData = {
+  description:
+    'I build apps for the web using React, Vue, Node, ES6, Webpack, and more.',
+  name: 'Charles X. Morrissey',
+  title: 'Senior Frontend Engineer',
+}
+
+export const socialData: LinkData[] = [
   {
     Icon: EmailIcon,
     link: 'mailto:hi@charles-x.com?subject=hello%20from%20website',
@@ -37,10 +44,3 @@ export const footerData: LinkData[] = [
     name: 'LinkedIn',
   },
 ]
-
-export const siteData = {
-  description:
-    'I build apps for the web using React, Vue, Node, ES6, Webpack, and more.',
-  name: 'Charles X. Morrissey',
-  title: 'Senior Frontend Engineer',
-}

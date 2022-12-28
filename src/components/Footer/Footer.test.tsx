@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import { footerData } from 'constant'
+import { socialData } from 'constant'
 
 import Footer from './'
 
@@ -11,8 +11,8 @@ describe('Footer', () => {
     render(<Footer />)
   })
 
-  it.each(footerData)(
-    'renders the button with the correct footerData: %s',
+  it.each(socialData)(
+    'renders the button with the correct socialData: %s',
     ({ link, name }) => {
       expect(getByText(name)).toBeInTheDocument()
       expect(getByText(name).closest('a')).toHaveAttribute('href', link)
