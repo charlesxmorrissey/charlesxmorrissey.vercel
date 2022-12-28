@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "browserslist": [
-    "defaults"
+    "> 0.2% and not dead"
   ],
   "scripts": {
     "build": "next build",
