@@ -15,7 +15,13 @@ module.exports = {
   ],
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
   transform: {
-    '\\.[jt]sx?$': ['babel-jest', { presets: ['next/babel'] }],
+    '\\.[jt]sx?$': [
+      'babel-jest',
+      {
+        presets: ['next/babel'],
+        plugins: ['@babel/plugin-proposal-private-methods'],
+      },
+    ],
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
 }
