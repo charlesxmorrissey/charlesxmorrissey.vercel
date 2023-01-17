@@ -41,6 +41,7 @@ module.exports = {
 
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': 2,
     'import-helpers/order-imports': [
       'warn',
       {
@@ -69,7 +70,7 @@ module.exports = {
     ],
     'no-console': 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-unused-vars': 2,
+    'no-unused-vars': 'off',
     'prefer-const': [
       2,
       {
