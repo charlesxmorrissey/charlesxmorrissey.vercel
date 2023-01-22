@@ -15,9 +15,7 @@ const { description, name, title } = appData
 const HomePage: NextPage = () => {
   const backgroundRef = useRef<HTMLElement>(null)
 
-  useEffect(() => {
-    setBackgroundStyles(backgroundRef.current)
-  }, [])
+  useEffect(() => setBackgroundStyles(backgroundRef.current), [])
 
   return (
     <>

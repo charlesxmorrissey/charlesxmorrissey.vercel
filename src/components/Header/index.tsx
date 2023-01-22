@@ -5,7 +5,7 @@ interface Props {
   name: string
 }
 
-const Header: React.FC<Props> = ({ description, name }) => (
+const Header = ({ description, name }: Props): JSX.Element => (
   <header className={styles.header}>
     <h1 className={styles.headerTitle}>{name}</h1>
     <p className={styles.headerBody}>{description}</p>
