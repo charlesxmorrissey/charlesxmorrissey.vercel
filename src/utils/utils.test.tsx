@@ -7,7 +7,7 @@ global.Math.random = () => 1
 const { getByRole } = screen
 
 describe('setBackgroundStyles', () => {
-  const hslStr = 'hsl(360, 100%, 100%);'
+  const hslStr = 'hsl(360 100% 100%);'
 
   it('should set custom properties on the specified element', () => {
     render(<main className='foo' />)
