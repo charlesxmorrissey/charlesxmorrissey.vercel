@@ -12,12 +12,12 @@ describe('setBackgroundStyles', () => {
   it('should set custom properties on the specified element', () => {
     render(<main className='foo' />)
 
-    const main = getByRole('main')
+    const mainEl = getByRole('main')
 
-    setBackgroundStyles(main)
+    setBackgroundStyles(mainEl)
 
-    expect(main).toHaveStyle(
-      `--color-1: ${hslStr} --color-2: ${hslStr} --color-3: ${hslStr} --color-4: ${hslStr}`
+    expect(mainEl).toHaveStyle(
+      `--color-1: ${hslStr}; --color-2: ${hslStr}; --color-3: ${hslStr}; --color-4: ${hslStr};`
     )
   })
 })
