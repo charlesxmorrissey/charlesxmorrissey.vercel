@@ -21,7 +21,7 @@ export const setBackgroundStyles = (element: HTMLElement | null) => {
     const s = randomMinMax(50, 100)
     const l = randomMinMax(50, 100)
 
-    return `hsl(${h}, ${s}%, ${l}%)`
+    return `hsl(${h} ${s}% ${l}%)`
   }
 
   for (let i = 0; i < total; i++) {
