@@ -32,7 +32,9 @@ export const appData: AppData = {
 export const socialData: LinkData[] = [
   {
     Icon: EmailIcon,
-    link: 'mailto:hi@charles-x.com?subject=hello%20from%20website',
+    link: `mailto:hi@charles-x.com?subject=${encodeURIComponent(
+      'hello from website'
+    )}`,
     name: 'Email',
     options: {
       rel: 'noreferrer',
