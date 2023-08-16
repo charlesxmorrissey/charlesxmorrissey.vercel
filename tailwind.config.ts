@@ -9,8 +9,7 @@ const config: Config = {
   plugins: [],
   theme: {
     animation: {
-      'bg-gradient': 'bg-pan 15s ease infinite',
-      'bg-init': 'fade-in 500ms ease 1 backwards',
+      'bg-init': 'bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards',
     },
     extend: {
       fontFamily: {

@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <main
-      className='animate-bg-gradient animate-bg-init flex flex-col min-h-screen p-6 md:px-8'
+      className='animate-bg-init flex flex-col min-h-screen p-6 md:px-8'
       ref={backgroundRef}
     >
       <header className='max-w-lg'>
