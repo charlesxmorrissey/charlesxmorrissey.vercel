@@ -1,35 +1,16 @@
-import { JSXElementConstructor, SVGProps } from 'react'
-
 import EmailIcon from 'assets/icons/email.svg'
 import GithubIcon from 'assets/icons/github.svg'
 import LinkedInIcon from 'assets/icons/linkedin.svg'
+import type { AppData, LinkData } from 'types'
 
-interface AppData {
-  description: string
-  name: string
-  title: string
-}
-
-interface LinkDataAttributes {
-  rel?: string
-  target?: string
-}
-
-export interface LinkData {
-  Icon: JSXElementConstructor<SVGProps<SVGElement>>
-  link: string
-  name: string
-  options?: LinkDataAttributes
-}
-
-export const appData: AppData = {
+export const APP_DATA: AppData = {
   description:
     "I'm passionate about building user-facing web products and overcoming technical hurdles to ensure their success.",
   name: 'Charles X. Morrissey',
   title: 'Senior Frontend Engineer',
 }
 
-export const socialData: LinkData[] = [
+export const SOCIAL_DATA: LinkData[] = [
   {
     Icon: EmailIcon,
     link: `mailto:hi@charles-x.com?subject=${encodeURIComponent(

@@ -3,10 +3,10 @@
 import { useEffect, useRef } from 'react'
 
 import { Social } from 'components/Social'
-import { appData, socialData } from 'constant'
+import { APP_DATA, SOCIAL_DATA } from 'constant'
 import { setBackgroundStyles } from 'utils'
 
-const { description, name } = appData
+const { description, name } = APP_DATA
 
 const Home = () => {
   const backgroundRef = useRef<HTMLElement>(null)
@@ -30,7 +30,7 @@ const Home = () => {
 
       <h2 className='font-semibold'>Get in touch</h2>
 
-      <Social data={socialData} />
+      <Social data={SOCIAL_DATA} />
     </main>
   )
 }

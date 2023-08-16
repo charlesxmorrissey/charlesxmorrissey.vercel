@@ -57,7 +57,7 @@ module.exports = {
         alphabetize: { order: 'asc', ignoreCase: false },
         groups: [
           'module',
-          '/^(assets|components|constant|hooks|mocks|pages|reducers|styles|types|utils)/',
+          '/^(assets|components|constant|hooks|mocks|pages|styles|types|utils)/',
           '/^styles/',
           '/^public/',
           ['sibling', 'index'],
