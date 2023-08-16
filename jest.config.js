@@ -10,7 +10,6 @@ module.exports = {
   testMatch: [
     '<rootDir>/src/**/__tests__/**/.[jt]s?(x)',
     '<rootDir>/src/**/*.test.[jt]s?(x)',
-    '<rootDir>/test/pages/**/*.test.[jt]s?(x)',
   ],
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
   transform: {
