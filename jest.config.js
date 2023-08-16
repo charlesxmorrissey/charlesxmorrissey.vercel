@@ -3,7 +3,6 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src', 'tests'],
   moduleNameMapper: {
     '\\.(css)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|png)$': '<rootDir>/src/tests/__mocks__/fileMock.ts',
     '\\.svg': '<rootDir>/src/tests/__mocks__/svgrMock.ts',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
@@ -16,10 +15,15 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
   transform: {
     '\\.[jt]sx?$': [
-      'babel-jest',
+      '@swc/jest',
       {
-        plugins: ['@babel/plugin-proposal-private-methods'],
-        presets: ['next/babel'],
+        jsc: {
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
+        },
       },
     ],
   },
