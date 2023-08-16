@@ -12,6 +12,16 @@ export const APP_DATA: AppData = {
 
 export const SOCIAL_DATA: LinkData[] = [
   {
+    Icon: GithubIcon,
+    link: 'https://github.com/charlesxmorrissey',
+    name: 'Github',
+  },
+  {
+    Icon: LinkedInIcon,
+    link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
+    name: 'LinkedIn',
+  },
+  {
     Icon: EmailIcon,
     link: `mailto:hi@charles-x.com?subject=${encodeURIComponent(
       'hello from website',
@@ -21,15 +31,5 @@ export const SOCIAL_DATA: LinkData[] = [
       rel: 'noreferrer',
       target: '_blank',
     },
-  },
-  {
-    Icon: GithubIcon,
-    link: 'https://github.com/charlesxmorrissey',
-    name: 'Github',
-  },
-  {
-    Icon: LinkedInIcon,
-    link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
-    name: 'LinkedIn',
   },
 ]
