@@ -25,6 +25,6 @@ export const setBackgroundStyles = (element: HTMLElement | null) => {
   }
 
   for (let i = 0; i < total; i++) {
-    element?.style.setProperty(`--color-${i + 1}`, randomColor())
+    element?.style.setProperty(`--color-bg-${i + 1}`, randomColor())
   }
 }

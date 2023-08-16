@@ -17,7 +17,7 @@ describe('setBackgroundStyles', () => {
     setBackgroundStyles(mainEl)
 
     expect(mainEl).toHaveStyle(
-      `--color-1: ${hslStr}; --color-2: ${hslStr}; --color-3: ${hslStr}; --color-4: ${hslStr};`,
+      `--color-bg-1: ${hslStr}; --color-bg-2: ${hslStr}; --color-bg-3: ${hslStr}; --color-bg-4: ${hslStr};`,
     )
   })
 })
