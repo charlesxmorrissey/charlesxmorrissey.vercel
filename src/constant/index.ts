@@ -1,8 +1,8 @@
 import { JSXElementConstructor, SVGProps } from 'react'
 
-import EmailIcon from 'images/email.svg'
-import GithubIcon from 'images/github.svg'
-import LinkedInIcon from 'images/linkedin.svg'
+import EmailIcon from 'assets/icons/email.svg'
+import GithubIcon from 'assets/icons/github.svg'
+import LinkedInIcon from 'assets/icons/linkedin.svg'
 
 interface AppData {
   description: string
@@ -24,7 +24,7 @@ export interface LinkData {
 
 export const appData: AppData = {
   description:
-    'I build apps for the web using React, Vue, Node, ES6, Webpack, and more.',
+    "I'm passionate about building user-facing web products and overcoming technical hurdles to ensure their success.",
   name: 'Charles X. Morrissey',
   title: 'Senior Frontend Engineer',
 }
@@ -33,7 +33,7 @@ export const socialData: LinkData[] = [
   {
     Icon: EmailIcon,
     link: `mailto:hi@charles-x.com?subject=${encodeURIComponent(
-      'hello from website'
+      'hello from website',
     )}`,
     name: 'Email',
     options: {
