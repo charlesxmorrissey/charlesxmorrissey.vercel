@@ -1,10 +1,10 @@
 module.exports = {
   cacheDirectory: '<rootDir>/.jest-cache',
-  moduleDirectories: ['node_modules', 'src', 'test'],
+  moduleDirectories: ['node_modules', 'src', 'tests'],
   moduleNameMapper: {
     '\\.(css)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/test/__mocks__/fileMock.js',
-    '\\.svg': '<rootDir>/src/test/__mocks__/svgrMock.js',
+    '\\.(gif|ttf|eot|png)$': '<rootDir>/src/tests/__mocks__/fileMock.ts',
+    '\\.svg': '<rootDir>/src/tests/__mocks__/svgrMock.ts',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',
@@ -18,8 +18,8 @@ module.exports = {
     '\\.[jt]sx?$': [
       'babel-jest',
       {
-        presets: ['next/babel'],
         plugins: ['@babel/plugin-proposal-private-methods'],
+        presets: ['next/babel'],
       },
     ],
   },
