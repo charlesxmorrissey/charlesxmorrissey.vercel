@@ -1,9 +1,26 @@
+# Charles X. Morrissey
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Node Version
+
+Running `nvm use` will automatically switch you to the version of node being
+used by this project. This value is saved in the `.nvmrc` file.
+
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm i
+# or
+yarn
+# or
+pnpm i
+```
+
+Next, run the development server:
 
 ```bash
 npm run dev
