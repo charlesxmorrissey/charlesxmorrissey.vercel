@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import { appData } from 'constant'
+import { APP_DATA } from 'constant'
 
 import './globals.css'
 
@@ -11,7 +11,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-const { description, name, title } = appData
+const { description, name, title } = APP_DATA
 
 export const metadata: Metadata = {
   description,

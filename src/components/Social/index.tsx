@@ -1,4 +1,4 @@
-import { LinkData } from 'constant'
+import type { LinkData } from 'types'
 
 interface SocialProps {
   data: LinkData[]
