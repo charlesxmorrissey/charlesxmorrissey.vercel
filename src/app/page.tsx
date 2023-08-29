@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <main
-      className='animate-bg-init flex flex-col min-h-full p-6 md:px-8'
+      className='flex min-h-full animate-bg-init flex-col p-6 md:px-8'
       ref={backgroundRef}
     >
       <Header {...APP_DATA} />
