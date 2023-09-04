@@ -9,8 +9,6 @@ describe('utils', () => {
 
   beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(1)
-
-    render(<main className='foo' />)
   })
 
   describe('randomHSLColor', () => {
@@ -23,6 +21,8 @@ describe('utils', () => {
 
   describe('setBackgroundStyles', () => {
     it('should set custom properties on the specified element', () => {
+      render(<main className='foo' />)
+
       const mainEl = getByRole('main')
 
       setBackgroundStyles(mainEl)
