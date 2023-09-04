@@ -26,6 +26,10 @@ export const randomHSLColor = (): string => {
  * @param {HTMLElement} element The element to set the inline styles on.
  */
 export const setBackgroundStyles = (element: HTMLElement | null) => {
+  if (!element) {
+    throw new Error('A valid HTMLElement must be provided.')
+  }
+
   const total = 4
 
   for (let i = 0; i < total; i++) {
