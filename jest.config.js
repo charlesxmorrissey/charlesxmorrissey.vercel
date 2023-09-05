@@ -1,4 +1,5 @@
 /** @type {import('jest').Config} */
+
 const config = {
   cacheDirectory: '<rootDir>/.jest-cache',
   clearMocks: true,
