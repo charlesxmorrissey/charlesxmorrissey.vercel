@@ -22,7 +22,6 @@ export const randomHSLColor = (): string => {
 
 /**
  * Sets a style tag containing random color variables.
- *
  * @param {HTMLElement} element The element to set the inline styles on.
  */
 export const setBackgroundStyles = (element: HTMLElement | null) => {
