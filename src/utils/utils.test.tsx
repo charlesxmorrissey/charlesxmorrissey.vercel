@@ -20,6 +20,10 @@ describe('utils', () => {
   })
 
   describe('setBackgroundStyles', () => {
+    it('should throw an error if no element is provided', () => {
+      expect(() => setBackgroundStyles(null)).toThrow()
+    })
+
     it('should set custom properties on the specified element', () => {
       render(<main className='foo' />)
 
