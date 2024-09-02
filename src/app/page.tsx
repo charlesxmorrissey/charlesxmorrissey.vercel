@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 import { Header } from 'components/Header'
 import { Social } from 'components/Social'
@@ -10,7 +10,9 @@ import { setBackgroundStyles } from 'utils'
 const Home = () => {
   const backgroundRef = useRef<HTMLElement>(null)
 
-  useEffect(() => setBackgroundStyles(backgroundRef.current), [])
+  useLayoutEffect(() => {
+    setBackgroundStyles(backgroundRef.current)
+  }, [])
 
   return (
     <main
