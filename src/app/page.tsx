@@ -7,17 +7,17 @@ import { Social } from 'components/Social'
 import { APP_DATA, SOCIAL_DATA } from 'constant'
 import { setBackgroundStyles } from 'utils'
 
-const Home = () => {
-  const backgroundRef = useRef<HTMLElement>(null)
+const HomePage = () => {
+  const backgroundElemRef = useRef<HTMLElement>(null)
 
   useLayoutEffect(() => {
-    setBackgroundStyles(backgroundRef.current)
+    setBackgroundStyles(backgroundElemRef.current)
   }, [])
 
   return (
     <main
       className='flex min-h-full animate-bg-init flex-col p-6 md:px-8'
-      ref={backgroundRef}
+      ref={backgroundElemRef}
     >
       <Header {...APP_DATA} />
       <Social data={SOCIAL_DATA} />
@@ -25,4 +25,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage
