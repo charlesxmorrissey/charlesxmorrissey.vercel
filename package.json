@@ -1,6 +1,6 @@
 {
   "name": "charlesxmorrissey.vercel-v2",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "browserslist": [
     "> 0.2% and not dead"
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "prettier --write '**/*.{css,html,js,md,ts,tsx}' --log-level error",
+    "format": "prettier --write '**/*.{css,html,js,md,mjs,ts,tsx}' --log-level error",
     "lint:ts:watch": "yarn lint:ts --watch",
     "lint:ts": "tsc --project tsconfig.json",
     "lint": "next lint && yarn lint:ts",
@@ -24,7 +24,7 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.1",
+    "eslint": "^9.16.0",
     "eslint-config-next": "^15.1.0",
     "next": "^15.1.0",
     "postcss": "^8.4.49",
@@ -42,8 +42,8 @@
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.14",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-import-helpers": "^2.0.1",

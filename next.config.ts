@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from 'next'
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   output: 'export',
   poweredByHeader: false,
   reactStrictMode: true,
@@ -10,7 +10,7 @@ const nextConfig = {
     // into React components. See https://react-svgr.com/docs/next/
 
     // Grab the existing rule that handles SVG imports.
-    const fileLoaderRule = config.module.rules.find((rule) =>
+    const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.('.svg'),
     )
 
@@ -46,4 +46,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
