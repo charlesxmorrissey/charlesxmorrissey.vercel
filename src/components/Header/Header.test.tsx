@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { APP_DATA } from 'constant'
 
 import { Header } from './'
