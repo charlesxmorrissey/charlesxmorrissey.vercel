@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
+import { APP_DATA } from 'constant'
 import { Inter } from 'next/font/google'
 
-import { APP_DATA } from 'constant'
+import type { Metadata } from 'next'
 
 import './globals.css'
 

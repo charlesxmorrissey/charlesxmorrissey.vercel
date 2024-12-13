@@ -1,7 +1,6 @@
 'use client'
 
 import { useLayoutEffect, useRef } from 'react'
-
 import { Header } from 'components/Header'
 import { Social } from 'components/Social'
 import { APP_DATA, SOCIAL_DATA } from 'constant'

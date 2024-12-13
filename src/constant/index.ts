@@ -1,6 +1,7 @@
 import EmailIcon from 'assets/icons/email.svg'
 import GithubIcon from 'assets/icons/github.svg'
 import LinkedInIcon from 'assets/icons/linkedin.svg'
+
 import type { AppData, LinkData } from 'types'
 
 export const APP_DATA: AppData = {

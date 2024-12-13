@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-
 import { SOCIAL_DATA } from 'constant'
+
 import type { LinkData } from 'types'
 
 import { Social } from './'
