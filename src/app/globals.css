@@ -1,33 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer tailwind-base, tailwind-components, tailwind-utilities, site-base;
 
-@layer base {
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-components {
+  @tailwind components;
+}
+
+@layer tailwind-utilities {
+  @tailwind utilities;
+}
+
+@layer site-base {
   :root {
     --color-primary: 2, 6, 23;
     --color-secondary: 241, 245, 249;
   }
-}
 
-body,
-html {
-  height: 100%;
-}
+  body,
+  html {
+    height: 100%;
+  }
 
-body {
-  background: rgb(var(--color-secondary));
-  color: rgb(var(--color-primary));
-  font-family: var(--font-inter);
-}
+  body {
+    background: rgb(var(--color-secondary));
+    color: rgb(var(--color-primary));
+    font-family: var(--font-inter);
+  }
 
-main {
-  background-image: linear-gradient(
-    -45deg,
-    var(--color-bg-1),
-    var(--color-bg-2),
-    var(--color-bg-3),
-    var(--color-bg-4)
-  );
-  background-size: 600%;
-  transform: translateZ(0);
+  main {
+    background-image: linear-gradient(
+      -45deg,
+      var(--color-bg-1),
+      var(--color-bg-2),
+      var(--color-bg-3),
+      var(--color-bg-4)
+    );
+    background-size: 600%;
+    transform: translateZ(0);
+  }
 }
