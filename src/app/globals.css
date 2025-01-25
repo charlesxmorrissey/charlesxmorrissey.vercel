@@ -1,15 +1,38 @@
 @layer tailwind-base, tailwind-components, tailwind-utilities, site-base;
 
+@theme {
+  --animate-*: initial;
+  --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
+
+  --font-sans: var(--font-inter);
+
+  @keyframes bg-pan {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0.01;
+    }
+    1% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
 @layer tailwind-base {
-  @tailwind base;
-}
-
-@layer tailwind-components {
-  @tailwind components;
-}
-
-@layer tailwind-utilities {
-  @tailwind utilities;
+  @import 'tailwindcss';
 }
 
 @layer site-base {
