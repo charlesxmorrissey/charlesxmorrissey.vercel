@@ -11,7 +11,7 @@ export const Header = ({ description, name }: HeaderProps) => (
       {name}
     </h1>
 
-    <p className='mb-3 text-lg leading-6 tracking-tight md:mb-5 md:text-2xl'>
+    <p className='mb-3 text-lg tracking-tight md:mb-5 md:text-2xl'>
       {description}
     </p>
   </header>

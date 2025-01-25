@@ -15,7 +15,7 @@ export const HomePage = () => {
 
   return (
     <main
-      className='flex min-h-full animate-bg-init flex-col p-6 md:px-8'
+      className='animate-bg-init flex min-h-full flex-col p-6 md:px-8'
       ref={backgroundElemRef}
     >
       <Header {...APP_DATA} />
