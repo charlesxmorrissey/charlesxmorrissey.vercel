@@ -11,7 +11,7 @@ export const Social = ({ data }: SocialProps) => (
     <div className='ml-[-0.5rem] flex items-center md:gap-1'>
       {data.map(({ Icon, link, name, options }: LinkData, index) => (
         <a
-          className='rounded-md p-2 transition-[box-shadow,color] hover:text-slate-700 focus:ring-1 focus:ring-slate-50/50'
+          className='p-2 transition-[box-shadow,color] hover:text-slate-700 focus:ring-1 focus:ring-slate-50/50'
           href={link}
           key={`social-item-${index}`}
           {...options}
