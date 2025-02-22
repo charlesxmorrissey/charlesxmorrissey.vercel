@@ -13,7 +13,6 @@ module.exports = {
   jsxSingleQuote: true,
   plugins: [
     '@ianvs/prettier-plugin-sort-imports',
-    'prettier-plugin-tailwindcss',
   ],
   proseWrap: 'always',
   semi: false,

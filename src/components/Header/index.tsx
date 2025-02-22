@@ -1,18 +1,16 @@
 import type { AppData } from 'types'
 
+import styles from './Header.module.css'
+
 interface HeaderProps {
   description: AppData['description']
   name: AppData['name']
 }
 
 export const Header = ({ description, name }: HeaderProps) => (
-  <header className='max-w-lg'>
-    <h1 className='mb-3 text-3xl font-semibold tracking-tighter md:mb-4 md:text-5xl md:tracking-tight'>
-      {name}
-    </h1>
+  <header className={styles.header}>
+    <h1 className={styles.headerText}>{name}</h1>
 
-    <p className='mb-3 text-lg tracking-tight md:mb-5 md:text-2xl'>
-      {description}
-    </p>
+    <p className={styles.headerBody}>{description}</p>
   </header>
 )

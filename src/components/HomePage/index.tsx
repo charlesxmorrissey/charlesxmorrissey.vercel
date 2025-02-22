@@ -6,6 +6,8 @@ import { Social } from 'components/Social'
 import { APP_DATA, SOCIAL_DATA } from 'constant'
 import { setBackgroundStyles } from 'utils'
 
+import styles from './HomePage.module.css'
+
 export const HomePage = () => {
   const backgroundElemRef = useRef<HTMLElement>(null)
 
@@ -14,10 +16,7 @@ export const HomePage = () => {
   }, [])
 
   return (
-    <main
-      className='animate-bg-init flex min-h-full flex-col p-6 md:px-8'
-      ref={backgroundElemRef}
-    >
+    <main className={styles.wrapper} ref={backgroundElemRef}>
       <Header {...APP_DATA} />
       <Social data={SOCIAL_DATA} />
     </main>
