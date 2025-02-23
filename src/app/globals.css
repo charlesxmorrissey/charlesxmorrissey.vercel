@@ -1,15 +1,5 @@
 @import-normalize;
 
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 :host,
 :root {
   --animate-*: initial;
@@ -17,14 +7,13 @@ html {
 
   --color-primary: 2, 6, 23;
   --color-secondary: 241, 245, 249;
-  --color-slate-700: oklch(0.372 0.044 257.287);
+  --color-tertiary: oklch(0.372 0.044 257.287);
 
   --container-lg: 32rem;
 
   --default-transition-duration: 0.15s;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --font-sans: var(--font-inter);
   --font-weight-semibold: 600;
 
   --spacing: 0.25rem;
@@ -37,9 +26,20 @@ html {
   --text-lg--line-height: calc(1.75 / 1.125);
   --text-2xl--line-height: calc(2 / 1.5);
   --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-5xl--line-height: 1;
 
   --tracking-tight: -0.025em;
   --tracking-tighter: -0.05em;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body,
@@ -50,12 +50,20 @@ html {
 }
 
 body {
-  background: rgb(var(--color-secondary));
+  background-color: rgb(var(--color-secondary));
   color: rgb(var(--color-primary));
   font-family: var(--font-inter);
   line-height: inherit;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media screen and (prefers-color-scheme: dark) {
+    --color-primary: 112 128 144;
+    --color-tertiary: rgb(255 255 255 / 75%);
+
+    background-color: rgb(var(--color-primary) / 75%);
+    color: rgb(var(--color-secondary));
+  }
 }
 
 a {
@@ -77,9 +85,11 @@ h5 {
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -89,9 +99,11 @@ h5 {
   0% {
     opacity: 0.01;
   }
+
   1% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

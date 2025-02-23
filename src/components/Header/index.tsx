@@ -9,8 +9,8 @@ interface HeaderProps {
 
 export const Header = ({ description, name }: HeaderProps) => (
   <header className={styles.header}>
-    <h1 className={styles.headerText}>{name}</h1>
+    <h1 className={styles.headerTitle}>{name}</h1>
 
-    <p className={styles.headerBody}>{description}</p>
+    <p className={styles.headerText}>{description}</p>
   </header>
 )

@@ -1,7 +1,7 @@
 module.exports = {
   plugins: {
     'postcss-normalize': {
-      forceImport: false,
+      forceImport: true,
     },
   },
 }

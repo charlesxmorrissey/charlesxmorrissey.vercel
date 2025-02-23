@@ -2,7 +2,7 @@
   max-width: var(--container-lg);
 }
 
-.headerText {
+.headerTitle {
   font-size: var(--text-3xl);
   letter-spacing: var(--tracking-tighter);
   line-height: var(--text-3xl--line-height);
@@ -12,11 +12,11 @@
     letter-spacing: var(--tracking-tight);
     margin-bottom: calc(var(--spacing) * 4);
     font-size: var(--text-5xl);
-    line-height: 1;
+    line-height: var(--text-5xl--line-height);
   }
 }
 
-.headerBody {
+.headerText {
   font-size: var(--text-lg);
   letter-spacing: var(--tracking-tight);
   line-height: var(--text-sm--line-height);
