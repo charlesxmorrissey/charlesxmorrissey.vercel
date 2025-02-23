@@ -1,0 +1,30 @@
+.header {
+  max-width: var(--container-lg);
+}
+
+.headerTitle {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--text-3xl--line-height);
+  margin: 0 0 calc(var(--spacing) * 3);
+
+  @media (width >= 48rem) {
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: calc(var(--spacing) * 4);
+    font-size: var(--text-5xl);
+    line-height: var(--text-5xl--line-height);
+  }
+}
+
+.headerText {
+  font-size: var(--text-lg);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--text-sm--line-height);
+  margin: 0 0 calc(var(--spacing) * 3);
+
+  @media (width >= 48rem) {
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    margin-bottom: calc(var(--spacing) * 5);
+  }
+}

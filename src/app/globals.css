@@ -1,66 +1,110 @@
-@layer tailwind-base, tailwind-components, tailwind-utilities, site-base;
+@import-normalize;
 
-@theme {
+:host,
+:root {
   --animate-*: initial;
   --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
 
-  --font-sans: var(--font-inter);
+  --color-primary: 2, 6, 23;
+  --color-secondary: 241, 245, 249;
+  --color-tertiary: oklch(0.372 0.044 257.287);
 
-  @keyframes bg-pan {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
+  --container-lg: 32rem;
 
-  @keyframes fade-in {
-    0% {
-      opacity: 0.01;
-    }
-    1% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  --default-transition-duration: 0.15s;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-weight-semibold: 600;
+
+  --spacing: 0.25rem;
+
+  --text-lg: 1.125rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-5xl: 3rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-5xl--line-height: 1;
+
+  --tracking-tight: -0.025em;
+  --tracking-tighter: -0.05em;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(var(--color-secondary));
+  color: rgb(var(--color-primary));
+  font-family: var(--font-inter);
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media screen and (prefers-color-scheme: dark) {
+    --color-primary: 112 128 144;
+    --color-tertiary: rgb(255 255 255 / 75%);
+
+    background-color: rgb(var(--color-primary) / 75%);
+    color: rgb(var(--color-secondary));
   }
 }
 
-@layer tailwind-base {
-  @import 'tailwindcss';
+a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
 }
 
-@layer site-base {
-  :root {
-    --color-primary: 2, 6, 23;
-    --color-secondary: 241, 245, 249;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-size: inherit;
+  font-weight: var(--font-weight-semibold);
+}
+
+@keyframes bg-pan {
+  0% {
+    background-position: 0% 50%;
   }
 
-  body,
-  html {
-    height: 100%;
+  100% {
+    background-position: 0% 50%;
   }
 
-  body {
-    background: rgb(var(--color-secondary));
-    color: rgb(var(--color-primary));
-    font-family: var(--font-inter);
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.01;
   }
 
-  main {
-    background-image: linear-gradient(
-      -45deg,
-      var(--color-bg-1),
-      var(--color-bg-2),
-      var(--color-bg-3),
-      var(--color-bg-4)
-    );
-    background-size: 600%;
-    transform: translateZ(0);
+  1% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

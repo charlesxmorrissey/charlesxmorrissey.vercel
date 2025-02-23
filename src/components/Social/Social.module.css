@@ -1,0 +1,43 @@
+.socialTitle {
+  line-height: 1.5;
+  margin: 0;
+}
+
+.socialWrapper {
+  align-items: center;
+  display: flex;
+  margin-left: -0.5rem;
+}
+
+.socialLink {
+  height: 40px;
+  padding: calc(var(--spacing) * 2);
+  transition-property: box-shadow, color;
+  transition-timing-function: var(--default-transition-timing-function);
+  transition-duration: var(--default-transition-duration);
+
+  @media (hover: hover) {
+    &:is(:hover, :focus) {
+      color: var(--color-tertiary);
+    }
+  }
+}
+
+.socialLinkTitle {
+  border-width: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.socialIcon {
+  fill: currentcolor;
+  flex-shrink: 0;
+  height: calc(var(--spacing) * 6);
+  width: calc(var(--spacing) * 6);
+}
