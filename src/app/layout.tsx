@@ -8,7 +8,7 @@ import './globals.css'
 const inter = Inter({
   display: 'swap',
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-sans',
 })
 
 const { description, name, title } = APP_DATA
