@@ -10,11 +10,11 @@
 }
 
 .socialLink {
-  height: 40px;
+  height: 2.5rem;
   padding: calc(var(--spacing) * 2);
+  transition-duration: var(--default-transition-duration);
   transition-property: box-shadow, color;
   transition-timing-function: var(--default-transition-timing-function);
-  transition-duration: var(--default-transition-duration);
 
   @media (hover: hover) {
     &:is(:hover, :focus) {
