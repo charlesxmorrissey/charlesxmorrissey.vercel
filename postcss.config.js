@@ -1,5 +1,7 @@
 module.exports = {
   plugins: {
-    '@tailwindcss/postcss': {},
+    'postcss-normalize': {
+      forceImport: true,
+    },
   },
 }

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
-    <body className={`${inter.variable} antialiased`}>{children}</body>
+    <body className={`${inter.variable}`}>{children}</body>
   </html>
 )
 

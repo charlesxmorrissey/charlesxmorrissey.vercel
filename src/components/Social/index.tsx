@@ -1,24 +1,26 @@
 import type { LinkData } from 'types'
 
+import styles from './Social.module.css'
+
 interface SocialProps {
   data: LinkData[]
 }
 
 export const Social = ({ data }: SocialProps) => (
   <>
-    <h2 className='font-semibold'>Get in touch</h2>
+    <h2 className={styles.socialTitle}>Get in touch</h2>
 
-    <div className='ml-[-0.5rem] flex items-center md:gap-1'>
+    <div className={styles.socialWrapper}>
       {data.map(({ Icon, link, name, options }: LinkData, index) => (
         <a
-          className='p-2 transition-[box-shadow,color] hover:text-slate-700 focus:ring-1 focus:ring-slate-50/50'
+          className={styles.socialLink}
           href={link}
           key={`social-item-${index}`}
           {...options}
         >
-          <span className='sr-only'>{name}</span>
+          <span className={styles.socialLinkTitle}>{name}</span>
 
-          <Icon aria-hidden className='h-6 w-6 shrink-0 fill-current' />
+          <Icon aria-hidden className={styles.socialIcon} />
         </a>
       ))}
     </div>

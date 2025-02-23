@@ -1,0 +1,20 @@
+.wrapper {
+  animation: var(--animate-bg-init);
+  background-image: linear-gradient(
+    -45deg,
+    var(--color-bg-1),
+    var(--color-bg-2),
+    var(--color-bg-3),
+    var(--color-bg-4)
+  );
+  background-size: 600%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: calc(var(--spacing) * 6);
+  transform: translateZ(0);
+
+  @media (width >= 48rem) {
+    padding-inline: calc(var(--spacing) * 8);
+  }
+}
