@@ -3776,7 +3776,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-sort-destructure-keys: "npm:^2.0.0"
-    eslint-plugin-sort-export-all: "npm:^1.4.1"
+    eslint-plugin-sort-export-all: "npm:^2.1.0"
     eslint-plugin-typescript-sort-keys: "npm:^3.3.0"
     eslint-plugin-unused-imports: "npm:^4.1.4"
     globals: "npm:^16.0.0"
@@ -4800,14 +4800,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-sort-export-all@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "eslint-plugin-sort-export-all@npm:1.4.1"
+"eslint-plugin-sort-export-all@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "eslint-plugin-sort-export-all@npm:2.1.0"
   dependencies:
     natural-compare: "npm:^1.4.0"
   peerDependencies:
-    eslint: ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: 10c0/da105c7625fffd08a36bd5d7e4c79ee69d0011232125b55aec2d48396e82ef8cc906bb4582b9b07159877f185ce6452470df12e44cb450977219ff8fd3008feb
+    eslint: "*"
+  checksum: 10c0/292cf6f93af476010948197bfe599344d917756ec38ee4106daacafa72a924a4bdc3828bf4a836e69a872864058b4e5ab385875b5a9818860b21ab38241689bc
   languageName: node
   linkType: hard
 
