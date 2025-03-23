@@ -22,6 +22,20 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 })
 
+const languageOptions = {
+  ecmaVersion: 2023,
+  globals: {
+    ...globals.browser,
+    ...globals.node,
+  },
+  parser: tsParser,
+  parserOptions: {
+    project: ['./tsconfig.json'],
+    tsconfigRootDir: __dirname,
+  },
+  sourceType: 'module',
+}
+
 export default [
   ...compat.extends(
     'plugin:@next/next/recommended',
@@ -34,25 +48,13 @@ export default [
     'prettier',
   ),
   {
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-      parser: tsParser,
-      parserOptions: {
-        project: ['./tsconfig.json'],
-        tsconfigRootDir: __dirname,
-      },
-      sourceType: 'module',
-    },
+    languageOptions,
 
     plugins: {
       '@typescript-eslint': typescriptEslint,
       'prefer-arrow': preferArrow,
       prettier,
-      react: react,
+      react,
       'react-hooks': reactHooks,
       'sort-destructure-keys': sortDestructureKeys,
       'sort-export-all': sortExportAll,
