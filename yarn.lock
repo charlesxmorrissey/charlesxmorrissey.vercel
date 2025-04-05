@@ -1474,7 +1474,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.24.0, @eslint/js@npm:^9.24.0":
+"@eslint/js@npm:9.24.0, @eslint/js@npm:^9.23.0":
   version: 9.24.0
   resolution: "@eslint/js@npm:9.24.0"
   checksum: 10c0/efe22e29469e4140ac3e2916be8143b1bcfd1084a6edf692b7a58a3e54949d53c67f7f979bc0a811db134d9cc1e7bff8aa71ef1376b47eecd7e226b71206bb36
@@ -2061,7 +2061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:15.2.4, @next/eslint-plugin-next@npm:^15.2.4":
+"@next/eslint-plugin-next@npm:15.2.4, @next/eslint-plugin-next@npm:^15.2.3":
   version: 15.2.4
   resolution: "@next/eslint-plugin-next@npm:15.2.4"
   dependencies:
@@ -2461,7 +2461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.11.16":
+"@swc/core@npm:^1.11.11":
   version: 1.11.16
   resolution: "@swc/core@npm:1.11.16"
   dependencies:
@@ -2576,7 +2576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^16.3.0":
+"@testing-library/react@npm:^16.2.0":
   version: 16.3.0
   resolution: "@testing-library/react@npm:16.3.0"
   dependencies:
@@ -2759,7 +2759,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.14.0":
+"@types/node@npm:^22.13.11":
   version: 22.14.0
   resolution: "@types/node@npm:22.14.0"
   dependencies:
@@ -2768,7 +2768,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^19.1.1":
+"@types/react-dom@npm:^19.0.4":
   version: 19.1.1
   resolution: "@types/react-dom@npm:19.1.1"
   peerDependencies:
@@ -2777,7 +2777,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^19.1.0":
+"@types/react@npm:^19.0.12":
   version: 19.1.0
   resolution: "@types/react@npm:19.1.0"
   dependencies:
@@ -2844,7 +2844,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^8.29.0":
+"@typescript-eslint/eslint-plugin@npm:^8.27.0":
   version: 8.29.0
   resolution: "@typescript-eslint/eslint-plugin@npm:8.29.0"
   dependencies:
@@ -2892,7 +2892,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^8.29.0":
+"@typescript-eslint/parser@npm:^8.27.0":
   version: 8.29.0
   resolution: "@typescript-eslint/parser@npm:8.29.0"
   dependencies:
@@ -3770,30 +3770,30 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "charlesxmorrissey.vercel-v2@workspace:."
   dependencies:
-    "@eslint/js": "npm:^9.24.0"
+    "@eslint/js": "npm:^9.23.0"
     "@ianvs/prettier-plugin-sort-imports": "npm:^4.4.1"
-    "@next/eslint-plugin-next": "npm:^15.2.4"
+    "@next/eslint-plugin-next": "npm:^15.2.3"
     "@svgr/webpack": "npm:^8.1.0"
-    "@swc/core": "npm:^1.11.16"
+    "@swc/core": "npm:^1.11.11"
     "@swc/jest": "npm:^0.2.37"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/jest-dom": "npm:^6.6.3"
-    "@testing-library/react": "npm:^16.3.0"
+    "@testing-library/react": "npm:^16.2.0"
     "@testing-library/user-event": "npm:^14.6.1"
     "@types/identity-obj-proxy": "npm:^3.0.2"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^22.14.0"
-    "@types/react": "npm:^19.1.0"
-    "@types/react-dom": "npm:^19.1.1"
-    "@typescript-eslint/eslint-plugin": "npm:^8.29.0"
-    "@typescript-eslint/parser": "npm:^8.29.0"
-    eslint: "npm:^9.24.0"
-    eslint-config-next: "npm:^15.2.4"
+    "@types/node": "npm:^22.13.11"
+    "@types/react": "npm:^19.0.12"
+    "@types/react-dom": "npm:^19.0.4"
+    "@typescript-eslint/eslint-plugin": "npm:^8.27.0"
+    "@typescript-eslint/parser": "npm:^8.27.0"
+    eslint: "npm:^9.23.0"
+    eslint-config-next: "npm:^15.2.3"
     eslint-config-prettier: "npm:^10.1.1"
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-prefer-arrow: "npm:^1.2.3"
-    eslint-plugin-prettier: "npm:^5.2.6"
-    eslint-plugin-react: "npm:^7.37.5"
+    eslint-plugin-prettier: "npm:^5.2.3"
+    eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-sort-destructure-keys: "npm:^2.0.0"
     eslint-plugin-sort-export-all: "npm:^2.1.0"
@@ -3804,14 +3804,14 @@ __metadata:
     identity-obj-proxy: "npm:^3.0.0"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
-    next: "npm:^15.2.4"
+    next: "npm:^15.2.3"
     postcss: "npm:^8.5.3"
     postcss-normalize: "npm:^13.0.1"
     prettier: "npm:^3.5.3"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
     svgo: "npm:^3.3.2"
-    typescript: "npm:^5.8.3"
+    typescript: "npm:^5.8.2"
   languageName: unknown
   linkType: soft
 
@@ -4597,7 +4597,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:^15.2.4":
+"eslint-config-next@npm:^15.2.3":
   version: 15.2.4
   resolution: "eslint-config-next@npm:15.2.4"
   dependencies:
@@ -4743,7 +4743,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:^5.2.6":
+"eslint-plugin-prettier@npm:^5.2.3":
   version: 5.2.6
   resolution: "eslint-plugin-prettier@npm:5.2.6"
   dependencies:
@@ -4809,7 +4809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.37.5":
+"eslint-plugin-react@npm:^7.37.4":
   version: 7.37.5
   resolution: "eslint-plugin-react@npm:7.37.5"
   dependencies:
@@ -4921,7 +4921,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.24.0":
+"eslint@npm:^9.23.0":
   version: 9.24.0
   resolution: "eslint@npm:9.24.0"
   dependencies:
@@ -7163,7 +7163,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^15.2.4":
+"next@npm:^15.2.3":
   version: 15.2.4
   resolution: "next@npm:15.2.4"
   dependencies:
@@ -7784,7 +7784,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^19.1.0":
+"react-dom@npm:^19.0.0":
   version: 19.1.0
   resolution: "react-dom@npm:19.1.0"
   dependencies:
@@ -7816,7 +7816,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.1.0":
+"react@npm:^19.0.0":
   version: 19.1.0
   resolution: "react@npm:19.1.0"
   checksum: 10c0/530fb9a62237d54137a13d2cfb67a7db6a2156faed43eecc423f4713d9b20c6f2728b026b45e28fcd72e8eadb9e9ed4b089e99f5e295d2f0ad3134251bdd3698
@@ -8910,7 +8910,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.8.3":
+"typescript@npm:^5.8.2":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -8920,7 +8920,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
