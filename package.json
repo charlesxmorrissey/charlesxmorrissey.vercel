@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "browserslist": [
-    "> 0.2% and not dead"
+    "defaults and fully supports es6-module",
+    "maintained node versions"
   ],
   "scripts": {
     "build": "next build",
