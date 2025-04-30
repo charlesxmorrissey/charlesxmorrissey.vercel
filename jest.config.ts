@@ -1,6 +1,4 @@
-/** @type {import('jest').Config} */
-
-const config = {
+export default {
   cacheDirectory: '<rootDir>/.jest-cache',
   clearMocks: true,
   moduleDirectories: ['node_modules', 'src', 'tests'],
@@ -22,5 +20,3 @@ const config = {
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
 }
-
-module.exports = config

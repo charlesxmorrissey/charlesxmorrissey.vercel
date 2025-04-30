@@ -24,13 +24,10 @@
   "exclude": ["node_modules"],
   "include": [
     ".next/types/**/*.ts",
-    ".prettierrc.cjs",
+    ".prettierrc.mjs",
+    "**/*.mjs",
     "**/*.ts",
     "**/*.tsx",
-    "eslint.config.mjs",
-    "jest.config.js",
     "next-env.d.ts",
-    "postcss.config.js",
-    "svgo.config.js"
   ]
 }

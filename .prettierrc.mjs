@@ -1,4 +1,6 @@
-module.exports = {
+/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
+
+export default {
   importOrder: [
     '^react$',
     '<BUILTIN_MODULES>',
@@ -11,9 +13,7 @@ module.exports = {
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   importOrderTypeScriptVersion: '5.7.2',
   jsxSingleQuote: true,
-  plugins: [
-    '@ianvs/prettier-plugin-sort-imports',
-  ],
+  plugins: ['@ianvs/prettier-plugin-sort-imports'],
   proseWrap: 'always',
   semi: false,
   singleQuote: true,
