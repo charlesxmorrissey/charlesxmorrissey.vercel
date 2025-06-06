@@ -27,6 +27,7 @@ const languageOptions = {
   globals: {
     ...globals.browser,
     ...globals.node,
+    ...globals.vitest,
   },
   parser: tsParser,
   parserOptions: {
@@ -47,6 +48,9 @@ export default [
     'plugin:typescript-sort-keys/recommended',
     'prettier',
   ),
+  {
+    ignores: ['vitest-setup.ts'],
+  },
   {
     languageOptions,
 

@@ -8,7 +8,7 @@ describe('utils', () => {
   const hslStr = 'hsl(360 100% 100% / 25%)'
 
   beforeEach(() => {
-    jest.spyOn(global.Math, 'random').mockReturnValue(1)
+    vi.spyOn(global.Math, 'random').mockReturnValue(1)
   })
 
   describe('randomHSLColor', () => {
