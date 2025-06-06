@@ -19,7 +19,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2017"
+    "target": "ES2017",
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "exclude": ["node_modules"],
   "include": [
@@ -28,6 +29,6 @@
     "**/*.mjs",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts",
+    "next-env.d.ts"
   ]
 }
