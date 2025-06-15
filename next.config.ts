@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   webpack: (config) => {
-    // Configures webpack to handle SVG files with SVGR. SVGR optimizes and
-    // transforms SVG files into React components.
+    // Configures webpack to handle SVG files with SVGR.
+    // SVGR optimizes and transforms SVG files into React components.
     // See https://react-svgr.com/docs/next/
 
     // Grab the existing rule that handles SVG imports.
@@ -22,10 +22,11 @@ const nextConfig: NextConfig = {
         resourceQuery: /url/, // *.svg?url
         test: /\.svg$/i,
       },
+
       // Convert all other *.svg imports to React components.
       {
         issuer: fileLoaderRule.issuer,
-        // exclude if *.svg?url
+        // Exclude if *.svg?url
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
         test: /\.svg$/i,
         use: [
@@ -41,8 +42,8 @@ const nextConfig: NextConfig = {
       },
     )
 
-    // Modify the file loader rule to ignore *.svg, since we
-    // have it handled now.
+    // Modify the file loader rule to ignore *.svg,
+    // since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i
 
     return config
