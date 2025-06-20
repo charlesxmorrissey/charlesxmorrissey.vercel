@@ -11,6 +11,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
 import sortExportAll from 'eslint-plugin-sort-export-all'
 import unusedImports from 'eslint-plugin-unused-imports'
+import { defineConfig } from 'eslint/config'
 import globals from 'globals'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -22,22 +23,7 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 })
 
-const languageOptions = {
-  ecmaVersion: 2023,
-  globals: {
-    ...globals.browser,
-    ...globals.node,
-    ...globals.vitest,
-  },
-  parser: tsParser,
-  parserOptions: {
-    project: ['./tsconfig.json'],
-    tsconfigRootDir: __dirname,
-  },
-  sourceType: 'module',
-}
-
-export default [
+export default defineConfig([
   ...compat.extends(
     'plugin:@next/next/recommended',
     'plugin:@typescript-eslint/recommended',
@@ -52,10 +38,24 @@ export default [
     ignores: ['vitest-setup.ts'],
   },
   {
-    languageOptions,
-
+    languageOptions: {
+      ecmaVersion: 2023,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.vitest,
+      },
+      parser: tsParser,
+      parserOptions: {
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: __dirname,
+      },
+      sourceType: 'module',
+    },
+  },
+  {
     plugins: {
-      '@typescript-eslint': typescriptEslint,
+      ...typescriptEslint,
       'prefer-arrow': preferArrow,
       prettier,
       react,
@@ -131,4 +131,4 @@ export default [
       },
     },
   },
-]
+])
