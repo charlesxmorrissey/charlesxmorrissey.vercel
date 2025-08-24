@@ -1849,7 +1849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^3.3.1":
+"@eslint/eslintrc@npm:^3, @eslint/eslintrc@npm:^3.3.1":
   version: 3.3.1
   resolution: "@eslint/eslintrc@npm:3.3.1"
   dependencies:
@@ -4087,6 +4087,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "charlesxmorrissey.vercel-v2@workspace:."
   dependencies:
+    "@eslint/eslintrc": "npm:^3"
     "@eslint/js": "npm:^9.34.0"
     "@ianvs/prettier-plugin-sort-imports": "npm:^4.6.2"
     "@next/eslint-plugin-next": "npm:^15.5.0"
