@@ -33,9 +33,11 @@ export default defineConfig([
     'plugin:react/recommended',
     'plugin:typescript-sort-keys/recommended',
     'prettier',
+    'next/core-web-vitals',
+    'next/typescript',
   ),
   {
-    ignores: ['vitest-setup.ts'],
+    ignores: ['.next', '*.d.ts', '*.mjs', 'coverage', 'out', 'vitest-setup.ts'],
   },
   {
     languageOptions: {
