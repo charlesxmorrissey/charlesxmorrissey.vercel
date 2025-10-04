@@ -1,0 +1,79 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Social > matches the rendered snapshot 1`] = `
+<div>
+  <h2
+    class="_socialTitle_4fe1fe"
+  >
+    Get in touch
+  </h2>
+  <div
+    class="_socialWrapper_4fe1fe"
+  >
+    <a
+      class="_socialLink_4fe1fe"
+      href="https://github.com/charlesxmorrissey"
+    >
+      <span
+        class="_socialLinkTitle_4fe1fe"
+      >
+        Github
+      </span>
+      <svg
+        aria-hidden="true"
+        class="_socialIcon_4fe1fe"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.063 1.688c-5.802 0-10.5 4.715-10.5 10.538 0 4.664 3.005 8.603 7.179 9.998.525.093.721-.223.721-.5 0-.25-.013-1.08-.013-1.963-2.637.488-3.32-.645-3.53-1.237-.118-.303-.63-1.24-1.077-1.49-.367-.197-.892-.685-.013-.698.827-.012 1.418.765 1.615 1.08.945 1.595 2.455 1.146 3.058.87.092-.685.367-1.146.67-1.41-2.337-.263-4.778-1.172-4.778-5.203 0-1.146.407-2.094 1.076-2.832-.105-.264-.472-1.344.105-2.793 0 0 .88-.277 2.888 1.08a9.698 9.698 0 0 1 2.625-.355c.892 0 1.785.119 2.625.355 2.009-1.37 2.887-1.08 2.887-1.08.578 1.449.21 2.53.105 2.793.67.738 1.077 1.673 1.077 2.832 0 4.044-2.455 4.94-4.791 5.203.38.33.708.962.708 1.95 0 1.41-.012 2.542-.012 2.898 0 .277.197.607.72.501a10.552 10.552 0 0 0 7.155-9.999c0-5.823-4.699-10.539-10.5-10.539z"
+          style="stroke-width: 0.914729;"
+        />
+      </svg>
+    </a>
+    <a
+      class="_socialLink_4fe1fe"
+      href="https://www.linkedin.com/in/charles-x-morrissey-b366976"
+    >
+      <span
+        class="_socialLinkTitle_4fe1fe"
+      >
+        LinkedIn
+      </span>
+      <svg
+        aria-hidden="true"
+        class="_socialIcon_4fe1fe"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20.181 2.375H3.82a1.444 1.444 0 0 0-1.444 1.444V20.18a1.444 1.444 0 0 0 1.444 1.444H20.18a1.444 1.444 0 0 0 1.444-1.444V3.82a1.444 1.444 0 0 0-1.444-1.444ZM8.15 18.738H5.262v-8.663H8.15ZM6.706 8.39A1.684 1.684 0 1 1 8.44 6.706a1.713 1.713 0 0 1-1.733 1.685Zm12.031 10.347H15.85v-4.563c0-1.366-.578-1.857-1.328-1.857a1.675 1.675 0 0 0-1.56 1.79.635.635 0 0 0 0 .135v4.495h-2.887v-8.663h2.791v1.251a2.993 2.993 0 0 1 2.599-1.347c1.492 0 3.234.828 3.234 3.523z"
+          style="stroke-width: 0.9625;"
+        />
+      </svg>
+    </a>
+    <a
+      class="_socialLink_4fe1fe"
+      href="mailto:hi@charles-x.com?subject=hello%20from%20website"
+      rel="noreferrer"
+      target="_blank"
+    >
+      <span
+        class="_socialLinkTitle_4fe1fe"
+      >
+        Email
+      </span>
+      <svg
+        aria-hidden="true"
+        class="_socialIcon_4fe1fe"
+        viewBox="0 -960 960 960"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+`;

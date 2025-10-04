@@ -5,41 +5,53 @@ import type { LinkData } from 'types'
 
 import { Social } from './'
 
-const { getByText } = screen
-
+const { getAllByRole, getByRole } = screen
 const MOCKED_SOCIAL_DATA_WITH_OPTIONS: LinkData[] = [{ ...SOCIAL_DATA[2] }]
 
 const renderSocialComponent = ({ data = SOCIAL_DATA } = {}) =>
   render(<Social data={data} />)
 
 describe('Social', () => {
-  describe('When the required props are provided', () => {
-    beforeEach(() => {
-      renderSocialComponent()
-    })
+  it('renders a link for each item with accessible name and correct href', () => {
+    renderSocialComponent()
 
-    it.each(SOCIAL_DATA)(
-      'renders a list of links with the correct data: %s',
-      ({ Icon, link, name }) => {
-        expect(Icon).toBeDefined()
-        expect(getByText(name)).toBeInTheDocument()
-        expect(getByText(name).closest('a')).toHaveAttribute('href', link)
-      },
-    )
+    const links = getAllByRole('link')
+
+    expect(links).toHaveLength(SOCIAL_DATA.length)
+
+    SOCIAL_DATA.forEach(({ link, name }) => {
+      const linkEl = getByRole('link', { name })
+
+      expect(linkEl).toBeInTheDocument()
+      expect(linkEl).toHaveAttribute('href', link)
+      expect(linkEl.querySelector('svg')).toBeTruthy()
+    })
   })
 
-  describe('When options are provided', () => {
-    beforeEach(() => {
-      renderSocialComponent({ data: MOCKED_SOCIAL_DATA_WITH_OPTIONS })
-    })
+  it('applies target and rel attributes when options are provided', () => {
+    renderSocialComponent({ data: MOCKED_SOCIAL_DATA_WITH_OPTIONS })
 
-    it('Provides the correct options as attributes', () => {
-      const linkEl = getByText(MOCKED_SOCIAL_DATA_WITH_OPTIONS[0].name).closest(
-        'a',
-      )
+    const item = MOCKED_SOCIAL_DATA_WITH_OPTIONS[0]
+    const linkEl = getByRole('link', { name: item.name })
 
-      expect(linkEl).toHaveAttribute('rel', 'noreferrer')
-      expect(linkEl).toHaveAttribute('target', '_blank')
-    })
+    expect(linkEl).toHaveAttribute('target', '_blank')
+    expect(linkEl).toHaveAttribute('rel', 'noreferrer')
+  })
+
+  it('does not add external attributes for same-origin links', () => {
+    const localData: LinkData[] = [{ ...SOCIAL_DATA[0], link: '/' }]
+
+    renderSocialComponent({ data: localData })
+
+    const linkEl = getByRole('link', { name: localData[0].name })
+
+    expect(linkEl).not.toHaveAttribute('target')
+    expect(linkEl).not.toHaveAttribute('rel')
+  })
+
+  it('matches the rendered snapshot', () => {
+    const { container } = render(<Social data={SOCIAL_DATA} />)
+
+    expect(container).toMatchSnapshot()
   })
 })
