@@ -20,7 +20,7 @@ export default defineConfig({
   test: {
     coverage: {
       all: true,
-      exclude: ['src/app', 'src/components/HomePage'],
+      exclude: ['src/app'],
       include: ['src/**/*.ts?(x)'],
       provider: 'istanbul',
       reporter: ['html', 'json', 'text'],
