@@ -19,8 +19,6 @@ export default defineConfig({
   root: '.',
   test: {
     coverage: {
-      all: true,
-      exclude: ['src/app'],
       include: ['src/**/*.ts?(x)'],
       provider: 'istanbul',
       reporter: ['html', 'json', 'text'],
