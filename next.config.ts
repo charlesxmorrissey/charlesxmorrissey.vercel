@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
+  turbopack: {},
+
   webpack: (config) => {
     // Configures webpack to handle SVG files with SVGR.
     // SVGR optimizes and transforms SVG files into React components.

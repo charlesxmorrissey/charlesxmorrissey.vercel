@@ -25,4 +25,33 @@ describe('HomePage', () => {
     )
     expect(screen.getAllByRole('link')).toHaveLength(SOCIAL_DATA.length)
   })
+
+  it('renders Header component with APP_DATA props', () => {
+    render(<HomePage />)
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      APP_DATA.name,
+    )
+  })
+
+  it('renders Social component with all social links', () => {
+    render(<HomePage />)
+
+    const links = screen.getAllByRole('link')
+
+    expect(links).toHaveLength(SOCIAL_DATA.length)
+    SOCIAL_DATA.forEach((socialItem) => {
+      const link = screen.getByRole('link', { name: socialItem.name })
+
+      expect(link).toHaveAttribute('href', socialItem.link)
+    })
+  })
+
+  it('renders main element as wrapper for child components', () => {
+    const { container } = render(<HomePage />)
+    const mainElement = container.querySelector('main')
+
+    expect(mainElement).toBeInTheDocument()
+    expect(mainElement?.children.length).toBeGreaterThan(0)
+  })
 })

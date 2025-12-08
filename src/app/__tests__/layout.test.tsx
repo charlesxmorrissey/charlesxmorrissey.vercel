@@ -1,9 +1,8 @@
 import '@testing-library/jest-dom'
 
-import { render } from '@testing-library/react'
 import { APP_DATA } from 'constant'
 
-import { metadata } from '../layout'
+import RootLayout, { metadata } from '../layout'
 
 vi.mock('next/font/google', () => ({
   Inter: () => ({
@@ -14,30 +13,37 @@ vi.mock('next/font/google', () => ({
 describe('RootLayout', () => {
   const { description, name, title } = APP_DATA
 
-  beforeEach(() => {
-    document.documentElement.innerHTML = ''
-    document.body.innerHTML = ''
-  })
-
-  it('renders children within the layout', () => {
+  it('renders children as JSX element with html and body tags', () => {
     const testChild = <div data-testid='test-child'>Test Content</div>
-    const { container } = render(testChild)
+    const result = RootLayout({ children: testChild })
 
-    expect(
-      container.querySelector('[data-testid="test-child"]'),
-    ).toBeInTheDocument()
+    expect(result).toBeDefined()
+    expect(result?.type).toBe('html')
   })
 
-  it('sets correct html attributes', () => {
-    document.documentElement.setAttribute('lang', 'en')
+  it('sets html lang attribute to en', () => {
+    const testChild = <div>Test</div>
+    const result = RootLayout({ children: testChild })
 
-    expect(document.documentElement).toHaveAttribute('lang', 'en')
+    expect(result?.props.lang).toBe('en')
   })
 
-  it('applies font variable class to body', () => {
-    document.body.className = '--font-sans'
+  it('renders body with font variable class', () => {
+    const testChild = <div>Test</div>
+    const result = RootLayout({ children: testChild })
+    const bodyElement = result?.props.children
 
-    expect(document.body).toHaveClass('--font-sans')
+    expect(bodyElement?.type).toBe('body')
+    expect(bodyElement?.props.className).toContain('--font-sans')
+  })
+
+  it('passes children to body element', () => {
+    const testChild = <div data-testid='test-child'>Test Content</div>
+    const result = RootLayout({ children: testChild })
+    const bodyElement = result?.props.children
+    const renderedChildren = bodyElement?.props.children
+
+    expect(renderedChildren).toBe(testChild)
   })
 
   it('has correct metadata configuration', () => {

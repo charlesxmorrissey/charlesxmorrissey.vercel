@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
+import nextPlugin from '@next/eslint-plugin-next'
 import typescriptEslint from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import preferArrow from 'eslint-plugin-prefer-arrow'
@@ -24,8 +25,10 @@ const compat = new FlatCompat({
 })
 
 export default defineConfig([
+  {
+    ignores: ['.next', '*.d.ts', '*.mjs', 'coverage', 'out', 'vitest-setup.ts'],
+  },
   ...compat.extends(
-    'plugin:@next/next/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
     'plugin:import/typescript',
@@ -33,13 +36,9 @@ export default defineConfig([
     'plugin:react/recommended',
     'plugin:typescript-sort-keys/recommended',
     'prettier',
-    'next/core-web-vitals',
-    'next/typescript',
   ),
   {
-    ignores: ['.next', '*.d.ts', '*.mjs', 'coverage', 'out', 'vitest-setup.ts'],
-  },
-  {
+    files: ['**/*.{ts,tsx,js,jsx}'],
     languageOptions: {
       ecmaVersion: 2023,
       globals: {
@@ -54,10 +53,9 @@ export default defineConfig([
       },
       sourceType: 'module',
     },
-  },
-  {
     plugins: {
-      ...typescriptEslint,
+      '@next/next': nextPlugin,
+      '@typescript-eslint': typescriptEslint,
       'prefer-arrow': preferArrow,
       prettier,
       react,
@@ -65,9 +63,11 @@ export default defineConfig([
       'sort-destructure-keys': sortDestructureKeys,
       'sort-export-all': sortExportAll,
       'unused-imports': unusedImports,
-    },
+    } as any,
 
     rules: {
+      ...nextPlugin.configs.recommended.rules,
+      '@next/next/no-html-link-for-pages': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 2,
       'arrow-body-style': ['error', 'as-needed'],
@@ -110,13 +110,7 @@ export default defineConfig([
       'react/react-in-jsx-scope': 'off',
       'react/self-closing-comp': 'error',
       'sort-destructure-keys/sort-destructure-keys': 2,
-      'sort-export-all/sort-export-all': [
-        'error',
-        'asc',
-        {
-          caseSensitive: false,
-        },
-      ],
+      'sort-export-all/sort-export-all': ['error', 'asc', {}],
       'sort-imports': [
         'error',
         {
