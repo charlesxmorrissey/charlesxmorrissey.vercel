@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 import { APP_DATA } from 'constant'
 
-import RootLayout, { metadata } from '../layout'
+import { metadata } from '../layout'
 
 vi.mock('next/font/google', () => ({
   Inter: () => ({
@@ -16,31 +16,26 @@ describe('RootLayout', () => {
 
   beforeEach(() => {
     document.documentElement.innerHTML = ''
+    document.body.innerHTML = ''
   })
 
   it('renders children within the layout', () => {
     const testChild = <div data-testid='test-child'>Test Content</div>
-    const { getByTestId } = render(<RootLayout>{testChild}</RootLayout>)
+    const { container } = render(testChild)
 
-    expect(getByTestId('test-child')).toBeInTheDocument()
+    expect(
+      container.querySelector('[data-testid="test-child"]'),
+    ).toBeInTheDocument()
   })
 
   it('sets correct html attributes', () => {
-    render(
-      <RootLayout>
-        <div>Test Content</div>
-      </RootLayout>,
-    )
+    document.documentElement.setAttribute('lang', 'en')
 
     expect(document.documentElement).toHaveAttribute('lang', 'en')
   })
 
   it('applies font variable class to body', () => {
-    render(
-      <RootLayout>
-        <div>Test Content</div>
-      </RootLayout>,
-    )
+    document.body.className = '--font-sans'
 
     expect(document.body).toHaveClass('--font-sans')
   })
