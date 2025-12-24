@@ -34,7 +34,7 @@ describe('RootLayout', () => {
     const bodyElement = result?.props.children
 
     expect(bodyElement?.type).toBe('body')
-    expect(bodyElement?.props.className).toContain('--font-sans')
+    expect(bodyElement?.props.className).toBe('--font-sans')
   })
 
   it('passes children to body element', () => {
@@ -43,7 +43,8 @@ describe('RootLayout', () => {
     const bodyElement = result?.props.children
     const renderedChildren = bodyElement?.props.children
 
-    expect(renderedChildren).toBe(testChild)
+    expect(Array.isArray(renderedChildren)).toBe(true)
+    expect(renderedChildren?.[0]).toBe(testChild)
   })
 
   it('has correct metadata configuration', () => {

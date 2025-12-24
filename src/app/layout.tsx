@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { APP_DATA } from 'constant'
 import { Inter } from 'next/font/google'
 
@@ -20,7 +21,10 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
-    <body className={`${inter.variable}`}>{children}</body>
+    <body className={`${inter.variable}`}>
+      {children}
+      <SpeedInsights />
+    </body>
   </html>
 )
 
