@@ -2,7 +2,6 @@
 
 :host,
 :root {
-  --animate-*: initial;
   --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
 
   --color-primary: 2, 6, 23;

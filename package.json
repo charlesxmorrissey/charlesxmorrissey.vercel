@@ -7,8 +7,8 @@
     "maintained node versions"
   ],
   "scripts": {
-    "build": "next build --webpack",
-    "dev": "next dev --webpack",
+    "build": "next build",
+    "dev": "next dev",
     "format": "prettier --write '**/*.{css,html,js,md,mjs,ts,tsx}' --log-level error",
     "lint:ts:watch": "yarn lint:ts --watch",
     "lint:ts": "tsc --project tsconfig.json",
