@@ -34,6 +34,45 @@ describe('Header', () => {
     expect(desc.tagName.toLowerCase()).not.toBe('h1')
   })
 
+  it('renders the description as paragraph element', () => {
+    render(<Header {...APP_DATA} />)
+
+    const desc = screen.getByText(description)
+
+    expect(desc.tagName.toLowerCase()).toBe('p')
+  })
+
+  it('renders with proper semantic HTML structure', () => {
+    const { container } = render(<Header {...APP_DATA} />)
+
+    const header = container.querySelector('header')
+
+    expect(header).toBeInTheDocument()
+    expect(header?.querySelector('h1')).toBeInTheDocument()
+    expect(header?.querySelector('p')).toBeInTheDocument()
+  })
+
+  it('header element contains all child content', () => {
+    const { container } = render(<Header {...APP_DATA} />)
+
+    const header = container.querySelector('header')
+    const h1 = header?.querySelector('h1')
+    const p = header?.querySelector('p')
+
+    expect(h1?.parentElement).toBe(header)
+    expect(p?.parentElement).toBe(header)
+  })
+
+  it('handles custom name and description props', () => {
+    const customName = 'Test Name'
+    const customDescription = 'Test Description'
+
+    render(<Header name={customName} description={customDescription} />)
+
+    expect(screen.getByText(customName)).toBeInTheDocument()
+    expect(screen.getByText(customDescription)).toBeInTheDocument()
+  })
+
   it('matches the rendered snapshot', () => {
     const { container } = render(<Header {...APP_DATA} />)
 

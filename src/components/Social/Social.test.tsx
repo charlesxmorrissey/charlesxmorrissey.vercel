@@ -49,6 +49,71 @@ describe('Social', () => {
     expect(linkEl).not.toHaveAttribute('rel')
   })
 
+  it('renders section title "Get in touch"', () => {
+    renderSocialComponent()
+
+    expect(screen.getByText('Get in touch')).toBeInTheDocument()
+  })
+
+  it('renders title as heading level 2', () => {
+    renderSocialComponent()
+
+    const h2 = screen.getByRole('heading', { level: 2 })
+
+    expect(h2).toHaveTextContent('Get in touch')
+  })
+
+  it('renders with empty data array', () => {
+    renderSocialComponent({ data: [] })
+
+    expect(screen.getByText('Get in touch')).toBeInTheDocument()
+    const links = screen.queryAllByRole('link')
+
+    expect(links).toHaveLength(0)
+  })
+
+  it('renders with single social item', () => {
+    const singleItem: LinkData[] = [SOCIAL_DATA[0]]
+
+    renderSocialComponent({ data: singleItem })
+
+    const links = getAllByRole('link')
+
+    expect(links).toHaveLength(1)
+    expect(links[0]).toHaveTextContent(singleItem[0].name)
+  })
+
+  it('renders icon for each social link', () => {
+    renderSocialComponent()
+
+    const links = getAllByRole('link')
+
+    links.forEach((link) => {
+      const icon = link.querySelector('svg')
+
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveAttribute('aria-hidden', 'true')
+    })
+  })
+
+  it('renders link text with accessible name', () => {
+    renderSocialComponent()
+
+    SOCIAL_DATA.forEach(({ name }) => {
+      const linkEl = getByRole('link', { name })
+
+      expect(linkEl).toHaveAccessibleName(name)
+    })
+  })
+
+  it('uses correct key structure for list items', () => {
+    const { container } = render(<Social data={SOCIAL_DATA} />)
+
+    const links = container.querySelectorAll('a')
+
+    expect(links.length).toBe(SOCIAL_DATA.length)
+  })
+
   it('matches the rendered snapshot', () => {
     const { container } = render(<Social data={SOCIAL_DATA} />)
 

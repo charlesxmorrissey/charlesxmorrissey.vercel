@@ -23,6 +23,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
     <body className={`${inter.variable}`}>
       {children}
+
       <SpeedInsights />
     </body>
   </html>
