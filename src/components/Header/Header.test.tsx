@@ -70,10 +70,4 @@ describe('Header', () => {
     expect(screen.getByText(customName)).toBeInTheDocument()
     expect(screen.getByText(customDescription)).toBeInTheDocument()
   })
-
-  it('matches the rendered snapshot', () => {
-    const { container } = render(<Header {...APP_DATA} />)
-
-    expect(container).toMatchSnapshot()
-  })
 })

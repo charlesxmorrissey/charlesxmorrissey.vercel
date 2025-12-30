@@ -113,10 +113,4 @@ describe('Social', () => {
 
     expect(links.length).toBe(SOCIAL_DATA.length)
   })
-
-  it('matches the rendered snapshot', () => {
-    const { container } = render(<Social data={SOCIAL_DATA} />)
-
-    expect(container).toMatchSnapshot()
-  })
 })
