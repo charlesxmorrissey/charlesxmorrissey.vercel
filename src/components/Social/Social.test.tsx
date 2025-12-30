@@ -67,6 +67,7 @@ describe('Social', () => {
     renderSocialComponent({ data: [] })
 
     expect(screen.getByText('Get in touch')).toBeInTheDocument()
+
     const links = screen.queryAllByRole('link')
 
     expect(links).toHaveLength(0)
@@ -108,7 +109,6 @@ describe('Social', () => {
 
   it('uses correct key structure for list items', () => {
     const { container } = render(<Social data={SOCIAL_DATA} />)
-
     const links = container.querySelectorAll('a')
 
     expect(links.length).toBe(SOCIAL_DATA.length)

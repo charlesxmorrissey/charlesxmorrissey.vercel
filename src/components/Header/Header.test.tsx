@@ -44,7 +44,6 @@ describe('Header', () => {
 
   it('renders with proper semantic HTML structure', () => {
     const { container } = render(<Header {...APP_DATA} />)
-
     const header = container.querySelector('header')
 
     expect(header).toBeInTheDocument()
@@ -54,7 +53,6 @@ describe('Header', () => {
 
   it('header element contains all child content', () => {
     const { container } = render(<Header {...APP_DATA} />)
-
     const header = container.querySelector('header')
     const h1 = header?.querySelector('h1')
     const p = header?.querySelector('p')
@@ -67,7 +65,7 @@ describe('Header', () => {
     const customName = 'Test Name'
     const customDescription = 'Test Description'
 
-    render(<Header name={customName} description={customDescription} />)
+    render(<Header description={customDescription} name={customName} />)
 
     expect(screen.getByText(customName)).toBeInTheDocument()
     expect(screen.getByText(customDescription)).toBeInTheDocument()

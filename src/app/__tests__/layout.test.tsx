@@ -1,14 +1,6 @@
-import '@testing-library/jest-dom'
-
 import { APP_DATA } from 'constant'
 
 import RootLayout, { metadata } from '../layout'
-
-vi.mock('next/font/google', () => ({
-  Inter: () => ({
-    variable: '--font-sans',
-  }),
-}))
 
 describe('RootLayout', () => {
   const { description, name, title } = APP_DATA

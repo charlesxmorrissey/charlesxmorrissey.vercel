@@ -23,6 +23,7 @@ describe('utils', () => {
 
     it('returns values within the specified range', () => {
       vi.restoreAllMocks()
+
       const results = Array.from({ length: 100 }, () => randomHSLColor(30, 60))
 
       results.forEach((color) => {
@@ -71,6 +72,7 @@ describe('utils', () => {
 
     it('generates different colors when Math.random varies', () => {
       vi.restoreAllMocks()
+
       const color1 = randomHSLColor()
       const color2 = randomHSLColor()
 

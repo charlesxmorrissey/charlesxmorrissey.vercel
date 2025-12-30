@@ -25,7 +25,6 @@ describe('Page', () => {
 
   it('HomePage component is rendered within container', () => {
     const { container } = render(<Page />)
-
     const homePage = container.querySelector('[data-testid="mock-homepage"]')
 
     expect(homePage).toBeInTheDocument()

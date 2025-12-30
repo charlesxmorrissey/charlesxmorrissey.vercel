@@ -3,30 +3,23 @@
 :host,
 :root {
   --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
-
   --color-primary: 2, 6, 23;
   --color-secondary: 241, 245, 249;
-  --color-tertiary: oklch(0.372 0.044 257.287);
-
+  --color-tertiary: oklch(37.2% 0.044 257.287deg);
   --container-lg: 32rem;
-
   --default-transition-duration: 0.15s;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
   --font-weight-semibold: 600;
-
   --spacing: 0.25rem;
-
-  --text-2xl--line-height: calc(2 / 1.5);
+  --text-2xl-line-height: calc(2 / 1.5);
   --text-2xl: 1.5rem;
-  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-3xl-line-height: calc(2.25 / 1.875);
   --text-3xl: 1.875rem;
-  --text-5xl--line-height: 1;
+  --text-5xl-line-height: 1;
   --text-5xl: 3rem;
-  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-lg-line-height: calc(1.75 / 1.125);
   --text-lg: 1.125rem;
-  --text-sm--line-height: calc(1.25 / 0.875);
-
+  --text-sm-line-height: calc(1.25 / 0.875);
   --tracking-tight: -0.025em;
   --tracking-tighter: -0.05em;
 }
@@ -36,8 +29,8 @@ html {
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -49,12 +42,11 @@ html {
 }
 
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-
   background-color: rgb(var(--color-secondary));
   color: rgb(var(--color-primary));
   font-family: var(--font-sans);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   line-height: inherit;
 
   @media screen and (prefers-color-scheme: dark) {
@@ -67,7 +59,6 @@ body {
 }
 
 a {
-  -webkit-text-decoration: inherit;
   color: inherit;
   text-decoration: inherit;
 }
