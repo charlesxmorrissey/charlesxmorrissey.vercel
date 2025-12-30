@@ -20,6 +20,11 @@
     &:is(:hover, :focus) {
       color: var(--color-tertiary);
     }
+
+    &:is(:focus, :focus-visible) {
+      outline: 1px dashed var(--color-tertiary);
+      outline-offset: calc(var(--spacing) * -1);
+    }
   }
 }
 
