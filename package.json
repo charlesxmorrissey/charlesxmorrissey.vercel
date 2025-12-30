@@ -10,9 +10,10 @@
     "build": "next build",
     "dev": "next dev",
     "format": "prettier --write '**/*.{css,html,js,md,mjs,ts,tsx}' --log-level error",
+    "lint:styles": "stylelint '**/*.css'",
     "lint:ts:watch": "yarn lint:ts --watch",
     "lint:ts": "tsc --project tsconfig.json",
-    "lint": "eslint . && yarn lint:ts",
+    "lint": "eslint . && yarn lint:ts && yarn lint:styles",
     "prepare": "husky",
     "serve": "yarn build && npx --no serve@latest out",
     "start": "next start",
@@ -66,6 +67,10 @@
     "jsdom": "^27.4.0",
     "postcss-normalize": "^13.0.1",
     "prettier": "^3.7.4",
+    "stylelint": "^16.26.1",
+    "stylelint-config-css-modules": "^4.5.1",
+    "stylelint-config-standard": "^39.0.1",
+    "stylelint-order": "^7.0.1",
     "svgo": "^4.0.0",
     "ts-node": "^10.9.2",
     "vite-plugin-svgr": "^4.5.0",
@@ -76,5 +81,5 @@
     "node": ">=22",
     "npm": ">=10"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.12.0"
 }

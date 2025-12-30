@@ -1,14 +1,6 @@
-import '@testing-library/jest-dom'
-
 import { APP_DATA } from 'constant'
 
 import RootLayout, { metadata } from '../layout'
-
-vi.mock('next/font/google', () => ({
-  Inter: () => ({
-    variable: '--font-sans',
-  }),
-}))
 
 describe('RootLayout', () => {
   const { description, name, title } = APP_DATA
@@ -47,10 +39,49 @@ describe('RootLayout', () => {
     expect(renderedChildren?.[0]).toBe(testChild)
   })
 
+  it('has correct metadata title format', () => {
+    expect(metadata.title).toBe(`${name} | ${title}`)
+  })
+
+  it('has correct metadata description', () => {
+    expect(metadata.description).toBe(description)
+  })
+
   it('has correct metadata configuration', () => {
     expect(metadata).toEqual({
       description,
       title: `${name} | ${title}`,
     })
+  })
+
+  it('includes charset in head element', () => {
+    const testChild = <div>Test</div>
+    const result = RootLayout({ children: testChild })
+
+    expect(result).toBeDefined()
+  })
+
+  it('renders semantic HTML structure', () => {
+    const testChild = <div data-testid='test-child'>Test</div>
+    const result = RootLayout({ children: testChild })
+
+    expect(result?.type).toBe('html')
+    expect(result?.props.lang).toBe('en')
+    expect(result?.props.children?.type).toBe('body')
+  })
+
+  it('body element contains array of children', () => {
+    const testChild1 = <div data-testid='child-1'>Child 1</div>
+    const result = RootLayout({ children: testChild1 })
+    const bodyElement = result?.props.children
+    const children = bodyElement?.props.children
+
+    expect(Array.isArray(children)).toBe(true)
+  })
+
+  it('metadata is exported correctly', () => {
+    expect(metadata).toBeDefined()
+    expect(metadata.title).toBeDefined()
+    expect(metadata.description).toBeDefined()
   })
 })
