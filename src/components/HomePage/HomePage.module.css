@@ -21,3 +21,7 @@
     padding-inline: calc(var(--spacing) * 8);
   }
 }
+
+.content {
+  mix-blend-mode: overlay;
+}

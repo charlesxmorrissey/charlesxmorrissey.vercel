@@ -17,7 +17,7 @@ export const HomePage = () => {
 
   return (
     <main className={styles.wrapper} ref={backgroundElemRef}>
-      <article>
+      <article className={styles.content}>
         <Header {...APP_DATA} />
         <Social data={SOCIAL_DATA} />
       </article>
