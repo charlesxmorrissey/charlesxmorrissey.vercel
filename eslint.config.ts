@@ -8,6 +8,7 @@ import tsParser from '@typescript-eslint/parser'
 import preferArrow from 'eslint-plugin-prefer-arrow'
 import prettier from 'eslint-plugin-prettier'
 import react from 'eslint-plugin-react'
+import reactCompiler from 'eslint-plugin-react-compiler'
 import reactHooks from 'eslint-plugin-react-hooks'
 import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
 import sortExportAll from 'eslint-plugin-sort-export-all'
@@ -59,6 +60,7 @@ export default defineConfig([
       'prefer-arrow': preferArrow,
       prettier,
       react,
+      'react-compiler': reactCompiler,
       'react-hooks': reactHooks,
       'sort-destructure-keys': sortDestructureKeys,
       'sort-export-all': sortExportAll,
@@ -89,6 +91,7 @@ export default defineConfig([
           object: true,
         },
       ],
+      'react-compiler/react-compiler': 'error',
       'react-hooks/exhaustive-deps': 'error',
       'react-hooks/rules-of-hooks': 'error',
       'react/display-name': 'off',
