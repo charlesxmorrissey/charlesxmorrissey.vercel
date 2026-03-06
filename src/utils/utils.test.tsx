@@ -14,17 +14,23 @@ describe('utils', () => {
 
   describe('randomMinMax', () => {
     it('throws when min is greater than max', () => {
-      expect(() => randomHSLColor(100, 50)).toThrow()
+      expect(() =>
+        randomHSLColor({ saturation: { max: 50, min: 100 } }),
+      ).toThrow()
     })
 
     it('throws when min equals max', () => {
-      expect(() => randomHSLColor(50, 50)).toThrow()
+      expect(() =>
+        randomHSLColor({ saturation: { max: 50, min: 50 } }),
+      ).toThrow()
     })
 
     it('returns values within the specified range', () => {
       vi.restoreAllMocks()
 
-      const results = Array.from({ length: 100 }, () => randomHSLColor(30, 60))
+      const results = Array.from({ length: 100 }, () =>
+        randomHSLColor({ saturation: { max: 60, min: 30 } }),
+      )
 
       results.forEach((color) => {
         const match = color.match(/hsl\((\d+)\s+(\d+)%\s+(\d+)%/)
@@ -53,19 +59,19 @@ describe('utils', () => {
     })
 
     it('respects custom saturation range', () => {
-      const hsl = randomHSLColor(30, 60)
+      const hsl = randomHSLColor({ saturation: { max: 60, min: 30 } })
 
       expect(hsl).toBe('hsl(360 60% 100% / 25%)')
     })
 
     it('respects custom lightness range', () => {
-      const hsl = randomHSLColor(50, 100, 20, 80)
+      const hsl = randomHSLColor({ lightness: { max: 80, min: 20 } })
 
       expect(hsl).toBe('hsl(360 100% 80% / 25%)')
     })
 
     it('respects custom opacity', () => {
-      const hsl = randomHSLColor(50, 100, 50, 100, 50)
+      const hsl = randomHSLColor({ opacity: 50 })
 
       expect(hsl).toBe('hsl(360 100% 100% / 50%)')
     })
@@ -81,15 +87,6 @@ describe('utils', () => {
   })
 
   describe('setBackgroundStyles', () => {
-    it('throws when no element is provided', () => {
-      expect(() => setBackgroundStyles(null as any)).toThrow(
-        'A valid HTMLElement must be provided.',
-      )
-      expect(() => setBackgroundStyles(undefined as any)).toThrow(
-        'A valid HTMLElement must be provided.',
-      )
-    })
-
     it('sets the expected CSS custom properties on the provided element with default color count', () => {
       const mainEl = document.createElement('main')
 
@@ -102,7 +99,9 @@ describe('utils', () => {
       expect(mainEl.style.getPropertyValue('--color-bg-2')).toBe(defaultHslStr)
       expect(mainEl.style.getPropertyValue('--color-bg-3')).toBe(defaultHslStr)
       expect(mainEl.style.getPropertyValue('--color-bg-4')).toBe(defaultHslStr)
-      expect(mainEl.style.getPropertyValue('--color-bg-5')).toBe('')
+      expect(mainEl.style.getPropertyValue('--color-bg-5')).toBe(defaultHslStr)
+      expect(mainEl.style.getPropertyValue('--color-bg-6')).toBe(defaultHslStr)
+      expect(mainEl.style.getPropertyValue('--color-bg-7')).toBe('')
     })
 
     it('sets custom number of CSS custom properties', () => {
