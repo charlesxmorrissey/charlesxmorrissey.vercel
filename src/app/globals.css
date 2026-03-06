@@ -3,8 +3,8 @@
 :host,
 :root {
   --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
-  --color-primary: 2, 6, 23;
-  --color-secondary: 241, 245, 249;
+  --color-primary: 2 6 23;
+  --color-secondary: 241 245 249;
   --color-tertiary: oklch(37.2% 0.044 257.287deg);
   --container-lg: 32rem;
   --default-transition-duration: 0.15s;
@@ -17,25 +17,20 @@
   --text-3xl: 1.875rem;
   --text-5xl-line-height: 1;
   --text-5xl: 3rem;
-  --text-lg-line-height: calc(1.75 / 1.125);
   --text-lg: 1.125rem;
   --text-sm-line-height: calc(1.25 / 0.875);
   --tracking-tight: -0.025em;
   --tracking-tighter: -0.05em;
 }
 
-html {
-  box-sizing: border-box;
-}
-
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
-body,
-html {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -47,7 +42,6 @@ body {
   font-family: var(--font-sans);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  line-height: inherit;
 
   @media screen and (prefers-color-scheme: dark) {
     --color-primary: 112 128 144;
@@ -77,25 +71,21 @@ h5 {
     background-position: 0% 50%;
   }
 
-  100% {
-    background-position: 0% 50%;
-  }
-
   50% {
     background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }
 
 @keyframes fade-in {
-  0% {
+  from {
     opacity: 0.01;
   }
 
-  1% {
-    opacity: 0;
-  }
-
-  100% {
+  to {
     opacity: 1;
   }
 }

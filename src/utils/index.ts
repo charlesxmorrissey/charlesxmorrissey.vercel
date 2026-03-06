@@ -14,26 +14,27 @@ const randomMinMax = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min) + min)
 }
 
+interface HSLColorOptions {
+  lightness?: { max?: number; min?: number }
+  opacity?: number
+  saturation?: { max?: number; min?: number }
+}
+
 /**
  * Generate a random HSL color string.
  *
- * @param {number} [saturationMin=50] Minimum saturation percentage.
- * @param {number} [saturationMax=100] Maximum saturation percentage.
- * @param {number} [lightnessMin=50] Minimum lightness percentage.
- * @param {number} [lightnessMax=100] Maximum lightness percentage.
- * @param {number} [opacity=25] Opacity as a percentage.
+ * @param {HSLColorOptions} [options] Configuration for saturation,
+ * lightness, and opacity ranges.
  * @returns {string} HSL color string in the format "hsl(h s% l% / a%)".
  */
-export const randomHSLColor = (
-  saturationMin: number = 50,
-  saturationMax: number = 100,
-  lightnessMin: number = 50,
-  lightnessMax: number = 100,
-  opacity: number = 25,
-): string => {
+export const randomHSLColor = ({
+  lightness: { max: lMax = 100, min: lMin = 50 } = {},
+  opacity = 25,
+  saturation: { max: sMax = 100, min: sMin = 50 } = {},
+}: HSLColorOptions = {}): string => {
   const h = randomMinMax(0, 360)
-  const s = randomMinMax(saturationMin, saturationMax)
-  const l = randomMinMax(lightnessMin, lightnessMax)
+  const s = randomMinMax(sMin, sMax)
+  const l = randomMinMax(lMin, lMax)
 
   return `hsl(${h} ${s}% ${l}% / ${opacity}%)`
 }
@@ -41,18 +42,13 @@ export const randomHSLColor = (
 /**
  * Set CSS custom properties with random HSL colors on an element.
  *
- * @param {HTMLElement | null} element The element to apply styles to.
+ * @param {HTMLElement} element The element to apply styles to.
  * @param {number} [colorCount=4] The number of random colors to generate.
- * @throws {Error} If element is null or not a valid HTMLElement.
  */
 export const setBackgroundStyles = (
-  element: HTMLElement | null,
-  colorCount: number = 4,
+  element: HTMLElement,
+  colorCount: number = 6,
 ): void => {
-  if (!element) {
-    throw new Error('A valid HTMLElement must be provided.')
-  }
-
   for (let i = 0; i < colorCount; i++) {
     element.style.setProperty(`--color-bg-${i + 1}`, randomHSLColor())
   }
