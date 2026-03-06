@@ -12,8 +12,22 @@
   display: flex;
   min-height: 100%;
   padding: calc(var(--spacing) * 6);
+  position: relative;
   transform: translateZ(0);
   will-change: background-position;
+
+  &::before {
+    animation: bg-pan 25s ease-in-out infinite reverse;
+    background-image:
+      radial-gradient(circle at 20% 80%, var(--color-bg-5) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, var(--color-bg-6) 0%, transparent 50%);
+    background-size: 400%;
+    content: '';
+    inset: 0;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    will-change: background-position;
+  }
 
   @media (width >= 48rem) {
     align-items: center;
@@ -24,4 +38,5 @@
 
 .content {
   mix-blend-mode: overlay;
+  position: relative;
 }
