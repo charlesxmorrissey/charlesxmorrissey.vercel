@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { APP_DATA, SOCIAL_DATA } from 'constant'
 import * as utils from 'utils'
 
-import { HomePage } from './'
+import { HomePage } from '../'
 
 describe('HomePage', () => {
   beforeEach(() => {

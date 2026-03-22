@@ -3,7 +3,7 @@ import { SOCIAL_DATA } from 'constant'
 
 import type { LinkData } from 'types'
 
-import { Social } from './'
+import { Social } from '../'
 
 const { getAllByRole, getByRole } = screen
 const MOCKED_SOCIAL_DATA_WITH_OPTIONS: LinkData[] = [{ ...SOCIAL_DATA[2] }]

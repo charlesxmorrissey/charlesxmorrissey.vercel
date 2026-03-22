@@ -1,4 +1,4 @@
-import { randomHSLColor, setBackgroundStyles } from './'
+import { randomHSLColor, setBackgroundStyles } from '../'
 
 describe('utils', () => {
   const defaultHslStr = 'hsl(360 100% 100% / 25%)'

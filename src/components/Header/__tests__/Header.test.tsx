@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { APP_DATA } from 'constant'
 
-import { Header } from './'
+import { Header } from '../'
 
 const { description, name } = APP_DATA
 const { getByRole, getByText } = screen

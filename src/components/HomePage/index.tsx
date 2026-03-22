@@ -1,7 +1,6 @@
 'use client'
 
-import { Header } from 'components/Header'
-import { Social } from 'components/Social'
+import { Header, Social } from 'components'
 import { APP_DATA, SOCIAL_DATA } from 'constant'
 import { setBackgroundStyles } from 'utils'
 
