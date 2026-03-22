@@ -19,7 +19,6 @@ export const Social = ({ data }: SocialProps) => (
           {...options}
         >
           <span className={styles.socialLinkTitle}>{name}</span>
-
           <Icon aria-hidden className={styles.socialIcon} />
         </a>
       ))}

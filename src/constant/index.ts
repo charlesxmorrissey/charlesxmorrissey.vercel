@@ -9,7 +9,7 @@ export const APP_DATA: AppData = {
     "I'm passionate about building user-facing web products and overcoming technical hurdles to ensure their success.",
   name: 'Charles X. Morrissey',
   title: 'Senior Frontend Engineer',
-}
+} as const
 
 export const SOCIAL_DATA: LinkData[] = [
   {
@@ -33,4 +33,4 @@ export const SOCIAL_DATA: LinkData[] = [
       target: '_blank',
     },
   },
-]
+] as const
