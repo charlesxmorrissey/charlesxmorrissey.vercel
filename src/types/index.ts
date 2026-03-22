@@ -1,4 +1,4 @@
-import { JSXElementConstructor, SVGProps } from 'react'
+import type { ComponentPropsWithoutRef, ComponentType, SVGProps } from 'react'
 
 export interface AppData {
   description: string
@@ -6,14 +6,9 @@ export interface AppData {
   title: string
 }
 
-interface LinkDataAttributes {
-  rel?: string
-  target?: string
-}
-
 export interface LinkData {
-  Icon: JSXElementConstructor<SVGProps<SVGElement>>
+  Icon: ComponentType<SVGProps<SVGSVGElement>>
   link: string
   name: string
-  options?: LinkDataAttributes
+  options?: ComponentPropsWithoutRef<'a'>
 }
