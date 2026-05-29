@@ -78,6 +78,15 @@
     "vite-plugin-svgr": "^5.2.0",
     "vitest": "^4.1.7"
   },
+  "resolutions": {
+    "@babel/plugin-transform-modules-systemjs": "^7.29.7",
+    "table/ajv": "^8.20.0",
+    "fast-uri": "^3.1.2",
+    "ip-address": "^10.2.0",
+    "postcss": "^8.5.15",
+    "@svgr/plugin-svgo/svgo": "^3.3.3",
+    "tar": "^7.5.15"
+  },
   "engines": {
     "node": ">=22",
     "npm": ">=10"
