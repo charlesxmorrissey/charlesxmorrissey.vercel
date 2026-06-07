@@ -11,6 +11,10 @@ export const getSiteContent = async (): Promise<SiteContent> => {
   }
 
   try {
+    // Use a finite `revalidate` rather than `cache: 'no-store'`: no-store
+    // forces dynamic rendering, which is incompatible with `output: 'export'`.
+    // A finite value keeps the route static while busting Next's persistent
+    // build-time fetch cache, so each rebuild picks up fresh CMS content.
     const result = await client.fetch<SiteContent | null>(
       siteSettingsQuery,
       {},
