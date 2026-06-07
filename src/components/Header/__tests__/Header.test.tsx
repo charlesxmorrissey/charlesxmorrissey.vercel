@@ -79,8 +79,15 @@ describe('Header', () => {
     expect(screen.getByText(customDescription)).toBeInTheDocument()
   })
 
-  it('links the name to the home page', () => {
+  it('renders the name as plain text (no link) by default', () => {
     render(<Header description={description} name={name} />)
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(name)
+  })
+
+  it('links the name to home when homeHref is provided', () => {
+    render(<Header description={description} homeHref='/' name={name} />)
 
     expect(screen.getByRole('link', { name })).toHaveAttribute('href', '/')
   })

@@ -12,6 +12,7 @@ const BlogPage = async () => {
       <article className={styles.content}>
         <SiteIdentity
           description={content.description}
+          homeHref='/'
           name={content.name}
           socialLinks={content.socialLinks}
         />
