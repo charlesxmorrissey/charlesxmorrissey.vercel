@@ -1,10 +1,17 @@
-import { APP_DATA } from 'constant'
+import { FALLBACK_CONTENT } from 'constant'
 
-import RootLayout, { metadata } from '../layout'
+import RootLayout, { generateMetadata } from '../layout'
+
+// Mocks the local 'sanity' path alias (src/sanity/), not the npm package.
+vi.mock('sanity', async () => {
+  const { FALLBACK_CONTENT: fallback } = await import('constant')
+
+  return {
+    getSiteContent: vi.fn().mockResolvedValue(fallback),
+  }
+})
 
 describe('RootLayout', () => {
-  const { description, name, title } = APP_DATA
-
   it('renders children as JSX element with html and body tags', () => {
     const testChild = <div data-testid='test-child'>Test Content</div>
     const result = RootLayout({ children: testChild })
@@ -39,18 +46,26 @@ describe('RootLayout', () => {
     expect(renderedChildren?.[0]).toBe(testChild)
   })
 
-  it('has correct metadata title format', () => {
-    expect(metadata.title).toBe(`${name} | ${title}`)
+  it('builds the metadata title as "name | title"', async () => {
+    const metadata = await generateMetadata()
+
+    expect(metadata.title).toBe(
+      `${FALLBACK_CONTENT.name} | ${FALLBACK_CONTENT.title}`,
+    )
   })
 
-  it('has correct metadata description', () => {
-    expect(metadata.description).toBe(description)
+  it('uses the content description for metadata', async () => {
+    const metadata = await generateMetadata()
+
+    expect(metadata.description).toBe(FALLBACK_CONTENT.description)
   })
 
-  it('has correct metadata configuration', () => {
+  it('exports a complete metadata object', async () => {
+    const metadata = await generateMetadata()
+
     expect(metadata).toEqual({
-      description,
-      title: `${name} | ${title}`,
+      description: FALLBACK_CONTENT.description,
+      title: `${FALLBACK_CONTENT.name} | ${FALLBACK_CONTENT.title}`,
     })
   })
 
@@ -77,11 +92,5 @@ describe('RootLayout', () => {
     const children = bodyElement?.props.children
 
     expect(Array.isArray(children)).toBe(true)
-  })
-
-  it('metadata is exported correctly', () => {
-    expect(metadata).toBeDefined()
-    expect(metadata.title).toBeDefined()
-    expect(metadata.description).toBeDefined()
   })
 })
