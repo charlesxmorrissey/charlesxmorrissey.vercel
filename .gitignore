@@ -48,3 +48,6 @@ yarn-error.log*
 /studio/node_modules
 /studio/dist
 .sanity
+
+# brainstorm mockups
+.superpowers
