@@ -50,9 +50,9 @@ to a **static export**. The interesting bits:
   (`import Icon from 'assets/icons/foo.svg'`), keep the `ref: true` /
   `titleProp: true` SVGR conventions in mind — both pipelines must stay in sync.
 - **Path aliases, not `baseUrl`.** `tsconfig.json` defines `paths` for
-  `assets/*`, `components`, `constant`, `types`, `utils`. Always import as e.g.
-  `from 'components'` or `from 'utils'`, never via deep relative paths into
-  `src/`.
+  `assets/*`, `components`, `constant`, `sanity`, `types`, `utils`. Always
+  import as e.g. `from 'components'` or `from 'utils'`, never via deep relative
+  paths into `src/`.
 - **Barrel exports.** `src/components/index.ts`, `src/utils/index.ts`,
   `src/constant/index.ts`, `src/types/index.ts` are the public surfaces of each
   folder. Add new exports to the barrel (sorted alphabetically —
@@ -65,6 +65,24 @@ to a **static export**. The interesting bits:
   writes `--color-bg-1..6` CSS custom properties on the root element via a ref
   callback in `HomePage`. This is the entire client-side runtime behavior of the
   site.
+- **Sanity CMS (build-time only).** Site content (name, title, description,
+  social links) lives in a `siteSettings` singleton in Sanity. `src/sanity/`
+  holds a read-only `@sanity/client` and `getSiteContent()`, which `page.tsx`
+  (async Server Component) and `layout.tsx` (`generateMetadata`) await at
+  **build time** — the result is baked into the static export. When the
+  `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` env vars are
+  absent (or the fetch fails), `getSiteContent()` falls back to
+  `FALLBACK_CONTENT` in `src/constant/index.ts`, so the build always works
+  offline. Icons stay in code: each link's `platform` enum
+  (`github`/`linkedin`/`email`) maps to a local SVG via `SOCIAL_ICONS`.
+  **Editing content requires a rebuild/redeploy** — there is no ISR/live update
+  under static export. Copy `.env.example` to `.env.local` for live content.
+- **Sanity Studio.** The editing UI is a standalone package in `studio/` (its
+  own `package.json`, npm-managed, excluded from root eslint/tsc/prettier). Run
+  `npm --prefix studio run dev` for the local Studio, or
+  `npm --prefix studio run deploy` to publish to
+  `https://charlesxmorrissey-site.sanity.studio/`. The Next app never imports
+  from `studio/`; it only reads published content over the API.
 
 ## Conventions enforced by lint
 

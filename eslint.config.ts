@@ -22,7 +22,16 @@ const compat = new FlatCompat({
 
 export default defineConfig([
   {
-    ignores: ['.next', '*.d.ts', '*.mjs', 'coverage', 'out', 'vitest-setup.ts'],
+    ignores: [
+      '.next',
+      '.remember',
+      '*.d.ts',
+      '*.mjs',
+      'coverage',
+      'out',
+      'studio',
+      'vitest-setup.ts',
+    ],
   },
 
   js.configs.recommended,

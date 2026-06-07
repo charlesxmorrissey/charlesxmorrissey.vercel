@@ -43,3 +43,8 @@ yarn-error.log*
 # vercel
 .vercel
 .env*.local
+
+# sanity studio
+/studio/node_modules
+/studio/dist
+.sanity

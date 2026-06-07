@@ -1,14 +1,39 @@
 import { render, screen } from '@testing-library/react'
-import { SOCIAL_DATA } from 'constant'
+import EmailIcon from 'assets/icons/email.svg'
+import GithubIcon from 'assets/icons/github.svg'
+import LinkedInIcon from 'assets/icons/linkedin.svg'
 
 import type { LinkData } from 'types'
 
 import { Social } from '../'
 
 const { getAllByRole, getByRole } = screen
-const MOCKED_SOCIAL_DATA_WITH_OPTIONS: LinkData[] = [{ ...SOCIAL_DATA[2] }]
 
-const renderSocialComponent = ({ data = SOCIAL_DATA } = {}) =>
+const SOCIAL_FIXTURE: LinkData[] = [
+  {
+    Icon: GithubIcon,
+    link: 'https://github.com/charlesxmorrissey',
+    name: 'Github',
+  },
+  {
+    Icon: LinkedInIcon,
+    link: 'https://www.linkedin.com/in/charles-x-morrissey-b366976',
+    name: 'LinkedIn',
+  },
+  {
+    Icon: EmailIcon,
+    link: 'mailto:hi@charles-x.com?subject=hello%20from%20website',
+    name: 'Email',
+    options: {
+      rel: 'noreferrer',
+      target: '_blank',
+    },
+  },
+]
+
+const SOCIAL_FIXTURE_WITH_OPTIONS: LinkData[] = [{ ...SOCIAL_FIXTURE[2] }]
+
+const renderSocialComponent = ({ data = SOCIAL_FIXTURE } = {}) =>
   render(<Social data={data} />)
 
 describe('Social', () => {
@@ -17,9 +42,9 @@ describe('Social', () => {
 
     const links = getAllByRole('link')
 
-    expect(links).toHaveLength(SOCIAL_DATA.length)
+    expect(links).toHaveLength(SOCIAL_FIXTURE.length)
 
-    SOCIAL_DATA.forEach(({ link, name }) => {
+    SOCIAL_FIXTURE.forEach(({ link, name }) => {
       const linkEl = getByRole('link', { name })
 
       expect(linkEl).toBeInTheDocument()
@@ -29,9 +54,9 @@ describe('Social', () => {
   })
 
   it('applies target and rel attributes when options are provided', () => {
-    renderSocialComponent({ data: MOCKED_SOCIAL_DATA_WITH_OPTIONS })
+    renderSocialComponent({ data: SOCIAL_FIXTURE_WITH_OPTIONS })
 
-    const item = MOCKED_SOCIAL_DATA_WITH_OPTIONS[0]
+    const item = SOCIAL_FIXTURE_WITH_OPTIONS[0]
     const linkEl = getByRole('link', { name: item.name })
 
     expect(linkEl).toHaveAttribute('target', '_blank')
@@ -39,7 +64,7 @@ describe('Social', () => {
   })
 
   it('does not add external attributes for same-origin links', () => {
-    const localData: LinkData[] = [{ ...SOCIAL_DATA[0], link: '/' }]
+    const localData: LinkData[] = [{ ...SOCIAL_FIXTURE[0], link: '/' }]
 
     renderSocialComponent({ data: localData })
 
@@ -74,7 +99,7 @@ describe('Social', () => {
   })
 
   it('renders with single social item', () => {
-    const singleItem: LinkData[] = [SOCIAL_DATA[0]]
+    const singleItem: LinkData[] = [SOCIAL_FIXTURE[0]]
 
     renderSocialComponent({ data: singleItem })
 
@@ -100,7 +125,7 @@ describe('Social', () => {
   it('renders link text with accessible name', () => {
     renderSocialComponent()
 
-    SOCIAL_DATA.forEach(({ name }) => {
+    SOCIAL_FIXTURE.forEach(({ name }) => {
       const linkEl = getByRole('link', { name })
 
       expect(linkEl).toHaveAccessibleName(name)
@@ -108,9 +133,9 @@ describe('Social', () => {
   })
 
   it('uses correct key structure for list items', () => {
-    const { container } = render(<Social data={SOCIAL_DATA} />)
+    const { container } = render(<Social data={SOCIAL_FIXTURE} />)
     const links = container.querySelectorAll('a')
 
-    expect(links.length).toBe(SOCIAL_DATA.length)
+    expect(links.length).toBe(SOCIAL_FIXTURE.length)
   })
 })
