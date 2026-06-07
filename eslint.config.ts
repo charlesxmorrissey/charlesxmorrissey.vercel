@@ -29,6 +29,7 @@ export default defineConfig([
       '*.mjs',
       'coverage',
       'out',
+      'studio',
       'vitest-setup.ts',
     ],
   },
