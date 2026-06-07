@@ -23,3 +23,14 @@ export interface SocialLink {
   platform: Platform
   url: string
 }
+
+export interface PostMeta {
+  date: string
+  formattedDate: string
+  slug: string
+  title: string
+}
+
+export interface Post extends PostMeta {
+  body: string
+}
