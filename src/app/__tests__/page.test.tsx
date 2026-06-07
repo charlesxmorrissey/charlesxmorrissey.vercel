@@ -12,6 +12,10 @@ vi.mock('sanity', () => ({
   }),
 }))
 
+vi.mock('posts', () => ({
+  getPosts: vi.fn().mockResolvedValue([]),
+}))
+
 vi.mock('components', () => ({
   HomePage: ({ name }: { name: string }) => (
     <div data-testid='mock-homepage'>{name}</div>
