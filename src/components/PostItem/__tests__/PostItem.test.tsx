@@ -55,6 +55,7 @@ describe('PostItem', () => {
     const button = screen.getByRole('button', { name: /view more/i })
 
     expect(button).toHaveAttribute('aria-expanded', 'false')
+    expect(button).toHaveAttribute('aria-controls', 'smooth-css-content')
 
     await user.click(button)
 

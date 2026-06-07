@@ -20,6 +20,9 @@ export const PostItem = ({
 }: PostItemProps) => {
   const [open, setOpen] = useState(false)
 
+  // The URL hash is browser-only and absent during static prerender, so we
+  // open from it AFTER mount to avoid a hydration mismatch on deep-linked
+  // loads. setState-in-effect is the correct pattern for a browser-only API.
   useEffect(() => {
     if (window.location.hash === `#${slug}`) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
