@@ -37,4 +37,13 @@ describe('getPosts', () => {
       /missing required frontmatter/,
     )
   })
+
+  it('includes excerpt when present and leaves it undefined otherwise', async () => {
+    const posts = await getPosts(FIXTURES)
+    const beta = posts.find((p) => p.slug === 'beta')
+    const alpha = posts.find((p) => p.slug === 'alpha')
+
+    expect(beta?.excerpt).toBe('second')
+    expect(alpha?.excerpt).toBeUndefined()
+  })
 })

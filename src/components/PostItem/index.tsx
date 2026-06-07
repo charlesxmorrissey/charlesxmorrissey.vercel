@@ -13,16 +13,13 @@ interface PostItemProps extends PostMeta {
 
 export const PostItem = ({
   children,
+  excerpt,
   formattedDate,
   slug,
   title,
 }: PostItemProps) => {
   const [open, setOpen] = useState(false)
 
-  // The URL hash is browser-only and absent during static prerender, so we
-  // open from it AFTER mount to avoid a hydration mismatch on deep-linked
-  // loads. setState-in-effect is the correct pattern for syncing with a
-  // browser-only API here.
   useEffect(() => {
     if (window.location.hash === `#${slug}`) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -31,25 +28,30 @@ export const PostItem = ({
   }, [slug])
 
   return (
-    <div className={`${styles.post} ${open ? styles.open : ''}`} id={slug}>
+    <article className={`${styles.post} ${open ? styles.open : ''}`} id={slug}>
+      <div className={styles.head}>
+        <h3 className={styles.title}>{title}</h3>
+        <span className={styles.date}>{formattedDate}</span>
+      </div>
+
+      {excerpt ? <p className={styles.summary}>{excerpt}</p> : null}
+
       <button
+        aria-controls={`${slug}-content`}
         aria-expanded={open}
-        className={styles.head}
+        className={styles.toggle}
         onClick={() => setOpen((value) => !value)}
         type='button'
       >
-        <span className={styles.title}>
-          <span aria-hidden className={styles.chevron}>
-            ›
-          </span>{' '}
-          {title}
+        {open ? 'View less' : 'View more'}
+        <span aria-hidden className={styles.chevron}>
+          ›
         </span>
-        <span className={styles.date}>{formattedDate}</span>
       </button>
 
-      <div className={styles.body}>
+      <div className={styles.body} id={`${slug}-content`}>
         <div className={styles.bodyInner}>{children}</div>
       </div>
-    </div>
+    </article>
   )
 }

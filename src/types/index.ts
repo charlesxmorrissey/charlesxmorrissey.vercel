@@ -26,6 +26,7 @@ export interface SocialLink {
 
 export interface PostMeta {
   date: string
+  excerpt?: string
   formattedDate: string
   slug: string
   title: string

@@ -36,6 +36,7 @@ export const getPosts = async (dir: string = POSTS_DIR): Promise<Post[]> => {
       return {
         body: content,
         date,
+        excerpt: data.excerpt as string | undefined,
         formattedDate: formatDate(date),
         slug: file.replace(/\.mdx$/, ''),
         title: data.title as string,
