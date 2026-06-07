@@ -67,6 +67,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.7",
     "postcss-normalize": "^13.0.1",
     "prettier": "^3.8.3",
     "stylelint": "^17.13.0",
