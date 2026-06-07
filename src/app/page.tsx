@@ -1,6 +1,10 @@
 import { HomePage } from 'components'
-import { FALLBACK_CONTENT } from 'constant'
+import { getSiteContent } from 'sanity'
 
-const Page = () => <HomePage {...FALLBACK_CONTENT} />
+const Page = async () => {
+  const content = await getSiteContent()
+
+  return <HomePage {...content} />
+}
 
 export default Page

@@ -2,45 +2,28 @@ import { render, screen } from '@testing-library/react'
 
 import Page from '../page'
 
-vi.mock('../../components/HomePage', () => ({
-  HomePage: () => <div data-testid='mock-homepage'>Mocked HomePage</div>,
+// Mocks the local 'sanity' path alias (src/sanity/), not the npm package.
+vi.mock('sanity', () => ({
+  getSiteContent: vi.fn().mockResolvedValue({
+    description: 'desc',
+    name: 'Ada Lovelace',
+    socialLinks: [],
+    title: 'Engineer',
+  }),
+}))
+
+vi.mock('components', () => ({
+  HomePage: ({ name }: { name: string }) => (
+    <div data-testid='mock-homepage'>{name}</div>
+  ),
 }))
 
 describe('Page', () => {
-  it('renders the HomePage component', () => {
-    render(<Page />)
+  it('renders HomePage with fetched content', async () => {
+    render(await Page())
 
-    expect(screen.getByTestId('mock-homepage')).toBeInTheDocument()
-  })
-
-  it('renders without errors', () => {
-    expect(() => render(<Page />)).not.toThrow()
-  })
-
-  it('renders HomePage with mocked content', () => {
-    render(<Page />)
-
-    expect(screen.getByText('Mocked HomePage')).toBeInTheDocument()
-  })
-
-  it('HomePage component is rendered within container', () => {
-    const { container } = render(<Page />)
-    const homePage = container.querySelector('[data-testid="mock-homepage"]')
-
-    expect(homePage).toBeInTheDocument()
-  })
-
-  it('returns a valid React component', () => {
-    const page = Page()
-
-    expect(page).toBeDefined()
-    expect(page?.type).toBeDefined()
-  })
-
-  it('Page component is functional', () => {
-    const { container } = render(<Page />)
-
-    expect(container).toBeInTheDocument()
-    expect(container.children.length).toBeGreaterThan(0)
+    expect(screen.getByTestId('mock-homepage')).toHaveTextContent(
+      'Ada Lovelace',
+    )
   })
 })
