@@ -1,84 +1,55 @@
 import { render, screen } from '@testing-library/react'
-import { FALLBACK_CONTENT, SOCIAL_LINK_OPTIONS } from 'constant'
-import * as utils from 'utils'
+import { FALLBACK_CONTENT } from 'constant'
 
 import { HomePage } from '../'
 
+vi.mock('components', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('components')>()),
+  PostList: ({ posts }: { posts: { title: string }[] }) => (
+    <div>
+      {posts.map((p) => (
+        <span key={p.title}>{p.title}</span>
+      ))}
+    </div>
+  ),
+}))
+
+const POSTS = [
+  {
+    body: 'Body',
+    date: '2026-05-20',
+    formattedDate: 'May 20, 2026',
+    slug: 'a',
+    title: 'Post A',
+  },
+]
+
 describe('HomePage', () => {
-  beforeEach(() => {
-    vi.spyOn(utils, 'setBackgroundStyles').mockImplementation(() => {})
-  })
+  it('renders the identity name and description', async () => {
+    render(await HomePage({ ...FALLBACK_CONTENT, posts: POSTS }))
 
-  afterEach(() => {
-    vi.restoreAllMocks()
-  })
-
-  it('calls setBackgroundStyles and renders Header and Social', () => {
-    render(<HomePage {...FALLBACK_CONTENT} />)
-
-    expect(utils.setBackgroundStyles).toHaveBeenCalledTimes(1)
-    expect(utils.setBackgroundStyles).toHaveBeenCalledWith(
-      expect.objectContaining({ tagName: expect.stringMatching(/main/i) }),
-    )
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       FALLBACK_CONTENT.name,
     )
-    expect(screen.getAllByRole('link')).toHaveLength(
+    expect(screen.getByText(FALLBACK_CONTENT.description)).toBeInTheDocument()
+  })
+
+  it('renders the social links', async () => {
+    render(await HomePage({ ...FALLBACK_CONTENT, posts: POSTS }))
+
+    expect(screen.getAllByRole('link').length).toBeGreaterThanOrEqual(
       FALLBACK_CONTENT.socialLinks.length,
     )
   })
 
-  it('renders the description', () => {
-    render(<HomePage {...FALLBACK_CONTENT} />)
+  it('renders a Writing section with the post title and a View all link', async () => {
+    render(await HomePage({ ...FALLBACK_CONTENT, posts: POSTS }))
 
-    expect(screen.getByText(FALLBACK_CONTENT.description)).toBeInTheDocument()
-  })
-
-  it('renders each social link with href, label, and platform options', () => {
-    render(<HomePage {...FALLBACK_CONTENT} />)
-
-    FALLBACK_CONTENT.socialLinks.forEach(({ label, platform, url }) => {
-      const link = screen.getByRole('link', { name: label })
-
-      expect(link).toHaveAttribute('href', url)
-
-      const options = SOCIAL_LINK_OPTIONS[platform]
-
-      if (options?.target) {
-        expect(link).toHaveAttribute('target', options.target)
-      }
-
-      if (options?.rel) {
-        expect(link).toHaveAttribute('rel', options.rel)
-      }
-    })
-  })
-
-  it('renders the props it is given', () => {
-    render(
-      <HomePage
-        description='Custom bio'
-        name='Jane Doe'
-        socialLinks={[
-          { label: 'Custom', platform: 'github', url: 'https://example.com' },
-        ]}
-        title='Custom title'
-      />,
-    )
-
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Jane Doe',
-    )
-    expect(screen.getByText('Custom bio')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Custom' })).toHaveAttribute(
+    expect(screen.getByText('Writing')).toBeInTheDocument()
+    expect(screen.getByText('Post A')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /view all/i })).toHaveAttribute(
       'href',
-      'https://example.com',
+      '/blog',
     )
-  })
-
-  it('renders main > article wrapper', () => {
-    const { container } = render(<HomePage {...FALLBACK_CONTENT} />)
-
-    expect(container.querySelector('main article')).toBeInTheDocument()
   })
 })

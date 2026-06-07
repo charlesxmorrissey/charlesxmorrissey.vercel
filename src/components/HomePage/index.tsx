@@ -1,20 +1,21 @@
-'use client'
-
-import { Header, Social } from 'components'
+import { BackgroundGradient, Header, PostList, Social } from 'components'
 import { SOCIAL_ICONS, SOCIAL_LINK_OPTIONS } from 'constant'
-import { setBackgroundStyles } from 'utils'
+import Link from 'next/link'
 
-import type { LinkData, SiteContent } from 'types'
+import type { LinkData, Post, SiteContent } from 'types'
 
 import styles from './HomePage.module.css'
 
-export const HomePage = ({ description, name, socialLinks }: SiteContent) => {
-  const backgroundRef = (element: HTMLElement | null) => {
-    if (element) {
-      setBackgroundStyles(element)
-    }
-  }
+interface HomePageProps extends SiteContent {
+  posts: Post[]
+}
 
+export const HomePage = ({
+  description,
+  name,
+  posts,
+  socialLinks,
+}: HomePageProps) => {
   const data: LinkData[] = socialLinks.map(({ label, platform, url }) => ({
     Icon: SOCIAL_ICONS[platform],
     link: url,
@@ -23,11 +24,19 @@ export const HomePage = ({ description, name, socialLinks }: SiteContent) => {
   }))
 
   return (
-    <main className={styles.wrapper} ref={backgroundRef}>
+    <BackgroundGradient>
       <article className={styles.content}>
         <Header description={description} name={name} />
         <Social data={data} />
+
+        <section className={styles.writing}>
+          <h2 className={styles.eyebrow}>Writing</h2>
+          <PostList posts={posts} />
+          <Link className={styles.viewAll} href='/blog'>
+            View all →
+          </Link>
+        </section>
       </article>
-    </main>
+    </BackgroundGradient>
   )
 }
