@@ -1,0 +1,17 @@
+.content {
+  max-width: var(--container-lg);
+  position: relative;
+}
+
+.home {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: calc(var(--spacing) * 8);
+  opacity: 0.7;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--tracking-tighter);
+  margin: 0 0 calc(var(--spacing) * 6);
+}
