@@ -1,0 +1,21 @@
+---
+title: Introducing AKT — an agent knowledge toolkit
+date: 2026-06-01
+excerpt: A memory layer for coding agents.
+---
+
+AKT (Agent Knowledge Toolkit) gives coding agents something they usually lack: a
+memory across sessions. Before starting a non-trivial task, an agent can
+**recall** relevant past work; when a chunk of work wraps up, it can **capture**
+the decision that was made — and, crucially, _why_, and what was rejected.
+
+The loop is deliberately small:
+
+- `akt recall "<task>"` surfaces the most relevant past stories.
+- `akt start-story` / `akt finish-story` record a new decision with its
+  rationale and rejected alternatives.
+
+That "decision → because → rejected alternative" shape is the whole point: it's
+what makes a past choice useful the next time a similar task comes around.
+
+[See AKT on GitHub →](https://github.com/charlesxmorrissey/agent-knowledge-toolkit)
