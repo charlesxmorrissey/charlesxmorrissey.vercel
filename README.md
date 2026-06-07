@@ -1,7 +1,7 @@
 # Charles X. Morrissey
 
-Personal site — a single-page [Next.js 16](https://nextjs.org/) app compiled to a
-**static export** (`output: 'export'`), with content managed in
+Personal site — a single-page [Next.js 16](https://nextjs.org/) app compiled to
+a **static export** (`output: 'export'`), with content managed in
 [Sanity](https://www.sanity.io/). Content is fetched at **build time** and baked
 into static HTML; there is no server at runtime.
 
@@ -62,15 +62,15 @@ npm --prefix studio run deploy   # publish to charlesxmorrissey-site.sanity.stud
 
 ## Scripts
 
-| Command | What it does |
-| --- | --- |
-| `yarn dev` | Next.js dev server (http://localhost:3000) |
-| `yarn build` | Production build → static export in `out/` |
-| `yarn serve` | Build, then serve `out/` to smoke-test the static export |
-| `yarn lint` | ESLint + `tsc` type-check + Stylelint |
-| `yarn format` | Prettier write |
-| `yarn test` | Vitest (single run) |
-| `yarn test:coverage` | Vitest with coverage (run by the pre-commit hook) |
+| Command              | What it does                                             |
+| -------------------- | -------------------------------------------------------- |
+| `yarn dev`           | Next.js dev server (http://localhost:3000)               |
+| `yarn build`         | Production build → static export in `out/`               |
+| `yarn serve`         | Build, then serve `out/` to smoke-test the static export |
+| `yarn lint`          | ESLint + `tsc` type-check + Stylelint                    |
+| `yarn format`        | Prettier write                                           |
+| `yarn test`          | Vitest (single run)                                      |
+| `yarn test:coverage` | Vitest with coverage (run by the pre-commit hook)        |
 
 The Husky pre-commit hook runs `yarn format && yarn lint && yarn test:coverage`.
 Fix failures rather than bypassing the hook.
