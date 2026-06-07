@@ -12,13 +12,29 @@
 .eyebrow {
   font-size: 0.875rem;
   letter-spacing: 0.12em;
-  opacity: 0.55;
+  opacity: 0.7;
   text-transform: uppercase;
 }
 
 .viewAll {
-  color: var(--color-bg-3, currentColor);
+  color: inherit;
   display: inline-block;
   font-size: var(--text-lg);
   margin-top: calc(var(--spacing) * 6);
+  text-decoration: underline;
+  text-underline-offset: calc(var(--spacing) * 1);
+  transition: color var(--default-transition-duration)
+    var(--default-transition-timing-function);
+}
+
+@media (hover: hover) {
+  .viewAll:hover,
+  .viewAll:focus-visible {
+    color: var(--color-tertiary);
+  }
+}
+
+.viewAll:focus-visible {
+  outline: 1px dashed var(--color-tertiary);
+  outline-offset: calc(var(--spacing) * 1);
 }

@@ -8,6 +8,23 @@
   font-size: 0.875rem;
   margin-bottom: calc(var(--spacing) * 8);
   opacity: 0.7;
+  text-decoration: underline;
+  text-underline-offset: calc(var(--spacing) * 1);
+  transition: color var(--default-transition-duration)
+    var(--default-transition-timing-function);
+}
+
+@media (hover: hover) {
+  .home:hover,
+  .home:focus-visible {
+    color: var(--color-tertiary);
+    opacity: 1;
+  }
+}
+
+.home:focus-visible {
+  outline: 1px dashed var(--color-tertiary);
+  outline-offset: calc(var(--spacing) * 1);
 }
 
 .title {
