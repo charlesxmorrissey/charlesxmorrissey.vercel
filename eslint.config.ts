@@ -113,7 +113,11 @@ export default defineConfig([
       'react/self-closing-comp': 'error',
       'sort-destructure-keys/sort-destructure-keys': 'error',
       'sort-export-all/sort-export-all': ['error', 'asc', {}],
-      'sort-imports': ['error', { ignoreDeclarationSort: true }],
+      // member sort delegated to @ianvs/prettier-plugin-sort-imports
+      'sort-imports': [
+        'error',
+        { ignoreDeclarationSort: true, ignoreMemberSort: true },
+      ],
       'sort-keys': 'error',
       'unused-imports/no-unused-imports': 'error',
     },
