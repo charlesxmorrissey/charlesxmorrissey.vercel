@@ -9,7 +9,7 @@ export default defineConfig({
   dataset: 'production',
   name: 'default',
   plugins: [structureTool({ structure }), visionTool()],
-  projectId: 'l11hx0kp',
+  projectId: 'g1wgihy2',
   schema: { types: schemaTypes },
   title: 'charlesxmorrissey-site',
 })
