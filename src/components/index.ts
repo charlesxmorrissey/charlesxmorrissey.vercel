@@ -1,4 +1,5 @@
 export { BackgroundGradient } from './BackgroundGradient'
 export { Header } from './Header'
 export { HomePage } from './HomePage'
+export { PostItem } from './PostItem'
 export { Social } from './Social'
