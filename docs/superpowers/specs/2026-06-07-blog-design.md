@@ -14,12 +14,16 @@ existing site and remain a **static export**.
 
 ## Guiding principle
 
-**Stay close to the look and feel of the original site.** The identity block
-(name, title, social icons) is the existing `Header`/`Social` components,
-**unchanged** — same theme colors (black text in light mode, white in dark),
-same `mix-blend-mode: overlay` treatment, real icons. The signature animated
-gradient background and `fade-in` are preserved. The blog is an additive layer
-in the same visual language, not a redesign.
+**Stay close to the look and feel of the original site.** The identity block is
+the existing `Header`/`Social` components, **unchanged** — `Header` renders the
+**name** (h1) and the **description** paragraph ("I'm passionate about building
+user-facing web products…"), and `Social` renders the real icons. (The `title`,
+"Senior Frontend Engineer", is not rendered on the page — it only feeds the
+browser `<title>` via `generateMetadata`, also unchanged.) Same theme colors
+(black text in light mode, white in dark), same `mix-blend-mode: overlay`
+treatment. The signature animated gradient background and `fade-in` are
+preserved. The blog is an additive layer in the same visual language, not a
+redesign.
 
 ## Constraints
 
@@ -48,7 +52,7 @@ in the same visual language, not a redesign.
 
 `content/posts/<slug>.mdx`, one file per post:
 
-````mdx
+```mdx
 ---
 title: Introducing AKT — an agent knowledge toolkit
 date: 2026-06-01
@@ -58,7 +62,7 @@ excerpt: A memory layer for coding agents. # optional, for future use
 Markdown/MDX body. Fenced code blocks get build-time syntax highlighting:
 
 ​`css .post-body { display: grid; grid-template-rows: 0fr; } ​`
-````
+```
 
 - **Slug** = filename (e.g. `introducing-akt.mdx` → `introducing-akt`).
 - **Ordering** = `date` descending (most recent first).
