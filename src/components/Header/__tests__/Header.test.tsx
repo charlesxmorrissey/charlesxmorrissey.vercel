@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react'
-import { APP_DATA } from 'constant'
 
 import { Header } from '../'
 
-const { description, name } = APP_DATA
+const HEADER_FIXTURE = {
+  description: 'A short bio about the engineer.',
+  name: 'Ada Lovelace',
+}
+
+const { description, name } = HEADER_FIXTURE
 const { getByRole, getByText } = screen
 
 describe('Header', () => {
   it('should render the header with required props', () => {
-    render(<Header {...APP_DATA} />)
+    render(<Header description={description} name={name} />)
 
     expect(getByRole('heading', { level: 1 })).toBeInTheDocument()
     expect(getByRole('heading', { level: 1 })).toHaveTextContent(name)
@@ -16,7 +20,7 @@ describe('Header', () => {
   })
 
   it('renders exactly one level-1 heading with the correct accessible name', () => {
-    render(<Header {...APP_DATA} />)
+    render(<Header description={description} name={name} />)
 
     const h1 = screen.getAllByRole('heading', { level: 1 })
 
@@ -26,7 +30,7 @@ describe('Header', () => {
   })
 
   it('renders the description as visible text', () => {
-    render(<Header {...APP_DATA} />)
+    render(<Header description={description} name={name} />)
 
     const desc = screen.getByText(description)
 
@@ -35,7 +39,7 @@ describe('Header', () => {
   })
 
   it('renders the description as paragraph element', () => {
-    render(<Header {...APP_DATA} />)
+    render(<Header description={description} name={name} />)
 
     const desc = screen.getByText(description)
 
@@ -43,7 +47,9 @@ describe('Header', () => {
   })
 
   it('renders with proper semantic HTML structure', () => {
-    const { container } = render(<Header {...APP_DATA} />)
+    const { container } = render(
+      <Header description={description} name={name} />,
+    )
     const header = container.querySelector('header')
 
     expect(header).toBeInTheDocument()
@@ -52,7 +58,9 @@ describe('Header', () => {
   })
 
   it('header element contains all child content', () => {
-    const { container } = render(<Header {...APP_DATA} />)
+    const { container } = render(
+      <Header description={description} name={name} />,
+    )
     const header = container.querySelector('header')
     const h1 = header?.querySelector('h1')
     const p = header?.querySelector('p')

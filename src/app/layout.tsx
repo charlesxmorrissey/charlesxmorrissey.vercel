@@ -1,6 +1,6 @@
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { APP_DATA } from 'constant'
 import { Inter } from 'next/font/google'
+import { getSiteContent } from 'sanity'
 
 import type { Metadata } from 'next'
 
@@ -12,11 +12,13 @@ const inter = Inter({
   variable: '--font-sans',
 })
 
-const { description, name, title } = APP_DATA
+export const generateMetadata = async (): Promise<Metadata> => {
+  const { description, name, title } = await getSiteContent()
 
-export const metadata: Metadata = {
-  description,
-  title: `${name} | ${title}`,
+  return {
+    description,
+    title: `${name} | ${title}`,
+  }
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
