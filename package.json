@@ -33,9 +33,12 @@
     "eslint-config-next": "^16.2.7",
     "gray-matter": "^4.0.3",
     "next": "^16.2.7",
+    "next-mdx-remote": "^6.0.0",
     "postcss": "^8.5.15",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "rehype-pretty-code": "^0.14.3",
+    "shiki": "^4.2.0",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
