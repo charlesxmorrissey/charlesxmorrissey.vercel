@@ -11,10 +11,10 @@
     "deploy": "sanity deploy"
   },
   "dependencies": {
-    "@sanity/vision": "^4",
+    "@sanity/vision": "^5",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^4",
+    "sanity": "^5",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {
