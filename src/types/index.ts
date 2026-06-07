@@ -1,10 +1,6 @@
 import type { ComponentPropsWithoutRef, ComponentType, SVGProps } from 'react'
 
-export interface AppData {
-  description: string
-  name: string
-  title: string
-}
+export type AppData = Omit<SiteContent, 'socialLinks'>
 
 export interface LinkData {
   Icon: ComponentType<SVGProps<SVGSVGElement>>
