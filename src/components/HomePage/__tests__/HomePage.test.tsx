@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { APP_DATA, SOCIAL_DATA } from 'constant'
+import { FALLBACK_CONTENT, SOCIAL_LINK_OPTIONS } from 'constant'
 import * as utils from 'utils'
 
 import { HomePage } from '../'
@@ -13,113 +13,72 @@ describe('HomePage', () => {
     vi.restoreAllMocks()
   })
 
-  it('calls setBackgroundStyles with the main element and renders Header and Social', () => {
-    render(<HomePage />)
+  it('calls setBackgroundStyles and renders Header and Social', () => {
+    render(<HomePage {...FALLBACK_CONTENT} />)
 
     expect(utils.setBackgroundStyles).toHaveBeenCalledTimes(1)
     expect(utils.setBackgroundStyles).toHaveBeenCalledWith(
       expect.objectContaining({ tagName: expect.stringMatching(/main/i) }),
     )
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      APP_DATA.name,
+      FALLBACK_CONTENT.name,
     )
-    expect(screen.getAllByRole('link')).toHaveLength(SOCIAL_DATA.length)
+    expect(screen.getAllByRole('link')).toHaveLength(
+      FALLBACK_CONTENT.socialLinks.length,
+    )
   })
 
-  it('renders Header component with APP_DATA props', () => {
-    render(<HomePage />)
+  it('renders the description', () => {
+    render(<HomePage {...FALLBACK_CONTENT} />)
+
+    expect(screen.getByText(FALLBACK_CONTENT.description)).toBeInTheDocument()
+  })
+
+  it('renders each social link with href, label, and platform options', () => {
+    render(<HomePage {...FALLBACK_CONTENT} />)
+
+    FALLBACK_CONTENT.socialLinks.forEach(({ label, platform, url }) => {
+      const link = screen.getByRole('link', { name: label })
+
+      expect(link).toHaveAttribute('href', url)
+
+      const options = SOCIAL_LINK_OPTIONS[platform]
+
+      if (options?.target) {
+        expect(link).toHaveAttribute('target', options.target)
+      }
+
+      if (options?.rel) {
+        expect(link).toHaveAttribute('rel', options.rel)
+      }
+    })
+  })
+
+  it('renders the props it is given', () => {
+    render(
+      <HomePage
+        description='Custom bio'
+        name='Jane Doe'
+        socialLinks={[
+          { label: 'Custom', platform: 'github', url: 'https://example.com' },
+        ]}
+        title='Custom title'
+      />,
+    )
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      APP_DATA.name,
+      'Jane Doe',
+    )
+    expect(screen.getByText('Custom bio')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Custom' })).toHaveAttribute(
+      'href',
+      'https://example.com',
     )
   })
 
-  it('renders Social component with all social links', () => {
-    render(<HomePage />)
+  it('renders main > article wrapper', () => {
+    const { container } = render(<HomePage {...FALLBACK_CONTENT} />)
 
-    const links = screen.getAllByRole('link')
-
-    expect(links).toHaveLength(SOCIAL_DATA.length)
-
-    SOCIAL_DATA.forEach((socialItem) => {
-      const link = screen.getByRole('link', { name: socialItem.name })
-
-      expect(link).toHaveAttribute('href', socialItem.link)
-    })
-  })
-
-  it('renders main element as wrapper for child components', () => {
-    const { container } = render(<HomePage />)
-    const mainElement = container.querySelector('main')
-
-    expect(mainElement).toBeInTheDocument()
-    expect(mainElement?.children.length).toBeGreaterThan(0)
-  })
-
-  it('renders article element inside main', () => {
-    const { container } = render(<HomePage />)
-    const article = container.querySelector('main article')
-
-    expect(article).toBeInTheDocument()
-  })
-
-  it('renders Header inside article', () => {
-    const { container } = render(<HomePage />)
-    const header = container.querySelector('article header')
-
-    expect(header).toBeInTheDocument()
-  })
-
-  it('renders Social inside article after Header', () => {
-    const { container } = render(<HomePage />)
-    const article = container.querySelector('article')
-    const children = article?.children
-
-    expect(children?.length).toBeGreaterThanOrEqual(2)
-  })
-
-  it('passes correct ref to setBackgroundStyles', () => {
-    const { container } = render(<HomePage />)
-    const mainElement = container.querySelector('main')
-
-    expect(utils.setBackgroundStyles).toHaveBeenCalledWith(mainElement)
-  })
-
-  it('renders main element with wrapper styling', () => {
-    const { container } = render(<HomePage />)
-    const mainElement = container.querySelector('main')
-
-    expect(mainElement).toBeInTheDocument()
-    expect(mainElement?.className).toBeTruthy()
-  })
-
-  it('useLayoutEffect is called on mount', () => {
-    render(<HomePage />)
-
-    expect(utils.setBackgroundStyles).toHaveBeenCalledTimes(1)
-  })
-
-  it('renders all social links with correct attributes', () => {
-    render(<HomePage />)
-
-    SOCIAL_DATA.forEach((item) => {
-      const link = screen.getByRole('link', { name: item.name })
-
-      expect(link).toHaveAttribute('href', item.link)
-
-      if (item.options?.target) {
-        expect(link).toHaveAttribute('target', item.options.target)
-      }
-
-      if (item.options?.rel) {
-        expect(link).toHaveAttribute('rel', item.options.rel)
-      }
-    })
-  })
-
-  it('renders description from APP_DATA', () => {
-    render(<HomePage />)
-
-    expect(screen.getByText(APP_DATA.description)).toBeInTheDocument()
+    expect(container.querySelector('main article')).toBeInTheDocument()
   })
 })
