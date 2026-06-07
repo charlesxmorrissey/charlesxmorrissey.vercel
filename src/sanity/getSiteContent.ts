@@ -11,7 +11,11 @@ export const getSiteContent = async (): Promise<SiteContent> => {
   }
 
   try {
-    const result = await client.fetch<SiteContent | null>(siteSettingsQuery)
+    const result = await client.fetch<SiteContent | null>(
+      siteSettingsQuery,
+      {},
+      { next: { revalidate: 1 } },
+    )
 
     if (!result?.name) {
       return FALLBACK_CONTENT
