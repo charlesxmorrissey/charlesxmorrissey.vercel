@@ -12,3 +12,18 @@ export interface LinkData {
   name: string
   options?: ComponentPropsWithoutRef<'a'>
 }
+
+export type Platform = 'email' | 'github' | 'linkedin'
+
+export interface SiteContent {
+  description: string
+  name: string
+  socialLinks: SocialLink[]
+  title: string
+}
+
+export interface SocialLink {
+  label: string
+  platform: Platform
+  url: string
+}
