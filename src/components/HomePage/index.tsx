@@ -1,8 +1,7 @@
-import { BackgroundGradient, Header, PostList, Social } from 'components'
-import { SOCIAL_ICONS, SOCIAL_LINK_OPTIONS } from 'constant'
+import { BackgroundGradient, PostList, SiteIdentity } from 'components'
 import Link from 'next/link'
 
-import type { LinkData, Post, SiteContent } from 'types'
+import type { Post, SiteContent } from 'types'
 
 import styles from './HomePage.module.css'
 
@@ -15,28 +14,22 @@ export const HomePage = ({
   name,
   posts,
   socialLinks,
-}: HomePageProps) => {
-  const data: LinkData[] = socialLinks.map(({ label, platform, url }) => ({
-    Icon: SOCIAL_ICONS[platform],
-    link: url,
-    name: label,
-    options: SOCIAL_LINK_OPTIONS[platform],
-  }))
+}: HomePageProps) => (
+  <BackgroundGradient>
+    <article className={styles.content}>
+      <SiteIdentity
+        description={description}
+        name={name}
+        socialLinks={socialLinks}
+      />
 
-  return (
-    <BackgroundGradient>
-      <article className={styles.content}>
-        <Header description={description} name={name} />
-        <Social data={data} />
-
-        <section className={styles.writing}>
-          <h2 className={styles.eyebrow}>Writing</h2>
-          <PostList posts={posts} />
-          <Link className={styles.viewAll} href='/blog'>
-            View all →
-          </Link>
-        </section>
-      </article>
-    </BackgroundGradient>
-  )
-}
+      <section className={styles.writing}>
+        <h2 className={styles.eyebrow}>Writing</h2>
+        <PostList posts={posts} />
+        <Link className={styles.viewAll} href='/blog'>
+          View all →
+        </Link>
+      </section>
+    </article>
+  </BackgroundGradient>
+)

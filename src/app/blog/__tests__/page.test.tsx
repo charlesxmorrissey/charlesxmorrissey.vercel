@@ -14,7 +14,17 @@ vi.mock('posts', () => ({
   ]),
 }))
 
-vi.mock('components', () => ({
+vi.mock('sanity', () => ({
+  getSiteContent: vi.fn().mockResolvedValue({
+    description: 'Builder of things.',
+    name: 'Charles X. Morrissey',
+    socialLinks: [],
+    title: 'Engineer',
+  }),
+}))
+
+vi.mock('components', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('components')>()),
   BackgroundGradient: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
@@ -28,12 +38,21 @@ vi.mock('components', () => ({
 }))
 
 describe('BlogPage', () => {
-  it('renders all posts with a home link', async () => {
+  it('renders the full identity (name + description) with the name linking home', async () => {
     render(await BlogPage())
 
-    expect(screen.getByText('Post A')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      'Charles X. Morrissey',
+    )
+    expect(screen.getByText('Builder of things.')).toBeInTheDocument()
     expect(
       screen.getByRole('link', { name: /charles x\. morrissey/i }),
     ).toHaveAttribute('href', '/')
+  })
+
+  it('renders all posts', async () => {
+    render(await BlogPage())
+
+    expect(screen.getByText('Post A')).toBeInTheDocument()
   })
 })

@@ -1,20 +1,25 @@
-import { BackgroundGradient, PostList } from 'components'
-import Link from 'next/link'
+import { BackgroundGradient, PostList, SiteIdentity } from 'components'
 import { getPosts } from 'posts'
+import { getSiteContent } from 'sanity'
 
 import styles from './BlogPage.module.css'
 
 const BlogPage = async () => {
-  const posts = await getPosts()
+  const [content, posts] = await Promise.all([getSiteContent(), getPosts()])
 
   return (
     <BackgroundGradient>
       <article className={styles.content}>
-        <Link className={styles.home} href='/'>
-          Charles X. Morrissey
-        </Link>
-        <h1 className={styles.title}>Writing</h1>
-        <PostList posts={posts} />
+        <SiteIdentity
+          description={content.description}
+          name={content.name}
+          socialLinks={content.socialLinks}
+        />
+
+        <section className={styles.writing}>
+          <h2 className={styles.eyebrow}>Writing</h2>
+          <PostList posts={posts} />
+        </section>
       </article>
     </BackgroundGradient>
   )

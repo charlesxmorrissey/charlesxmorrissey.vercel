@@ -1,34 +1,17 @@
 .content {
   max-width: var(--container-lg);
+  mix-blend-mode: overlay;
   position: relative;
 }
 
-.home {
-  display: inline-block;
+.writing {
+  margin-top: calc(var(--spacing) * 12);
+  mix-blend-mode: normal;
+}
+
+.eyebrow {
   font-size: 0.875rem;
-  margin-bottom: calc(var(--spacing) * 8);
+  letter-spacing: 0.12em;
   opacity: 0.7;
-  text-decoration: underline;
-  text-underline-offset: calc(var(--spacing) * 1);
-  transition: color var(--default-transition-duration)
-    var(--default-transition-timing-function);
-}
-
-@media (hover: hover) {
-  .home:hover,
-  .home:focus-visible {
-    color: var(--color-tertiary);
-    opacity: 1;
-  }
-}
-
-.home:focus-visible {
-  outline: 1px dashed var(--color-tertiary);
-  outline-offset: calc(var(--spacing) * 1);
-}
-
-.title {
-  font-size: var(--text-3xl);
-  letter-spacing: var(--tracking-tighter);
-  margin: 0 0 calc(var(--spacing) * 6);
+  text-transform: uppercase;
 }
