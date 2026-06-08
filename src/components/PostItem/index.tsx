@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Chevron from 'assets/icons/chevron-right.svg'
 
 import type { ReactNode } from 'react'
 import type { PostMeta } from 'types'
@@ -48,7 +49,7 @@ export const PostItem = ({
       >
         {open ? 'View less' : 'View more'}
         <span aria-hidden className={styles.chevron}>
-          ›
+          <Chevron />
         </span>
       </button>
 
