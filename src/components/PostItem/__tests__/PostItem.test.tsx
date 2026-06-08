@@ -81,4 +81,17 @@ describe('PostItem', () => {
 
     window.location.hash = ''
   })
+
+  it('starts open when defaultOpen is set', () => {
+    render(
+      <PostItem {...META} defaultOpen>
+        <p>full body</p>
+      </PostItem>,
+    )
+
+    expect(screen.getByRole('button', { name: /view less/i })).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    )
+  })
 })

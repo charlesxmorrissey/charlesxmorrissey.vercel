@@ -10,16 +10,18 @@ import styles from './PostItem.module.css'
 
 interface PostItemProps extends PostMeta {
   children: ReactNode
+  defaultOpen?: boolean
 }
 
 export const PostItem = ({
   children,
+  defaultOpen,
   excerpt,
   formattedDate,
   slug,
   title,
 }: PostItemProps) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(Boolean(defaultOpen))
 
   // The URL hash is browser-only and absent during static prerender, so we
   // open from it AFTER mount to avoid a hydration mismatch on deep-linked

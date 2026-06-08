@@ -22,7 +22,7 @@ const BlogPage = async () => {
 
       <section className={styles.writing}>
         <h2 className={styles.eyebrow}>Writing</h2>
-        <PostList posts={posts} />
+        <PostList expandFirst posts={posts} />
       </section>
     </article>
   )

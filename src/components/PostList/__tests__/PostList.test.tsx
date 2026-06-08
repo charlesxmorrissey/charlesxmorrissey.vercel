@@ -55,4 +55,23 @@ describe('PostList', () => {
 
     expect(container.querySelectorAll('article')).toHaveLength(0)
   })
+
+  it('expands only the first post when expandFirst is set', async () => {
+    render(await PostList({ expandFirst: true, posts: POSTS }))
+
+    const toggles = screen.getAllByRole('button')
+
+    expect(toggles[0]).toHaveAttribute('aria-expanded', 'true')
+    expect(toggles[1]).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('leaves all posts collapsed by default', async () => {
+    render(await PostList({ posts: POSTS }))
+
+    const toggles = screen.getAllByRole('button')
+
+    expect(
+      toggles.every((b) => b.getAttribute('aria-expanded') === 'false'),
+    ).toBe(true)
+  })
 })
