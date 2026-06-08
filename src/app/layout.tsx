@@ -1,4 +1,5 @@
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { BackgroundGradient } from 'components'
 import { Inter } from 'next/font/google'
 import { getSiteContent } from 'sanity'
 
@@ -24,7 +25,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
     <body className={`${inter.variable}`}>
-      {children}
+      <BackgroundGradient>{children}</BackgroundGradient>
 
       <SpeedInsights />
     </body>

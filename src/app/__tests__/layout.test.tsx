@@ -36,14 +36,17 @@ describe('RootLayout', () => {
     expect(bodyElement?.props.className).toBe('--font-sans')
   })
 
-  it('passes children to body element', () => {
+  it('passes children to body element via BackgroundGradient wrapper', () => {
     const testChild = <div data-testid='test-child'>Test Content</div>
     const result = RootLayout({ children: testChild })
     const bodyElement = result?.props.children
     const renderedChildren = bodyElement?.props.children
 
     expect(Array.isArray(renderedChildren)).toBe(true)
-    expect(renderedChildren?.[0]).toBe(testChild)
+    const backgroundGradient = renderedChildren?.[0]
+
+    expect(backgroundGradient?.type).toBeDefined()
+    expect(backgroundGradient?.props.children).toBe(testChild)
   })
 
   it('builds the metadata title as "name | title"', async () => {

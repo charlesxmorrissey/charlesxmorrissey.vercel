@@ -1,4 +1,4 @@
-import { BackgroundGradient, PostList, SiteIdentity } from 'components'
+import { PostList, SiteIdentity } from 'components'
 import Link from 'next/link'
 
 import type { Post, SiteContent } from 'types'
@@ -15,21 +15,19 @@ export const HomePage = ({
   posts,
   socialLinks,
 }: HomePageProps) => (
-  <BackgroundGradient>
-    <article className={styles.content}>
-      <SiteIdentity
-        description={description}
-        name={name}
-        socialLinks={socialLinks}
-      />
+  <article className={styles.content}>
+    <SiteIdentity
+      description={description}
+      name={name}
+      socialLinks={socialLinks}
+    />
 
-      <section className={styles.writing}>
-        <h2 className={styles.eyebrow}>Writing</h2>
-        <PostList posts={posts} />
-        <Link className={styles.viewAll} href='/blog'>
-          View all →
-        </Link>
-      </section>
-    </article>
-  </BackgroundGradient>
+    <section className={styles.writing}>
+      <h2 className={styles.eyebrow}>Writing</h2>
+      <PostList posts={posts} />
+      <Link className={styles.viewAll} href='/blog'>
+        View all →
+      </Link>
+    </section>
+  </article>
 )
