@@ -1,4 +1,5 @@
 import { BackgroundGradient, PostList, SiteIdentity } from 'components'
+import Link from 'next/link'
 import { getPosts } from 'posts'
 import { getSiteContent } from 'sanity'
 
@@ -10,9 +11,12 @@ const BlogPage = async () => {
   return (
     <BackgroundGradient>
       <article className={styles.content}>
+        <Link className={styles.home} href='/'>
+          ← Home
+        </Link>
+
         <SiteIdentity
           description={content.description}
-          homeHref='/'
           name={content.name}
           socialLinks={content.socialLinks}
         />

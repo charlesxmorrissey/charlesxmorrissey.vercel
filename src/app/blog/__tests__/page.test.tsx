@@ -38,16 +38,22 @@ vi.mock('components', async (importOriginal) => ({
 }))
 
 describe('BlogPage', () => {
-  it('renders the full identity (name + description) with the name linking home', async () => {
+  it('renders the full identity (name + description)', async () => {
     render(await BlogPage())
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       'Charles X. Morrissey',
     )
     expect(screen.getByText('Builder of things.')).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: /charles x\. morrissey/i }),
-    ).toHaveAttribute('href', '/')
+  })
+
+  it('has an explicit Home back link', async () => {
+    render(await BlogPage())
+
+    expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute(
+      'href',
+      '/',
+    )
   })
 
   it('renders all posts', async () => {

@@ -6,13 +6,10 @@ import type { LinkData, SiteContent } from 'types'
 type SiteIdentityProps = Pick<
   SiteContent,
   'description' | 'name' | 'socialLinks'
-> & {
-  homeHref?: string
-}
+>
 
 export const SiteIdentity = ({
   description,
-  homeHref,
   name,
   socialLinks,
 }: SiteIdentityProps) => {
@@ -25,7 +22,7 @@ export const SiteIdentity = ({
 
   return (
     <>
-      <Header description={description} homeHref={homeHref} name={name} />
+      <Header description={description} name={name} />
       <Social data={data} />
     </>
   )
