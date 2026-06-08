@@ -3,6 +3,7 @@
 :host,
 :root {
   --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
+  --color-border: rgb(2 6 23 / 12%);
   --color-primary: 2 6 23;
   --color-secondary: 241 245 249;
   --color-tertiary: oklch(37.2% 0.044 257.287deg);
@@ -44,6 +45,7 @@ body {
   -webkit-font-smoothing: antialiased;
 
   @media screen and (prefers-color-scheme: dark) {
+    --color-border: rgb(255 255 255 / 16%);
     --color-primary: 112 128 144;
     --color-tertiary: rgb(255 255 255 / 75%);
 

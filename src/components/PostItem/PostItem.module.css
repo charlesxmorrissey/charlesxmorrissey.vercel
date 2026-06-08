@@ -1,10 +1,10 @@
 .post {
-  border-top: 1px solid rgb(var(--color-primary) / 18%);
+  border-top: 1px solid var(--color-border);
   padding: calc(var(--spacing) * 5) 0;
 }
 
 .post:last-of-type {
-  border-bottom: 1px solid rgb(var(--color-primary) / 18%);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .head {
