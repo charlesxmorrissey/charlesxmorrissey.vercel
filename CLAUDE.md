@@ -26,9 +26,10 @@ Package manager is **Yarn 4** (see `packageManager` in `package.json`). Node 24
 - Run a single test file: `yarn test src/utils/__tests__/utils.test.tsx`
 - Run by test name: `yarn test -t 'partial name'`
 
-The Husky pre-commit hook runs `yarn format && yarn lint && yarn test:coverage`.
-If a hook fails, fix the underlying issue rather than bypassing it — never use
-`--no-verify`.
+The Husky pre-commit hook runs `yarn lint-staged`, whose config
+(`.lintstagedrc.mjs`) runs `prettier --write` on staged files and then full
+`yarn lint` and `yarn test:coverage`. If a hook fails, fix the underlying issue
+rather than bypassing it — never use `--no-verify`.
 
 ## Architecture
 
