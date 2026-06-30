@@ -62,10 +62,15 @@ to a **static export**. The interesting bits:
   `src/components/<Name>/` with `index.tsx`, `<Name>.module.css`, and a
   `__tests__/` directory next to it. Tests follow the same pattern in
   `src/app/__tests__/` and `src/utils/__tests__/`.
-- **Random background colors.** `setBackgroundStyles` in `src/utils/index.ts`
-  writes `--color-bg-1..6` CSS custom properties on the root element via a ref
-  callback in `HomePage`. This is the entire client-side runtime behavior of the
-  site.
+- **Random background gradient.** `setBackgroundHue` in `src/utils/index.ts`
+  writes a single random `--hue-seed` angle on the `main` element via a ref
+  callback in `HomePage` — the one piece of client-side runtime behavior. The
+  six gradient stops are derived from it entirely in CSS
+  (`hsl(calc(var(--hue) + Ndeg) …)` in `HomePage.module.css`); `globals.css`
+  registers `@property --hue` (typed `<angle>` with a pre-JS fallback) and the
+  `hue-cycle` keyframes rotate the palette continuously from the seed
+  (`seed → seed + 360deg`). A `prefers-reduced-motion` guard freezes the
+  animation at the seed palette.
 - **Sanity CMS (build-time only).** Site content (name, title, description,
   social links) lives in a `siteSettings` singleton in Sanity. `src/sanity/`
   holds a read-only `@sanity/client` and `getSiteContent()`, which `page.tsx`
