@@ -47,7 +47,7 @@ singleton in Sanity, **not** in code. The flow:
    edits do not appear until a rebuild — there is no ISR under static export.)
 
 Icons and layout stay in code; the CMS only owns the text and links. See
-`CLAUDE.md` for the full architecture.
+`.claude/CLAUDE.md` for the full architecture.
 
 ## Running the Studio locally
 
