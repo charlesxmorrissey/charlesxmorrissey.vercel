@@ -2,7 +2,9 @@
 
 :host,
 :root {
-  --animate-bg-init: bg-pan 15s ease infinite, fade-in 500ms ease 1 backwards;
+  --animate-bg-init:
+    hue-cycle 30s linear infinite, bg-pan 15s ease infinite,
+    fade-in 500ms ease 1 backwards;
   --color-primary: 2 6 23;
   --color-secondary: 241 245 249;
   --color-tertiary: oklch(37.2% 0.044 257.287deg);
@@ -21,6 +23,12 @@
   --text-sm-line-height: calc(1.25 / 0.875);
   --tracking-tight: -0.025em;
   --tracking-tighter: -0.05em;
+}
+
+@property --hue {
+  inherits: true;
+  initial-value: 217deg;
+  syntax: '<angle>';
 }
 
 *,
@@ -64,6 +72,16 @@ h4,
 h5 {
   font-size: inherit;
   font-weight: var(--font-weight-semibold);
+}
+
+@keyframes hue-cycle {
+  from {
+    --hue: var(--hue-seed, 217deg);
+  }
+
+  to {
+    --hue: calc(var(--hue-seed, 217deg) + 360deg);
+  }
 }
 
 @keyframes bg-pan {

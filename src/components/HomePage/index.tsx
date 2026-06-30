@@ -2,7 +2,7 @@
 
 import { Header, Social } from 'components'
 import { SOCIAL_ICONS, SOCIAL_LINK_OPTIONS } from 'constant'
-import { setBackgroundStyles } from 'utils'
+import { setBackgroundHue } from 'utils'
 
 import type { LinkData, SiteContent } from 'types'
 
@@ -11,7 +11,7 @@ import styles from './HomePage.module.css'
 export const HomePage = ({ description, name, socialLinks }: SiteContent) => {
   const backgroundRef = (element: HTMLElement | null) => {
     if (element) {
-      setBackgroundStyles(element)
+      setBackgroundHue(element)
     }
   }
 
