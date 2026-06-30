@@ -6,18 +6,18 @@ import { HomePage } from '../'
 
 describe('HomePage', () => {
   beforeEach(() => {
-    vi.spyOn(utils, 'setBackgroundStyles').mockImplementation(() => {})
+    vi.spyOn(utils, 'setBackgroundHue').mockImplementation(() => {})
   })
 
   afterEach(() => {
     vi.restoreAllMocks()
   })
 
-  it('calls setBackgroundStyles and renders Header and Social', () => {
+  it('calls setBackgroundHue and renders Header and Social', () => {
     render(<HomePage {...FALLBACK_CONTENT} />)
 
-    expect(utils.setBackgroundStyles).toHaveBeenCalledTimes(1)
-    expect(utils.setBackgroundStyles).toHaveBeenCalledWith(
+    expect(utils.setBackgroundHue).toHaveBeenCalledTimes(1)
+    expect(utils.setBackgroundHue).toHaveBeenCalledWith(
       expect.objectContaining({ tagName: expect.stringMatching(/main/i) }),
     )
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
