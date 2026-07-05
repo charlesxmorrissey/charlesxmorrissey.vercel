@@ -76,9 +76,9 @@ describe('HomePage', () => {
     )
   })
 
-  it('renders main > article wrapper', () => {
+  it('renders main > content wrapper', () => {
     const { container } = render(<HomePage {...FALLBACK_CONTENT} />)
 
-    expect(container.querySelector('main article')).toBeInTheDocument()
+    expect(container.querySelector('main > div')).toBeInTheDocument()
   })
 })

@@ -24,10 +24,10 @@ export const HomePage = ({ description, name, socialLinks }: SiteContent) => {
 
   return (
     <main className={styles.wrapper} ref={backgroundRef}>
-      <article className={styles.content}>
+      <div className={styles.content}>
         <Header description={description} name={name} />
         <Social data={data} />
-      </article>
+      </div>
     </main>
   )
 }

@@ -7,7 +7,7 @@ interface SocialProps {
 }
 
 export const Social = ({ data }: SocialProps) => (
-  <>
+  <footer>
     <h2 className={styles.socialTitle}>Get in touch</h2>
 
     <div className={styles.socialWrapper}>
@@ -23,5 +23,5 @@ export const Social = ({ data }: SocialProps) => (
         </a>
       ))}
     </div>
-  </>
+  </footer>
 )
