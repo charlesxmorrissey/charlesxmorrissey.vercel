@@ -4187,7 +4187,7 @@ __metadata:
     stylelint-order: "npm:^8.1.1"
     svgo: "npm:^4.0.1"
     ts-node: "npm:^10.9.2"
-    typescript: "npm:^6.0.3"
+    typescript: "npm:~6.0.3"
     typescript-eslint: "npm:^8.63.0"
     vite-plugin-svgr: "npm:^5.2.0"
     vitest: "npm:^4.1.10"
@@ -9164,7 +9164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^6.0.3":
+"typescript@npm:~6.0.3":
   version: 6.0.3
   resolution: "typescript@npm:6.0.3"
   bin:
@@ -9174,7 +9174,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^6.0.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A~6.0.3#optional!builtin<compat/typescript>":
   version: 6.0.3
   resolution: "typescript@patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=5786d5"
   bin:
