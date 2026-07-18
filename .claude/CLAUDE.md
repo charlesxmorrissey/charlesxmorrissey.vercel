@@ -120,3 +120,20 @@ The ESLint config (`eslint.config.ts`) is opinionated and many rules are
 - Coverage is tracked via Istanbul over `src/**/*.ts?(x)`; the pre-commit hook
   runs the coverage variant, so test failures or coverage regressions block
   commits.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as local markdown files under `.scratch/<feature>/` in this repo.
+See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary — needs-triage, needs-info, ready-for-agent, ready-for-human,
+wontfix. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See
+`docs/agents/domain.md`.
