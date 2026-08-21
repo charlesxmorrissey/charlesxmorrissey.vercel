@@ -47,7 +47,7 @@ to a **static export**. The interesting bits:
   compiler can't optimize.
 - **SVG-as-component is wired twice.** Next/Turbopack uses `@svgr/webpack`
   (configured in `next.config.ts`), and Vitest uses `vite-plugin-svgr`
-  (configured in `vite.config.ts`). When importing icons
+  (configured in `vite.config.mts`). When importing icons
   (`import Icon from 'assets/icons/foo.svg'`), keep the `ref: true` /
   `titleProp: true` SVGR conventions in mind — both pipelines must stay in sync.
 - **Path aliases, not `baseUrl`.** `tsconfig.json` defines `paths` for

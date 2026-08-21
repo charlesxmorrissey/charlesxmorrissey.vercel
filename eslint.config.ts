@@ -56,7 +56,7 @@ export default defineConfig([
   prettierRecommended,
 
   {
-    files: ['**/*.{ts,tsx,js,jsx}'],
+    files: ['**/*.{ts,tsx,mts,js,jsx}'],
 
     languageOptions: {
       ecmaVersion: 2023,

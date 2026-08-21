@@ -34,6 +34,7 @@
     ".next/types/**/*.ts",
     ".prettierrc.mjs",
     "**/*.mjs",
+    "**/*.mts",
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
