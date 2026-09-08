@@ -29,7 +29,7 @@
     "@types/react-dom": "^19.2.7",
     "@vercel/speed-insights": "^2.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^10",
+    "eslint": "^10.10.0",
     "eslint-config-next": "^16.3.4",
     "next": "^16.3.4",
     "postcss": "^8.5.28",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@eslint/compat": "^2.1.1",
     "@eslint/eslintrc": "^3.3.7",
-    "@eslint/js": "^10",
+    "@eslint/js": "^10.0.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@next/eslint-plugin-next": "^16.3.4",
     "@swc/core": "1.16.2",
