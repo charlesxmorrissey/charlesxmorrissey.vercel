@@ -1,3 +1,4 @@
+import { fixupConfigRules } from '@eslint/compat'
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
 import nextPlugin from '@next/eslint-plugin-next'
@@ -37,8 +38,13 @@ export default defineConfig([
   js.configs.recommended,
   ...tseslint.configs.recommended,
 
-  { ...react.configs.flat.recommended },
-  { ...react.configs.flat['jsx-runtime'] },
+  // ponytail: eslint-plugin-react 7.x and typescript-sort-keys still call the
+  // context APIs ESLint 10 removed; drop the fixup wrappers once they ship
+  // ESLint 10 support.
+  ...fixupConfigRules([
+    react.configs.flat.recommended,
+    react.configs.flat['jsx-runtime'],
+  ]),
 
   {
     ...reactHooks.configs['recommended-latest'],
@@ -51,7 +57,9 @@ export default defineConfig([
   eslintPluginImport.flatConfigs.recommended,
   eslintPluginImport.flatConfigs.typescript,
 
-  ...compat.extends('plugin:typescript-sort-keys/recommended'),
+  ...fixupConfigRules(
+    compat.extends('plugin:typescript-sort-keys/recommended'),
+  ),
 
   prettierRecommended,
 
