@@ -137,3 +137,13 @@ wontfix. See `docs/agents/triage-labels.md`.
 
 Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See
 `docs/agents/domain.md`.
+
+## Learned rules
+
+Repo-local patterns graduated from the knowledge base. Entries carry provenance.
+
+- A lockfile-only commit (package.json + yarn.lock) matches none of
+  lint-staged's file globs, so the pre-commit hook silently runs zero checks —
+  run the full lint/test commands manually before pushing dependency-only
+  commits
+  <!-- akt: lint-staged-lockfile-only-commit-skips-checks | 3 hits | charlesxmorrissey.vercel/2026-08-14-dependabot-51-alert-sweep-stale-resolutions-pins-were-downgrading-direct-deps, charlesxmorrissey.vercel/2026-10-04-dependabot-25-alert-sweep-undici-ip-address-markdown-it-dompurify-pins-refreshed, charlesxmorrissey.vercel/2026-10-10-in-range-dep-bump-to-next-16-4-merged-then-five-new-dependabot-alerts-pinned-in-a-second-pr -->
