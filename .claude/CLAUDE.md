@@ -147,3 +147,7 @@ Repo-local patterns graduated from the knowledge base. Entries carry provenance.
   run the full lint/test commands manually before pushing dependency-only
   commits
   <!-- akt: lint-staged-lockfile-only-commit-skips-checks | 3 hits | charlesxmorrissey.vercel/2026-08-14-dependabot-51-alert-sweep-stale-resolutions-pins-were-downgrading-direct-deps, charlesxmorrissey.vercel/2026-10-04-dependabot-25-alert-sweep-undici-ip-address-markdown-it-dompurify-pins-refreshed, charlesxmorrissey.vercel/2026-10-10-in-range-dep-bump-to-next-16-4-merged-then-five-new-dependabot-alerts-pinned-in-a-second-pr -->
+- After bumping a direct dep in a repo with a resolutions/overrides block, grep
+  that block for the same package and verify with yarn why/npm ls — a stale pin
+  silently wins over package.json, so the bump changes nothing at install time
+  <!-- akt: resolutions-pin-shadows-direct-dep-bump | 3 hits | charlesxmorrissey.vercel/2026-08-14-dependabot-51-alert-sweep-stale-resolutions-pins-were-downgrading-direct-deps, charlesxmorrissey.vercel/2026-10-24-dependabot-8-alert-sweep-vite-8-2-4-root-vite-7-3-7-and-markdown-it-14-3-3-in-studio -->
