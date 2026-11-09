@@ -105,7 +105,10 @@
     "sharp": "^0.35.5",
     "source-map-js": "^1.2.2",
     "postcss-selector-parser": "^7.1.6",
-    "glob": "^14.0.2"
+    "glob": "^14.0.2",
+    "minimatch@^10.2.2": "^11.0.1",
+    "minimatch@^10.2.4": "^11.0.1",
+    "minimatch@^10.2.6": "^11.0.1"
   },
   "engines": {
     "node": ">=22",
