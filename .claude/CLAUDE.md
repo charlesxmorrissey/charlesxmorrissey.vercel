@@ -151,3 +151,9 @@ Repo-local patterns graduated from the knowledge base. Entries carry provenance.
   that block for the same package and verify with yarn why/npm ls — a stale pin
   silently wins over package.json, so the bump changes nothing at install time
   <!-- akt: resolutions-pin-shadows-direct-dep-bump | 3 hits | charlesxmorrissey.vercel/2026-08-14-dependabot-51-alert-sweep-stale-resolutions-pins-were-downgrading-direct-deps, charlesxmorrissey.vercel/2026-10-24-dependabot-8-alert-sweep-vite-8-2-4-root-vite-7-3-7-and-markdown-it-14-3-3-in-studio -->
+- A Yarn resolutions key with a range (pkg@^5.0.2) only rewrites dependencies
+  declared with exactly that range — other descriptors (^5.0.8) keep their old
+  lock entry after install, so a 'bumped' pin can leave the vulnerable copy in
+  place; after bumping, grep yarn.lock for every descriptor of the package and
+  run yarn dedupe <pkg> to fold stragglers
+  <!-- akt: yarn-scoped-resolution-key-misses-other-descriptors | 3 hits | charlesxmorrissey.vercel/2026-10-04-dependabot-25-alert-sweep-undici-ip-address-markdown-it-dompurify-pins-refreshed, charlesxmorrissey.vercel/2026-10-10-in-range-dep-bump-to-next-16-4-merged-then-five-new-dependabot-alerts-pinned-in-a-second-pr, charlesxmorrissey.vercel/2026-11-08-in-range-dep-bump-pr-51-then-minimatch-11-pins-pr-52-vite-pin-shadowed-again-glob-14-pin-pulled-in-a-new-advisory -->
