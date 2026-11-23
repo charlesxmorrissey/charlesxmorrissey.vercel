@@ -13,6 +13,7 @@
   background-size: 600%;
   display: flex;
   min-height: 100%;
+  overflow-x: clip;
   padding: calc(var(--spacing) * 6);
   position: relative;
   transform: translateZ(0);

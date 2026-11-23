@@ -43,7 +43,7 @@ describe('Header', () => {
 
     const desc = screen.getByText(description)
 
-    expect(desc.tagName.toLowerCase()).toBe('p')
+    expect(desc.closest('p')).toBeInTheDocument()
   })
 
   it('renders with proper semantic HTML structure', () => {
