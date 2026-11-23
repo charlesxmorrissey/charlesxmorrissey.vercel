@@ -1,0 +1,84 @@
+.root {
+  display: block;
+  position: relative;
+
+  /*
+   * Touch only: a press plays the effect, so it must not select the text or
+   * open the copy menu. Mouse users can still select and copy.
+   */
+  @media (hover: none) and (pointer: coarse) {
+    /* stylelint-disable-next-line property-no-vendor-prefix -- iOS Safari */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+.text {
+  display: block;
+}
+
+/* An icon inside the text span must not sit on a text baseline. */
+.text:has(> svg) {
+  display: block;
+
+  & > svg {
+    display: block;
+  }
+}
+
+/* Intro and block name: the dots stand in for the real text. */
+.root[data-dots='on'] .text {
+  opacity: 0;
+}
+
+/*
+ * Pointer nearby: the real text stays, with a soft hole cut at the pointer.
+ * The canvas draws dots only inside that hole. 70px matches POINTER_RADIUS.
+ */
+.root[data-dots='hole'] .text {
+  mask-image: radial-gradient(
+    circle 70px at var(--hole-x, -9999px) var(--hole-y, -9999px),
+    transparent 60px,
+    #000 70px
+  );
+}
+
+/* Block letters need their own height, so the real text leaves the flow. */
+.root[data-variant='block'][data-dots] .text {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/*
+ * Before the script mounts: with JavaScript on (the backdrop carries data-js),
+ * the plain text stays hidden, so it does not flash ahead of the dots. If the
+ * script never mounts, the text appears after 4 seconds.
+ */
+:global([data-js]) ~ * .root:not([data-dots]) .text {
+  animation: dot-text-fallback 1ms 4s forwards;
+  opacity: 0;
+}
+
+.canvas {
+  pointer-events: none;
+  position: absolute;
+}
+
+/*
+ * The real text comes back at once, under the dots. Only the dots fade, so
+ * the two layers are never both partly transparent.
+ */
+.root[data-dots='rest'] .canvas {
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+
+@keyframes dot-text-fallback {
+  to {
+    opacity: 1;
+  }
+}

@@ -13,6 +13,7 @@
   background-size: 600%;
   display: flex;
   min-height: 100%;
+  overflow-x: clip;
   padding: calc(var(--spacing) * 6);
   position: relative;
   transform: translateZ(0);
@@ -44,6 +45,24 @@
 .content {
   mix-blend-mode: overlay;
   position: relative;
+}
+
+.wrapper:has([data-bg='max'], [data-bg='cosmic']) {
+  color: #fff8e7;
+}
+
+/* A poster background replaces the gradient and the text blend. */
+.wrapper:has([data-bg]:not([data-bg='current'])) {
+  animation: none;
+  background-image: none;
+
+  &::before {
+    display: none;
+  }
+
+  & .content {
+    mix-blend-mode: normal;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

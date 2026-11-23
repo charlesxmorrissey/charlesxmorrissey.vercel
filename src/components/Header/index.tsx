@@ -1,3 +1,5 @@
+import { DotName } from 'components'
+
 import type { AppData } from 'types'
 
 import styles from './Header.module.css'
@@ -9,7 +11,11 @@ interface HeaderProps {
 
 export const Header = ({ description, name }: HeaderProps) => (
   <header className={styles.header}>
-    <h1 className={styles.headerTitle}>{name}</h1>
-    <p className={styles.headerText}>{description}</p>
+    <h1 className={styles.headerTitle}>
+      <DotName text={name} variant='block' />
+    </h1>
+    <p className={styles.headerText}>
+      <DotName text={description} />
+    </p>
   </header>
 )
