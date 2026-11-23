@@ -47,6 +47,24 @@
   position: relative;
 }
 
+.wrapper:has([data-bg='max'], [data-bg='cosmic']) {
+  color: #fff8e7;
+}
+
+/* SPIKE: a chosen background study replaces the gradient and the blend. */
+.wrapper:has([data-bg]:not([data-bg='current'])) {
+  animation: none;
+  background-image: none;
+
+  &::before {
+    display: none;
+  }
+
+  & .content {
+    mix-blend-mode: normal;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wrapper {
     animation: none;

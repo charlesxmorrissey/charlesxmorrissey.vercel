@@ -1,6 +1,6 @@
 'use client'
 
-import { Header, Social } from 'components'
+import { Backdrop, Header, Social } from 'components'
 import { SOCIAL_ICONS, SOCIAL_LINK_OPTIONS } from 'constant'
 import { setBackgroundHue } from 'utils'
 
@@ -24,6 +24,7 @@ export const HomePage = ({ description, name, socialLinks }: SiteContent) => {
 
   return (
     <main className={styles.wrapper} ref={backgroundRef}>
+      <Backdrop />
       <div className={styles.content}>
         <Header description={description} name={name} />
         <Social data={data} />

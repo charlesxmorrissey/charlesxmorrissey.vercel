@@ -143,13 +143,15 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
   const canvas = root.querySelector('canvas')
   const text = root.querySelector('span')
 
-  if (!canvas || !text || typeof ResizeObserver === 'undefined') {
-    return noop
-  }
+  const context =
+    canvas && text && typeof ResizeObserver !== 'undefined'
+      ? canvas.getContext('2d')
+      : null
 
-  const context = canvas.getContext('2d')
+  if (!canvas || !text || !context) {
+    /* No dots here. Mark the root, so that the CSS shows the plain text. */
+    root.dataset.dots = 'rest'
 
-  if (!context) {
     return noop
   }
 

@@ -53,6 +53,16 @@
   width: 1px;
 }
 
+/*
+ * Before the script mounts: with JavaScript on (the backdrop carries data-js),
+ * the plain text stays hidden, so it does not flash ahead of the dots. If the
+ * script never mounts, the text appears after 4 seconds.
+ */
+:global([data-js]) ~ * .root:not([data-dots]) .text {
+  animation: dot-text-fallback 1ms 4s forwards;
+  opacity: 0;
+}
+
 .canvas {
   pointer-events: none;
   position: absolute;
@@ -65,4 +75,10 @@
 .root[data-dots='rest'] .canvas {
   opacity: 0;
   transition: opacity 180ms ease-out;
+}
+
+@keyframes dot-text-fallback {
+  to {
+    opacity: 1;
+  }
 }
