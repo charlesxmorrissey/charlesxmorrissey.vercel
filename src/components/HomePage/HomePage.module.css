@@ -51,7 +51,7 @@
   color: #fff8e7;
 }
 
-/* SPIKE: a chosen background study replaces the gradient and the blend. */
+/* A poster background replaces the gradient and the text blend. */
 .wrapper:has([data-bg]:not([data-bg='current'])) {
   animation: none;
   background-image: none;

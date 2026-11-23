@@ -2,8 +2,6 @@
 
 import styles from './Backdrop.module.css'
 
-/* SPIKE: throwaway background studies, switched with ?bg= or the buttons. */
-
 /*
  * Runs while the HTML is parsed, before the first paint. It picks the default
  * gradient or one of the three studies at random. "?bg=name" forces one, for

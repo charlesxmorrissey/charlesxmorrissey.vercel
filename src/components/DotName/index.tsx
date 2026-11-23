@@ -11,7 +11,7 @@ interface DotNameProps {
   variant?: 'block' | 'dots'
 }
 
-/* SPIKE: throwaway. The span keeps the real text for assistive technology. */
+/* The span keeps the real text or icon for assistive technology. */
 export const DotName = ({ children, text, variant = 'dots' }: DotNameProps) => {
   const rootRef = (element: HTMLSpanElement) => mountDotType(element)
 

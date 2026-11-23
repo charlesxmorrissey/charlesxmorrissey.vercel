@@ -1,4 +1,4 @@
-/* SPIKE: throwaway dot-type renderer. No tests yet. */
+/* Canvas renderer behind DotName: block letters, text dots, and icon dots. */
 import { ANSI_SHADOW } from './ansiShadow'
 
 interface Dot {
@@ -159,13 +159,13 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
     '(prefers-reduced-motion: reduce)',
   ).matches
 
-  /* Icons are click targets, so their dots do not move away from the pointer. */
   const isBlock = root.dataset.variant === 'block'
+  /* Icons are click targets, so their dots do not move away from the pointer. */
+  const isIcon = Boolean(text.querySelector('svg'))
   /* Text and icons settle fast, so that the real text comes back sooner. */
   const damping = isBlock ? DAMPING : FAST_DAMPING
   const restThreshold = isBlock ? REST_THRESHOLD : FAST_REST_THRESHOLD
   const stiffness = isBlock ? STIFFNESS : FAST_STIFFNESS
-  const isIcon = Boolean(text.querySelector('svg'))
   const link = root.closest('a')
 
   let cell = 0
