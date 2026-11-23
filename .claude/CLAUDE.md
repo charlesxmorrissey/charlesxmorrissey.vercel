@@ -64,13 +64,34 @@ to a **static export**. The interesting bits:
   `src/app/__tests__/` and `src/utils/__tests__/`.
 - **Random background gradient.** `setBackgroundHue` in `src/utils/index.ts`
   writes a single random `--hue-seed` angle on the `main` element via a ref
-  callback in `HomePage` — the one piece of client-side runtime behavior. The
-  six gradient stops are derived from it entirely in CSS
-  (`hsl(calc(var(--hue) + Ndeg) …)` in `HomePage.module.css`); `globals.css`
+  callback in `HomePage`. The six gradient stops are derived from it entirely in
+  CSS (`hsl(calc(var(--hue) + Ndeg) …)` in `HomePage.module.css`); `globals.css`
   registers `@property --hue` (typed `<angle>` with a pre-JS fallback) and the
   `hue-cycle` keyframes rotate the palette continuously from the seed
   (`seed → seed + 360deg`). A `prefers-reduced-motion` guard freezes the
   animation at the seed palette.
+- **Random background.** `Backdrop` (`src/components/Backdrop/`) renders the
+  markup for three poster backgrounds: `smoke`, `max` and `cosmic`. An inline
+  script directly after the backdrop element runs before first paint. It sets
+  `data-bg` to one of those three or to `current` (the hue gradient above), at
+  random. `?bg=<name>` forces one. CSS shows the scene that matches `data-bg`.
+  When `data-bg` is not `current`, `HomePage.module.css` turns off the gradient
+  and the `mix-blend-mode` on the content. The art must not sit behind the text.
+  The plume and the sunburst rules in `Backdrop.module.css` keep it clear of the
+  text block.
+- **Dot effect (`DotName`).** `src/components/DotName/` draws text and icons as
+  particles on a canvas. `dotType.ts` holds the renderer. The `block` variant
+  draws the name as block letters from the glyph map in `ansiShadow.ts`, and it
+  is always drawn on the canvas. The default `dots` variant plays a fly-in, and
+  then it shows the real text or icon again. Near the pointer, it cuts a hole in
+  the real text with a CSS mask and draws dots only inside that hole. The real
+  text, heading and links always stay in the DOM. Do not move them into the
+  canvas.
+- **No text flash on load.** The inline script in `Backdrop` also sets `data-js`
+  on the backdrop element. While `data-js` is present and a `DotName` is not
+  mounted, its plain text is hidden. If the renderer does not mount, the text
+  shows after 4 seconds. With JavaScript off, the text shows at once. If you
+  move or remove that script, make sure that both behaviors still work.
 - **Sanity CMS (build-time only).** Site content (name, title, description,
   social links) lives in a `siteSettings` singleton in Sanity. `src/sanity/`
   holds a read-only `@sanity/client` and `getSiteContent()`, which `page.tsx`
@@ -120,6 +141,15 @@ The ESLint config (`eslint.config.ts`) is opinionated and many rules are
 - Coverage is tracked via Istanbul over `src/**/*.ts?(x)`; the pre-commit hook
   runs the coverage variant, so test failures or coverage regressions block
   commits.
+- `dotType.test.ts` uses a fake canvas context, a fake `ResizeObserver`, and
+  fake animation frames. It tests the `data-dots` states (`on`, `hole`, `rest`),
+  not the pixels. Look at visual changes in a browser.
+- The `Backdrop` pick script runs in the jsdom page realm, so a test cannot mock
+  `Math.random` for it. The tests run the script many times and examine the
+  results.
+- Browser test tools that write files into the repo (for example
+  `.playwright-mcp/`) make `next dev` reload the page during a test. Run browser
+  checks against a static build (`yarn build`, then serve `out/`).
 
 ## Agent skills
 

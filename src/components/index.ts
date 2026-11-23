@@ -1,3 +1,5 @@
+export { Backdrop } from './Backdrop'
+export { DotName } from './DotName'
 export { Header } from './Header'
 export { HomePage } from './HomePage'
 export { Social } from './Social'
