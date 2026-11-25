@@ -15,9 +15,9 @@ interface SetupOptions {
 const createContext = () => ({
   beginPath: vi.fn(),
   clearRect: vi.fn(),
-  drawImage: vi.fn(),
+  createPattern: vi.fn((): unknown => ({})),
   fill: vi.fn(),
-  fillStyle: '',
+  fillStyle: '' as unknown,
   fillText: vi.fn(),
   font: '',
   /* Every pixel is opaque, so every grid cell becomes a dot. */
@@ -190,39 +190,42 @@ describe('mountDotType', () => {
     expect(root.dataset.dots).toBe('rest')
   })
 
-  it('changes each dot into its piece of the real text when it is home', async () => {
+  it('fills the dots that are home with the picture of the real text', async () => {
     const root = setup()
+    const picture = { picture: true }
 
+    context.createPattern.mockReturnValue(picture)
     mountDotType(root)
     await flushFonts()
-    runFrames(16)
 
-    expect(context.drawImage).not.toHaveBeenCalled()
-
-    runFrames(4000)
-
-    expect(context.drawImage).toHaveBeenCalledWith(
+    expect(context.createPattern).toHaveBeenCalledWith(
       expect.any(HTMLCanvasElement),
-      0,
-      0,
-      1,
-      1,
-      PADDING,
-      PADDING,
-      1,
-      1,
+      'no-repeat',
     )
 
-    const pieces = context.drawImage.mock.calls.length
+    runFrames(16)
 
-    pointer('pointermove', PADDING + 5, PADDING + 5)
-    runFrames(100)
+    expect(context.fillStyle).not.toBe(picture)
 
-    expect(context.drawImage.mock.calls.length).toBe(pieces)
+    runFrames(1500)
+
+    /* Device pixels, with the origin at the top left of the text. */
+    expect(context.fillStyle).toBe(picture)
+    expect(context.setTransform).toHaveBeenCalledWith(
+      1,
+      0,
+      0,
+      1,
+      PADDING,
+      PADDING,
+    )
+    expect(context.rect).toHaveBeenCalledWith(0, 0, 1, 1)
   })
 
-  it('draws one glyph of text per character at the position from the DOM', async () => {
-    const root = setup()
+  it('draws one glyph per call when the canvas cannot space letters', async () => {
+    const root = setup({
+      html: '<span style="font-size: 24px; letter-spacing: -1px">Hello</span><canvas></canvas>',
+    })
 
     mountDotType(root)
     await flushFonts()
@@ -230,6 +233,30 @@ describe('mountDotType', () => {
     expect(context.fillText).toHaveBeenCalledTimes('Hello'.length)
     expect(context.fillText).toHaveBeenCalledWith('H', 0, 10)
     expect(root.querySelectorAll('canvas')).toHaveLength(1)
+  })
+
+  it('draws a full line in one call when the canvas can space letters', async () => {
+    const root = setup({
+      html: '<span style="font-size: 24px; letter-spacing: -1px">Hello</span><canvas></canvas>',
+    })
+    const tops = [0, 0, 0, 30, 30]
+    let glyph = 0
+
+    Object.assign(context, { letterSpacing: '0px' })
+    Range.prototype.getClientRects = () => {
+      const top = tops[glyph % tops.length]
+
+      glyph += 1
+
+      return [{ ...rectOf(10, 10), top }] as unknown as DOMRectList
+    }
+    mountDotType(root)
+    await flushFonts()
+
+    expect(context.fillText).toHaveBeenCalledTimes(2)
+    expect(context.fillText).toHaveBeenCalledWith('Hel', 0, 10)
+    expect(context.fillText).toHaveBeenCalledWith('lo', 0, 40)
+    expect(context).toHaveProperty('letterSpacing', '-1px')
   })
 
   it('takes the baseline from the page, on a whole device pixel', async () => {
@@ -242,7 +269,7 @@ describe('mountDotType', () => {
     mountDotType(root)
     await flushFonts()
 
-    expect(context.fillText).toHaveBeenCalledWith('H', 0, 13)
+    expect(context.fillText).toHaveBeenCalledWith('Hello', 0, 13)
     expect(root.querySelector('span')?.children).toHaveLength(0)
   })
 
