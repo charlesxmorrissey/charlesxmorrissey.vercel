@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 
 import { Backdrop } from '../'
 
-const OPTIONS = ['current', 'smoke', 'max', 'cosmic']
+const OPTIONS = ['current', 'smoke']
 
 /* Run the inline pick script the way a browser does while it parses HTML. */
 const runPickScript = (source: string) => {
@@ -37,10 +37,10 @@ describe('Backdrop', () => {
     expect(backdrop).toHaveAttribute('aria-hidden', 'true')
   })
 
-  it('renders nine smoke billows and one set of hills', () => {
+  it('renders nine smoke billows', () => {
     const { container } = render(<Backdrop />)
 
-    expect(container.querySelectorAll('svg')).toHaveLength(10)
+    expect(container.querySelectorAll('svg')).toHaveLength(9)
     expect(container.querySelectorAll('svg filter')).toHaveLength(9)
   })
 
@@ -63,7 +63,7 @@ describe('Backdrop', () => {
 
   /*
    * The script runs in the page's own realm, so Math.random cannot be mocked
-   * from here. 80 runs miss one of four options about once in 10^9 tries.
+   * from here. 80 runs miss one of two options about once in 10^24 tries.
    */
   it('picks only known backgrounds, and reaches every one of them', () => {
     const script = getScript()

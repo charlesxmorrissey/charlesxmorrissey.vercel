@@ -71,14 +71,13 @@ to a **static export**. The interesting bits:
   (`seed → seed + 360deg`). A `prefers-reduced-motion` guard freezes the
   animation at the seed palette.
 - **Random background.** `Backdrop` (`src/components/Backdrop/`) renders the
-  markup for three poster backgrounds: `smoke`, `max` and `cosmic`. An inline
-  script directly after the backdrop element runs before first paint. It sets
-  `data-bg` to one of those three or to `current` (the hue gradient above), at
-  random. `?bg=<name>` forces one. CSS shows the scene that matches `data-bg`.
-  When `data-bg` is not `current`, `HomePage.module.css` turns off the gradient
-  and the `mix-blend-mode` on the content. The art must not sit behind the text.
-  The plume and the sunburst rules in `Backdrop.module.css` keep it clear of the
-  text block.
+  markup for one poster background, `smoke`. An inline script directly after the
+  backdrop element runs before first paint. It sets `data-bg` to `smoke` or to
+  `current` (the hue gradient above), at random. `?bg=<name>` forces one. CSS
+  shows the scene that matches `data-bg`. When `data-bg` is not `current`,
+  `HomePage.module.css` turns off the gradient and the `mix-blend-mode` on the
+  content. The art must not sit behind the text. The plume rules in
+  `Backdrop.module.css` keep it clear of the text block.
 - **Dot effect (`DotName`).** `src/components/DotName/` draws text and icons as
   particles on a canvas. `dotType.ts` holds the renderer. The `block` variant
   draws the name as block letters from the glyph map in `ansiShadow.ts`, and it

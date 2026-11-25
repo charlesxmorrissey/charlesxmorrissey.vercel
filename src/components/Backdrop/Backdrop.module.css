@@ -1,9 +1,4 @@
 .backdrop {
-  --ink: #1b1464;
-  --plume-hue: 335deg;
-  --plume-outline: transparent;
-  --plume-step: 0deg;
-
   inset: 0;
   overflow: hidden;
   pointer-events: none;
@@ -16,25 +11,6 @@
   position: absolute;
 }
 
-.stars {
-  background-image:
-    radial-gradient(circle, #fff8e7 0 1.2px, transparent 1.6px),
-    radial-gradient(circle, #fff8e7 0 0.8px, transparent 1.2px),
-    radial-gradient(circle, #ffe66d 0 1.6px, transparent 2px);
-  background-position:
-    20px 30px,
-    90px 110px,
-    150px 60px;
-  background-size:
-    190px 170px,
-    130px 150px,
-    310px 270px;
-  display: none;
-  inset: 0;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 60%);
-  position: absolute;
-}
-
 /* Smoke: airbrushed pink billows on paper, after the "Loaded" cover. */
 .backdrop[data-bg='smoke'] {
   background-color: #f4ede2;
@@ -44,42 +20,6 @@
   }
 
   & .plumeScene {
-    display: block;
-  }
-}
-
-/* Cosmic: the same billows, one hue per layer, inked outlines, night sky. */
-.backdrop[data-bg='cosmic'] {
-  --plume-hue: 20deg;
-  --plume-outline: var(--ink);
-  --plume-step: 42deg;
-
-  background-image: linear-gradient(
-    180deg,
-    #0b1026 0%,
-    #2a1458 55%,
-    #7a1f6b 100%
-  );
-
-  & .plumeScene,
-  & .stars {
-    display: block;
-  }
-}
-
-/* Max: flat poster color, sunburst, ringed sun, outlined hills. */
-.backdrop[data-bg='max'] {
-  background-image: linear-gradient(
-    180deg,
-    #1b1464 0,
-    #4a2390 26rem,
-    #e0457b calc(26rem + 24%),
-    #ff9a3c calc(26rem + 40%),
-    #ffe66d 100%
-  );
-
-  & .maxScene,
-  & .stars {
     display: block;
   }
 }
@@ -115,100 +55,23 @@
   will-change: transform;
 }
 
-.raysWindow {
-  /* The rays fade out around the text block in the top left corner. */
-  inset: 0;
-  mask-image: radial-gradient(
-    ellipse 48rem 36rem at 0 0,
-    transparent 84%,
-    #000 100%
-  );
-  position: absolute;
-}
-
-.rays {
-  animation: rays-turn 240s linear infinite;
-  aspect-ratio: 1;
-  background-image: repeating-conic-gradient(
-    rgb(255 230 109 / 55%) 0deg 5deg,
-    transparent 5deg 10deg
-  );
-  left: 68%;
-  mask-image: radial-gradient(circle, #000 0%, transparent 62%);
-  position: absolute;
-  top: 60%;
-  translate: -50% -50%;
-  width: 220vmax;
-}
-
-.sun {
-  aspect-ratio: 1;
-  background-image: radial-gradient(
-    circle,
-    #fff3b0 0% 16%,
-    var(--ink) 16% 17.5%,
-    #ffd23f 17.5% 31%,
-    var(--ink) 31% 32.5%,
-    #ff8c42 32.5% 45%,
-    var(--ink) 45% 46.5%,
-    #ef476f 46.5% 58%,
-    var(--ink) 58% 59.5%,
-    #9b5de5 59.5% 69%,
-    var(--ink) 69% 71%
-  );
-  border-radius: 50%;
-  left: 68%;
-  position: absolute;
-  top: 60%;
-  translate: -50% -50%;
-  width: 62vmin;
-}
-
-.hills {
-  bottom: 0;
-  height: min(36%, calc(100% - 28rem));
-  left: 0;
-  position: absolute;
-  width: 100%;
-
-  & path {
-    stroke: var(--ink);
-    stroke-width: 4;
-    vector-effect: non-scaling-stroke;
-  }
-}
-
-.hillBack {
-  fill: #7b2cbf;
-}
-
-.hillMid {
-  fill: #00a6a6;
-}
-
-.hillFront {
-  fill: #2dc653;
-}
-
+/* Each billow sways, rises, swells and tilts. Neighbors run opposite ways. */
 @keyframes billow-drift {
-  from {
-    transform: translate(-2.5%, 3%) scale(0.97);
+  0% {
+    transform: translate(-5%, 5%) scale(0.94, 1) rotate(-2deg);
   }
 
-  to {
-    transform: translate(2.5%, -3%) scale(1.04);
+  50% {
+    transform: translate(1.5%, -2%) scale(1.05, 0.95) rotate(1.5deg);
   }
-}
 
-@keyframes rays-turn {
-  to {
-    rotate: 360deg;
+  100% {
+    transform: translate(5%, -6%) scale(1.08, 1.04) rotate(-1deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .billow,
-  .rays {
+  .billow {
     animation: none;
   }
 }

@@ -47,10 +47,6 @@
   position: relative;
 }
 
-.wrapper:has([data-bg='max'], [data-bg='cosmic']) {
-  color: #fff8e7;
-}
-
 /* A poster background replaces the gradient and the text blend. */
 .wrapper:has([data-bg]:not([data-bg='current'])) {
   animation: none;

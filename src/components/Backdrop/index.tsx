@@ -4,14 +4,14 @@ import styles from './Backdrop.module.css'
 
 /*
  * Runs while the HTML is parsed, before the first paint. It picks the default
- * gradient or one of the three studies at random. "?bg=name" forces one, for
+ * gradient or the smoke study at random. "?bg=name" forces one, for
  * testing. Without JavaScript, the default gradient stays.
  *
  * It also marks the backdrop with data-js. DotName uses that mark to hide the
  * plain text until its dots are ready, so the text does not flash first.
  */
 const PICK_SCRIPT = `(function () {
-  var options = ['current', 'smoke', 'max', 'cosmic']
+  var options = ['current', 'smoke']
   var forced = new URLSearchParams(location.search).get('bg')
   var backdrop = document.currentScript.previousElementSibling
 
@@ -46,34 +46,7 @@ export const Backdrop = () => (
       data-bg='current'
       suppressHydrationWarning
     >
-      <div className={`${styles.scene} ${styles.maxScene}`}>
-        <div className={styles.stars} />
-        <div className={styles.raysWindow}>
-          <div className={styles.rays} />
-        </div>
-        <div className={styles.sun} />
-        <svg
-          className={styles.hills}
-          preserveAspectRatio='none'
-          viewBox='0 0 1000 300'
-        >
-          <path
-            className={styles.hillBack}
-            d='M0 140 C150 60 300 60 450 130 S750 200 1000 90 V300 H0Z'
-          />
-          <path
-            className={styles.hillMid}
-            d='M0 200 C200 110 350 230 550 170 S850 110 1000 190 V300 H0Z'
-          />
-          <path
-            className={styles.hillFront}
-            d='M0 250 C180 200 320 290 520 240 S820 200 1000 260 V300 H0Z'
-          />
-        </svg>
-      </div>
-
       <div className={`${styles.scene} ${styles.plumeScene}`}>
-        <div className={styles.stars} />
         <div className={styles.plume}>
           {LAYERS.map(({ height, width, x, y }, index) => {
             const boxHeight = height * 2.8
@@ -86,7 +59,9 @@ export const Backdrop = () => (
                 key={`billow-${index}`}
                 style={{
                   animationDelay: `${index * -3.1}s`,
-                  animationDuration: `${17 + (index % 4) * 5}s`,
+                  animationDirection:
+                    index % 2 ? 'alternate-reverse' : 'alternate',
+                  animationDuration: `${9 + (index % 4) * 2.5}s`,
                   height: `${boxHeight / 10}%`,
                   left: `${(x - width) / 10}%`,
                   top: `${(y - height * 1.4) / 10}%`,
@@ -113,7 +88,7 @@ export const Backdrop = () => (
                         key={offset}
                         offset={offset}
                         style={{
-                          stopColor: `hsl(calc(var(--plume-hue) + ${index} * var(--plume-step)) ${tone})`,
+                          stopColor: `hsl(335deg ${tone})`,
                         }}
                       />
                     ))}
@@ -133,29 +108,8 @@ export const Backdrop = () => (
                     />
                     <feColorMatrix
                       in='blur'
-                      result='goo'
                       values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9'
                     />
-                    <feMorphology
-                      in='goo'
-                      operator='dilate'
-                      radius={height * 0.04}
-                      result='fat'
-                    />
-                    <feFlood
-                      result='ink'
-                      style={{ floodColor: 'var(--plume-outline)' }}
-                    />
-                    <feComposite
-                      in='ink'
-                      in2='fat'
-                      operator='in'
-                      result='outline'
-                    />
-                    <feMerge>
-                      <feMergeNode in='outline' />
-                      <feMergeNode in='goo' />
-                    </feMerge>
                   </filter>
                 </defs>
                 <g
