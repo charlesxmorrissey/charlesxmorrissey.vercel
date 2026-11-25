@@ -15,6 +15,7 @@ interface SetupOptions {
 const createContext = () => ({
   beginPath: vi.fn(),
   clearRect: vi.fn(),
+  drawImage: vi.fn(),
   fill: vi.fn(),
   fillStyle: '',
   fillText: vi.fn(),
@@ -189,6 +190,37 @@ describe('mountDotType', () => {
     expect(root.dataset.dots).toBe('rest')
   })
 
+  it('changes each dot into its piece of the real text when it is home', async () => {
+    const root = setup()
+
+    mountDotType(root)
+    await flushFonts()
+    runFrames(16)
+
+    expect(context.drawImage).not.toHaveBeenCalled()
+
+    runFrames(4000)
+
+    expect(context.drawImage).toHaveBeenCalledWith(
+      expect.any(HTMLCanvasElement),
+      0,
+      0,
+      1,
+      1,
+      PADDING,
+      PADDING,
+      1,
+      1,
+    )
+
+    const pieces = context.drawImage.mock.calls.length
+
+    pointer('pointermove', PADDING + 5, PADDING + 5)
+    runFrames(100)
+
+    expect(context.drawImage.mock.calls.length).toBe(pieces)
+  })
+
   it('draws one glyph of text per character at the position from the DOM', async () => {
     const root = setup()
 
@@ -197,6 +229,21 @@ describe('mountDotType', () => {
 
     expect(context.fillText).toHaveBeenCalledTimes('Hello'.length)
     expect(context.fillText).toHaveBeenCalledWith('H', 0, 10)
+    expect(root.querySelectorAll('canvas')).toHaveLength(1)
+  })
+
+  it('takes the baseline from the page, on a whole device pixel', async () => {
+    const root = setup()
+
+    vi.spyOn(
+      HTMLSpanElement.prototype,
+      'getBoundingClientRect',
+    ).mockReturnValue({ ...rectOf(0, 0), top: 12.5 })
+    mountDotType(root)
+    await flushFonts()
+
+    expect(context.fillText).toHaveBeenCalledWith('H', 0, 13)
+    expect(root.querySelector('span')?.children).toHaveLength(0)
   })
 
   it('cuts a hole at the pointer and closes it when the pointer leaves', async () => {

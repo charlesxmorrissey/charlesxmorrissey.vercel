@@ -3,6 +3,8 @@ import { ANSI_SHADOW } from './ansiShadow'
 
 interface Dot {
   delay: number
+  /* A cell with little ink. It has no square, only its piece of the text. */
+  faint?: boolean
   glyph?: string
   homeX: number
   homeY: number
@@ -17,6 +19,8 @@ interface Layout {
   dots: Dot[]
   height: number
   radius: number
+  source?: HTMLCanvasElement
+  sourceStep?: number
 }
 
 interface Point {
@@ -36,11 +40,11 @@ const CORNERS: Record<string, [number, number]> = {
 const DAMPING = 0.82
 const FAST_DAMPING = 0.74
 const FAST_REST_THRESHOLD = 0.6
+const FAINT_THRESHOLD = 8
 const FAST_STIFFNESS = 0.16
 const DOTS_PER_EM = 24
 const HOME_EPSILON = 0.5
 const INK_THRESHOLD = 135
-const INTRO_FADE_MS = 220
 const INTRO_SWEEP_MS = 700
 const MAX_CELL = 6.5
 const MIN_STEP = 1
@@ -172,7 +176,6 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
   let cssHeight = 0
   let cssWidth = 0
   let disposed = false
-  let fadeUntil = 0
   let dots: Dot[] = []
   let frame = 0
   let hasPlayedIntro = false
@@ -181,12 +184,14 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
   let pointer: Point | null = null
   let radius = 1
   let redrawUntil = 0
+  let source: HTMLCanvasElement | undefined
+  let sourceStep = 0
   let stillFrames = 0
 
   const draw = (now: number): boolean => {
     const ratio = window.devicePixelRatio || 1
     const elapsed = now - introStart
-    const drawAll = !isIntroDone || now < fadeUntil
+    const drawAll = !isIntroDone
     const hole = isIcon ? null : pointer
     let isMoving = false
 
@@ -250,7 +255,25 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
         hole !== null &&
         Math.hypot(dot.homeX - hole.x, dot.homeY - hole.y) < POINTER_RADIUS
 
-      if (drawAll || isAway || isInHole) {
+      /*
+       * Intro: a dot that reaches home changes into its piece of the real
+       * text, one cell at a time. When all the dots are home, the canvas
+       * shows the same picture as the real text, so the change to the real
+       * text is not visible.
+       */
+      if (drawAll && !isAway && source) {
+        context.drawImage(
+          source,
+          Math.round((dot.homeX - PADDING - radius) * ratio),
+          Math.round((dot.homeY - PADDING - radius) * ratio),
+          sourceStep,
+          sourceStep,
+          dot.homeX - radius,
+          dot.homeY - radius,
+          radius * 2,
+          radius * 2,
+        )
+      } else if (!dot.faint && (drawAll || isAway || isInHole)) {
         context.rect(dot.x - radius, dot.y - radius, radius * 2, radius * 2)
       }
     }
@@ -273,7 +296,11 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
 
     if (!isIntroDone && stillFrames >= STILL_FRAMES) {
       isIntroDone = true
-      fadeUntil = now + INTRO_FADE_MS
+
+      /* The real text takes over in this same frame. */
+      if (!isBlock) {
+        context.clearRect(0, 0, canvas.width, canvas.height)
+      }
     }
 
     /*
@@ -438,15 +465,28 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
     const step = stepDevice / ratio
     const half = step / 2
     const buffer = document.createElement('canvas')
+
+    /*
+     * A canvas draws text with the font smoothing that it inherits, and only
+     * while it is in the document. Outside the document, the text comes out
+     * heavier than the real text. So the buffer sits in the root, not shown,
+     * while it is drawn.
+     */
+    buffer.style.cssText = 'position:absolute;visibility:hidden'
+    root.append(buffer)
+
     const bufferContext = buffer.getContext('2d', { willReadFrequently: true })
 
     if (!bufferContext) {
+      buffer.remove()
+
       return null
     }
 
     buffer.width = Math.ceil(rootRect.width * ratio)
     buffer.height = Math.ceil(rootRect.height * ratio)
     bufferContext.scale(ratio, ratio)
+    bufferContext.fillStyle = style.color
     bufferContext.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`
     bufferContext.textBaseline = 'alphabetic'
 
@@ -473,6 +513,22 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
       const ascent = bufferContext.measureText('H').fontBoundingBoxAscent
       const content = node.textContent ?? ''
       const range = document.createRange()
+      const probe = document.createElement('span')
+
+      /*
+       * An empty inline block sits on the baseline of the first line. That
+       * gives the distance from the top of a glyph rectangle to the baseline
+       * as the browser paints it. Font metrics alone can be half a pixel off.
+       */
+      probe.style.cssText =
+        'display:inline-block;height:0;vertical-align:baseline;width:0'
+      text.insertBefore(probe, node)
+
+      const baseline = probe.getBoundingClientRect().top
+
+      probe.remove()
+
+      let rise: number | undefined
 
       /* One glyph at a time, so wrapping and letter-spacing match the DOM. */
       for (let index = 0; index < content.length; index += 1) {
@@ -482,10 +538,14 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
         const [glyphRect] = range.getClientRects()
 
         if (glyphRect) {
+          /* The first glyph is on the first line, the same as the probe. */
+          rise ??= baseline > glyphRect.top ? baseline - glyphRect.top : ascent
+
+          /* The browser paints a baseline on a whole device pixel. */
           bufferContext.fillText(
             content[index],
             glyphRect.left - rootRect.left,
-            glyphRect.top - rootRect.top + ascent,
+            Math.round((glyphRect.top - rootRect.top + rise) * ratio) / ratio,
           )
         }
       }
@@ -498,6 +558,8 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
       buffer.height,
     )
     const nextDots: Dot[] = []
+
+    buffer.remove()
 
     const columns = Math.floor(buffer.width / stepDevice)
     const rows = Math.floor(buffer.height / stepDevice)
@@ -520,15 +582,18 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
           }
         }
 
-        if (total / (stepDevice * stepDevice) > INK_THRESHOLD) {
-          nextDots.push(
-            makeDot(
-              column * step + half + PADDING,
-              row * step + half + PADDING,
-              column / columns,
-              isIntro,
-            ),
+        const ink = total / (stepDevice * stepDevice)
+
+        if (ink > FAINT_THRESHOLD) {
+          const dot = makeDot(
+            column * step + half + PADDING,
+            row * step + half + PADDING,
+            column / columns,
+            isIntro,
           )
+
+          dot.faint = ink <= INK_THRESHOLD
+          nextDots.push(dot)
         }
       }
     }
@@ -538,6 +603,8 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
       dots: nextDots,
       height: rootRect.height,
       radius: half,
+      source: buffer,
+      sourceStep: stepDevice,
     }
   }
 
@@ -553,7 +620,7 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
     const width = root.getBoundingClientRect().width + PADDING * 2
     const height = layout.height + PADDING * 2
 
-    ;({ cell, dots, radius } = layout)
+    ;({ cell, dots, radius, source, sourceStep = 0 } = layout)
     canvas.width = Math.round(width * ratio)
     canvas.height = Math.round(height * ratio)
     cssHeight = height
