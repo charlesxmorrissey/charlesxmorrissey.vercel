@@ -255,12 +255,7 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
         hole !== null &&
         Math.hypot(dot.homeX - hole.x, dot.homeY - hole.y) < POINTER_RADIUS
 
-      /*
-       * Intro: a dot that reaches home changes into its piece of the real
-       * text, one cell at a time. When all the dots are home, the canvas
-       * shows the same picture as the real text, so the change to the real
-       * text is not visible.
-       */
+      /* Intro: a dot that is home shows its piece of the real text. */
       if (drawAll && !isAway && source) {
         context.drawImage(
           source,
@@ -297,7 +292,6 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
     if (!isIntroDone && stillFrames >= STILL_FRAMES) {
       isIntroDone = true
 
-      /* The real text takes over in this same frame. */
       if (!isBlock) {
         context.clearRect(0, 0, canvas.width, canvas.height)
       }
@@ -538,7 +532,6 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
         const [glyphRect] = range.getClientRects()
 
         if (glyphRect) {
-          /* The first glyph is on the first line, the same as the probe. */
           rise ??= baseline > glyphRect.top ? baseline - glyphRect.top : ascent
 
           /* The browser paints a baseline on a whole device pixel. */

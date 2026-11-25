@@ -55,7 +55,6 @@
   will-change: transform;
 }
 
-/* Each billow sways, rises, swells and tilts. Neighbors run opposite ways. */
 @keyframes billow-drift {
   0% {
     transform: translate(-5%, 5%) scale(0.94, 1) rotate(-2deg);
