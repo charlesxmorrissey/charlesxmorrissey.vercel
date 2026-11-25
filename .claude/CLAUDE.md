@@ -71,22 +71,26 @@ to a **static export**. The interesting bits:
   (`seed → seed + 360deg`). A `prefers-reduced-motion` guard freezes the
   animation at the seed palette.
 - **Random background.** `Backdrop` (`src/components/Backdrop/`) renders the
-  markup for three poster backgrounds: `smoke`, `max` and `cosmic`. An inline
-  script directly after the backdrop element runs before first paint. It sets
-  `data-bg` to one of those three or to `current` (the hue gradient above), at
-  random. `?bg=<name>` forces one. CSS shows the scene that matches `data-bg`.
-  When `data-bg` is not `current`, `HomePage.module.css` turns off the gradient
-  and the `mix-blend-mode` on the content. The art must not sit behind the text.
-  The plume and the sunburst rules in `Backdrop.module.css` keep it clear of the
-  text block.
+  markup for one poster background, `smoke`. An inline script directly after the
+  backdrop element runs before first paint. It sets `data-bg` to `smoke` or to
+  `current` (the hue gradient above), at random. `?bg=<name>` forces one. CSS
+  shows the scene that matches `data-bg`. When `data-bg` is not `current`,
+  `HomePage.module.css` turns off the gradient and the `mix-blend-mode` on the
+  content. The art must not sit behind the text. The plume rules in
+  `Backdrop.module.css` keep it clear of the text block.
 - **Dot effect (`DotName`).** `src/components/DotName/` draws text and icons as
   particles on a canvas. `dotType.ts` holds the renderer. The `block` variant
   draws the name as block letters from the glyph map in `ansiShadow.ts`, and it
   is always drawn on the canvas. The default `dots` variant plays a fly-in, and
-  then it shows the real text or icon again. Near the pointer, it cuts a hole in
-  the real text with a CSS mask and draws dots only inside that hole. The real
-  text, heading and links always stay in the DOM. Do not move them into the
-  canvas.
+  then it shows the real text or icon again. During the fly-in, each dot that
+  reaches home changes into its piece of the real text. The canvas then shows
+  the same picture as the real text, so the change to the real text is not
+  visible. The renderer draws that copy of the text on a canvas inside the
+  document, because a canvas outside the document ignores
+  `-webkit-font-smoothing` and draws heavier text. It reads the baseline from
+  the page, not from font metrics. Near the pointer, it cuts a hole in the real
+  text with a CSS mask and draws dots only inside that hole. The real text,
+  heading and links always stay in the DOM. Do not move them into the canvas.
 - **No text flash on load.** The inline script in `Backdrop` also sets `data-js`
   on the backdrop element. While `data-js` is present and a `DotName` is not
   mounted, its plain text is hidden. If the renderer does not mount, the text

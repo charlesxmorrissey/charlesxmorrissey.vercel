@@ -69,8 +69,8 @@
 }
 
 /*
- * The real text comes back at once, under the dots. Only the dots fade, so
- * the two layers are never both partly transparent.
+ * After the intro, the canvas is empty when the real text comes back. Later,
+ * only dots that were inside a pointer hole are left to fade out.
  */
 .root[data-dots='rest'] .canvas {
   opacity: 0;
