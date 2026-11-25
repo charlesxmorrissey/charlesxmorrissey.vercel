@@ -184,7 +184,8 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
   let pointer: Point | null = null
   let radius = 1
   let redrawUntil = 0
-  let source: HTMLCanvasElement | undefined
+  let landed: Dot[] = []
+  let pattern: CanvasPattern | null = null
   let sourceStep = 0
   let stillFrames = 0
 
@@ -199,6 +200,7 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
     context.clearRect(0, 0, canvas.width, canvas.height)
     context.fillStyle = getComputedStyle(root).color
     context.beginPath()
+    landed = []
 
     for (const dot of dots) {
       if (elapsed < dot.delay) {
@@ -256,24 +258,39 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
         Math.hypot(dot.homeX - hole.x, dot.homeY - hole.y) < POINTER_RADIUS
 
       /* Intro: a dot that is home shows its piece of the real text. */
-      if (drawAll && !isAway && source) {
-        context.drawImage(
-          source,
-          Math.round((dot.homeX - PADDING - radius) * ratio),
-          Math.round((dot.homeY - PADDING - radius) * ratio),
-          sourceStep,
-          sourceStep,
-          dot.homeX - radius,
-          dot.homeY - radius,
-          radius * 2,
-          radius * 2,
-        )
+      if (drawAll && !isAway && pattern) {
+        landed.push(dot)
       } else if (!dot.faint && (drawAll || isAway || isInHole)) {
         context.rect(dot.x - radius, dot.y - radius, radius * 2, radius * 2)
       }
     }
 
     context.fill()
+
+    /*
+     * All the landed dots are one path, filled once with the picture of the
+     * real text. One draw call per dot is too slow on a phone: the frame rate
+     * fell to one frame per second. The path is in device pixels, so that the
+     * picture is not scaled.
+     */
+    if (pattern && landed.length) {
+      const origin = Math.round(PADDING * ratio)
+
+      context.setTransform(1, 0, 0, 1, origin, origin)
+      context.fillStyle = pattern
+      context.beginPath()
+
+      for (const dot of landed) {
+        context.rect(
+          Math.round((dot.homeX - PADDING - radius) * ratio),
+          Math.round((dot.homeY - PADDING - radius) * ratio),
+          sourceStep,
+          sourceStep,
+        )
+      }
+
+      context.fill()
+    }
 
     return isMoving
   }
@@ -293,6 +310,7 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
       isIntroDone = true
 
       if (!isBlock) {
+        context.setTransform(1, 0, 0, 1, 0, 0)
         context.clearRect(0, 0, canvas.width, canvas.height)
       }
     }
@@ -522,9 +540,37 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
 
       probe.remove()
 
+      /*
+       * A full line in one call puts every glyph where the browser puts it,
+       * with its own kerning and sub-pixel steps. That needs the canvas to
+       * apply the letter spacing. If it cannot, draw one glyph at a time at
+       * the position from the DOM, which can be a device pixel off.
+       */
+      const canSpace = 'letterSpacing' in bufferContext
+      const byLine = canSpace || style.letterSpacing === 'normal'
+
+      if (canSpace && style.letterSpacing !== 'normal') {
+        bufferContext.letterSpacing = style.letterSpacing
+      }
+
+      let line = ''
+      let lineLeft = 0
+      let lineTop: number | undefined
       let rise: number | undefined
 
-      /* One glyph at a time, so wrapping and letter-spacing match the DOM. */
+      const flush = (): void => {
+        if (line && lineTop !== undefined && rise !== undefined) {
+          /* The browser paints a baseline on a whole device pixel. */
+          bufferContext.fillText(
+            line,
+            lineLeft,
+            Math.round((lineTop + rise) * ratio) / ratio,
+          )
+        }
+
+        line = ''
+      }
+
       for (let index = 0; index < content.length; index += 1) {
         range.setStart(node, index)
         range.setEnd(node, index + 1)
@@ -532,16 +578,22 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
         const [glyphRect] = range.getClientRects()
 
         if (glyphRect) {
+          const top = glyphRect.top - rootRect.top
+
           rise ??= baseline > glyphRect.top ? baseline - glyphRect.top : ascent
 
-          /* The browser paints a baseline on a whole device pixel. */
-          bufferContext.fillText(
-            content[index],
-            glyphRect.left - rootRect.left,
-            Math.round((glyphRect.top - rootRect.top + rise) * ratio) / ratio,
-          )
+          /* A new line, or one glyph for each call. */
+          if (!byLine || lineTop === undefined || Math.abs(top - lineTop) > 1) {
+            flush()
+            lineLeft = glyphRect.left - rootRect.left
+            lineTop = top
+          }
+
+          line += content[index]
         }
       }
+
+      flush()
     }
 
     const { data } = bufferContext.getImageData(
@@ -613,7 +665,10 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
     const width = root.getBoundingClientRect().width + PADDING * 2
     const height = layout.height + PADDING * 2
 
-    ;({ cell, dots, radius, source, sourceStep = 0 } = layout)
+    ;({ cell, dots, radius, sourceStep = 0 } = layout)
+    pattern = layout.source
+      ? context.createPattern(layout.source, 'no-repeat')
+      : null
     canvas.width = Math.round(width * ratio)
     canvas.height = Math.round(height * ratio)
     cssHeight = height
