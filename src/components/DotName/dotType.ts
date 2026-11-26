@@ -46,6 +46,20 @@ const DOTS_PER_EM = 24
 const HOME_EPSILON = 0.5
 const INK_THRESHOLD = 135
 const INTRO_SWEEP_MS = 700
+
+/*
+ * The block name fades in with the smoke plume (plume-in in the Backdrop CSS).
+ * The fade is drawn on the canvas. A CSS opacity animation gives the canvas
+ * its own layer on iOS: the letters are soft during the fade and then move.
+ */
+const BLOCK_FADE_MS = 1400
+
+/* Time is from the start of the page load, the same as a frame time. */
+const blockFade = (now: number): number => {
+  const progress = Math.min(1, Math.max(0, now / BLOCK_FADE_MS))
+
+  return progress * (2 - progress)
+}
 const MAX_CELL = 6.5
 const MIN_STEP = 1
 const PADDING = 96
@@ -183,7 +197,7 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
   let isIntroDone = false
   let pointer: Point | null = null
   let radius = 1
-  let redrawUntil = 0
+  let redrawUntil = isBlock && !reduceMotion ? BLOCK_FADE_MS : 0
   let landed: Dot[] = []
   let pattern: CanvasPattern | null = null
   let sourceStep = 0
@@ -265,7 +279,9 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
       }
     }
 
+    context.globalAlpha = isBlock && !reduceMotion ? blockFade(now) : 1
     context.fill()
+    context.globalAlpha = 1
 
     /*
      * All the landed dots are one path, filled once with the picture of the
@@ -699,7 +715,7 @@ export const mountDotType = (root: HTMLElement): (() => void) => {
 
   /* Focus and light or dark mode change the text color. Redraw to match. */
   const handleColorChange = (): void => {
-    redrawUntil = performance.now() + COLOR_REDRAW_MS
+    redrawUntil = Math.max(redrawUntil, performance.now() + COLOR_REDRAW_MS)
     start()
   }
 

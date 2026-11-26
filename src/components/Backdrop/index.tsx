@@ -1,6 +1,7 @@
 'use client'
 
 import styles from './Backdrop.module.css'
+import { billowMotion } from './billowMotion'
 
 /*
  * Runs while the HTML is parsed, before the first paint. It picks the default
@@ -58,10 +59,7 @@ export const Backdrop = () => (
                 className={styles.billow}
                 key={`billow-${index}`}
                 style={{
-                  animationDelay: `${index * -3.1}s`,
-                  animationDirection:
-                    index % 2 ? 'alternate-reverse' : 'alternate',
-                  animationDuration: `${9 + (index % 4) * 2.5}s`,
+                  ...billowMotion(index),
                   height: `${boxHeight / 10}%`,
                   left: `${(x - width) / 10}%`,
                   top: `${(y - height * 1.4) / 10}%`,

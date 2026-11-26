@@ -392,6 +392,42 @@ describe('mountDotType', () => {
       expect(context.getImageData).not.toHaveBeenCalled()
     })
 
+    it('fades the block letters in on the canvas, then draws them solid', async () => {
+      const root = setup({ html: BLOCK_HTML, variant: 'block', width: 512 })
+      const alphas: unknown[] = []
+
+      context.fill.mockImplementation(() => {
+        alphas.push((context as { globalAlpha?: number }).globalAlpha)
+      })
+      mountDotType(root)
+      await flushFonts()
+      runFrames(100)
+
+      expect(alphas.at(-1)).toBeGreaterThan(0)
+      expect(alphas.at(-1)).toBeLessThan(0.5)
+
+      runFrames(2000)
+
+      expect(alphas.at(-1)).toBe(1)
+      expect(root.querySelector('canvas')?.style.opacity).toBe('')
+    })
+
+    it('draws the block letters solid at once with reduced motion', async () => {
+      mockMatchMedia(true)
+
+      const root = setup({ html: BLOCK_HTML, variant: 'block', width: 512 })
+      const alphas: unknown[] = []
+
+      context.fill.mockImplementation(() => {
+        alphas.push((context as { globalAlpha?: number }).globalAlpha)
+      })
+      mountDotType(root)
+      await flushFonts()
+      runFrames(100)
+
+      expect(new Set(alphas)).toEqual(new Set([1]))
+    })
+
     it('wraps words onto more lines when the width is small', async () => {
       const root = setup({ html: BLOCK_HTML, variant: 'block', width: 100 })
 
